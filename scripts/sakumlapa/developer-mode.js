@@ -1,0 +1,1 @@
+export const developerMode = localStorage.getItem('developerMode') === 'true';

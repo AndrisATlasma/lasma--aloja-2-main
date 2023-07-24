@@ -1,0 +1,123 @@
+﻿<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Home</title>
+<meta http-equiv="imagetoolbar" content="no"/>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link href="system/styles/igrX.css" rel="stylesheet" type="text/css"/>
+<link href="system/styles/theme-tab.css" rel="stylesheet" type="text/css"/>
+<link href="styles/customize.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body scroll="no" class="no-scroll">
+<div class="hide header-background">
+    <div id="doc3">
+        <div id="header">
+            <div class="yui-gb">
+                <div class="yui-u first"><img id='logo' height='30' width='30'/></div>
+                <div class="yui-u center"><h3 id="title" class="no-margin"></h3></div>
+                <div class="yui-u right">
+                    
+                    <div class="yui-b igrx-date" id='{attr:"get",tag:"app.currentTime"}'></div>
+					<div class="yui-b silver">
+						<div id='sec-login' style="display: inline-block;"></div>
+						<img id="qr-icon" src="system/images/qrcode-icon.png" alt="QR Icon" style="display: inline-block;" />
+					</div>
+                </div>
+            </div>
+            <div class="yui-g">
+                <div class="tabs-H" id="tabsH">
+                    <ul id='mainmenu'>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div id='svgholder'></div>
+    <div class="footer alarm" id="footer"></div>
+</div>
+</body>
+<script type="text/javascript" src="system/scripts/igrX2.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+console.log("Kaut kas");
+window.addEventListener('hashchange', () => {
+            console.log('The URL has changed');
+        });
+var opt = {};
+
+opt['alarm'] = {
+    "mode": "footer",
+    "row-per-page": 2, // This number will define how many rows will be shown
+    //"row-footer": 2, // If alarm in footer mode, this will define how many rows will be shown in the footer
+    "order": "state",  // "state" or "timestamp"
+    // "audio": "media/ding.ogg",
+    "column": {
+        "time_stamp": true,
+        "tag_name": false,
+        "group_name": true,
+        "description": false,
+        "message": true,
+        "nvalue": true,
+        "old_nvalue": true,
+        "svalue": false,
+        "old_svalue": false,
+        "inactive_timestamp": true,
+        "ack_timestamp": true,
+        "ack_user": false
+    },
+    "live": true
+};
+
+opt['general'] = {
+	"noDownload": false, // Set to true to disable page preloading. Page will only be loaded on demand.
+	"side_panel": { // Options for side panel menu.
+		"enable": false, // Set to true to enable side panel menu
+		"template": "", // CSS file name defining the menu style. Will always refer to file in styles folder.
+		"auto_hide": false, // Auto hides the side panel menu each time a link to any page in the side panel menu is clicked.
+		"auto_collapse": false // Collapse any same level submenu siblings when another one is expanded to keep the menu short.
+	},
+	"force_login": false, // Set to true to force user to login before being able to do anything.
+	"screen_before_login": "", // Filename (string) of page to be shown before logging in
+	"screen_after_login": "", // Filename (string) of page to be shown right aftter logging in
+	"no_footer_page": [], // Array of filenames (string) where footer should not be shown.
+	"no_header_page": [] // Array of filenames (string) where header should not be shown.
+};
+
+window['svg_vk_enable'] = false;		// enable or disable the Virtual Keyboard in SVG during set tag
+window['svg_vk_autopopup'] = false;		// enable or disable the Virtual Keyboard to automatically popup in SVG during set tag
+
+igrx.time(600);	//param in seconds
+
+try{ 
+	igrx.theme(); //Init theme Manager
+}catch(e){}	
+
+$(document).ready( function() {
+    setTimeout( function() {
+        if (window['menu']) {
+            window['preload'] = new window['preload'](window['menu'], document.getElementById('mainmenu'), document.getElementById('svgholder'), opt['general']);
+            window['preload']['init']();
+            var params = location.search.substring(1).split('&'),
+                page;
+            for (var i in params) {
+                var param = params[i].split('=');
+                if (param[0] == 'page') {
+                    page = param[1];
+                }
+            }
+            if (page)
+                window['preload']['openPage']( page);
+        }
+        if (window['title']) document.getElementById('title').innerHTML = window['title'];
+        if (window['logo']) document.getElementById('logo').src = window['logo'];
+        
+        var index = new window['htmEngine'](document.getElementsByTagName('html')[0]);
+        new window.alarm( document.getElementById('footer'), opt['alarm']);
+    }, 500);
+});
+</script>
+</html>

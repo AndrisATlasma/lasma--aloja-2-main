@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src='https://code.jquery.com/jquery-3.4.1.min.js'
+      integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
+</head>
+
+<body>
+   <div style='display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;'>
+      <div data-tagbeingread="tag1" data-animation="value"></div>
+      <div data-tagbeingread="tag1" data-animation="text" data-text="0:Turned OFF,1:Turned ON"></div>
+      <div data-tagbeingread="tag1" data-animation="value" data-settag="0:1,1:0" data-text="0:Turned OFF,1:Turned ON">
+      </div>
+      <!-- <div data-tagbeingread="tag1" data-animation="opacity,text" data-text="0:Turned OFF,1:Turned ON"></div> -->
+      <button data-tagbeingread="tag1" data-animation="text,settag" data-text="0:Turn ON,1:Turn OFF"
+         data-tagbeingwritten="tag1" data-settag="0:1,1:0"></button>
+      <input type='number' data-tagbeingwritten="tag1"></input>
+   </div>
+
+   <script>
+      // const tagValues = [0, 1, null, true, false];
+      // const getTag = () => tagValues[Math.floor(Math.random() * 4)];;
+      // const setTag = () => false;
+
+      // ============================ VARIABLES ============================
+      const allDynamicElements = Array.from(document.querySelectorAll('[data-tagbeingread]'));
+      const allInputAndButtonElements = Array.from(document.querySelectorAll('[data-tagbeingwritten]'));
+
+      // ============================ FUNCTIONS ============================
+      function initializeDynamicElements() {
+         if (!allInputAndButtonElements.length) return console.info(`seems like the document has no elements with data-tagbeingwritten attribute!`);
+
+         allInputAndButtonElements.forEach(el => {
+            if (el.tagName === "INPUT") {
+               console.info("do not forget to create an event to save the input value");
+            } else if (el.tagName === "BUTTON") {
+               const tagbeingread = el.dataset.tagbeingread;
+               if (typeof tagbeingread === 'undefined' || tagbeingread === "") {
+                  console.error(el);
+                  return console.error(`↑ this element has no 'data-tagbeingread' value or property`);
+               }
+
+               const settagData = el.dataset.settag;
+               if (typeof settagData === 'undefined' || settagData === "") {
+                  console.error(el);
+                  return console.error(`↑ this element has no 'data-settag' value or property`);
+               }
+
+               let valueWritten, handledTagValues = [], possibleValuesWritten = [];
+               settagData.split(",").forEach(data => {
+                  const [value, text] = data.split(':');
+                  handledTagValues.push(value);
+                  possibleValuesWritten.push(text);
+               });
+
+               el.addEventListener("click", function () {
+                  const value = getTag(tagbeingread);
+                  const prettyValue = `${Number(value)}`;
+
+                  if (handledTagValues.includes(prettyValue)) {
+                     valueWritten = possibleValuesWritten[handledTagValues.indexOf(prettyValue)];
+                  } else {
+                     // using the first text value by default (if unhandled tag value)
+                     valueWritten = possibleValuesWritten[0];
+                  }
+
+                  setTag(el.dataset.tagbeingwritten, valueWritten);
+               });
+            } else {
+               console.error(el);
+               console.error(`↑ Seems like you added data-tagbeingwritten attribute to the element which is neither input or a button. Either way, this is unhandled in this code version. Might not be in the next one. :)`);
+            };
+         });
+      };
+
+      function updateDynamicElements() {
+         const value = 0;
+
+         // value will be received separately by every element
+         if (!allDynamicElements.length) return console.info(`seems like the document has no elements with data-tagbeingread attribute!`);
+
+         allDynamicElements.forEach(el => {
+            const { animation: animationData, tagbeingread: tagRead, animation: animations, text: textData, settag: settagData, image: imageData } = el.dataset;
+            if (typeof animationData === 'undefined' || animationData === "") {
+               console.error(el);
+               return console.error(`↑ this element has no 'data-animation' value or property`);
+            };
+
+            animations.split(',').forEach(animation => {
+               switch (animation) {
+                  case 'value':
+                     el.textContent = value === null ? 'null' : value;
+                     break;
+                  case 'text':
+                     {
+                        if (typeof textData === 'undefined' || textData === "") {
+                           console.error(el);
+                           return console.error(`↑ this element has no 'data-text' value or property`);
+                        }
+
+                        let text = "", handledTagValues = [], possibleTextValues = [];
+                        textData.split(",").forEach(data => {
+                           const [value, text] = data.split(':');
+                           handledTagValues.push(value);
+                           possibleTextValues.push(text);
+                        });
+                        // handling null,'',0,false
+                        const prettyValue = `${Number(value)}`;
+                        if (handledTagValues.includes(prettyValue)) {
+                           text = possibleTextValues[handledTagValues.indexOf(prettyValue)];
+                        } else {
+                           // using the first text value by default (if unhandled tag value)
+                           text = possibleTextValues[0];
+                        }
+                        el.textContent = text;
+                        break;
+                     }
+                  case 'opacity':
+                     {
+                        const prettyValue = `${Number(value)}`;
+                        prettyValue === '1' ? $(el).show() : $(el).hide();
+                        break;
+                     }
+                  case 'settag':
+                     {
+                        if (typeof settagData === 'undefined' || settagData === "") {
+                           console.error(el);
+                           return console.error(`↑ this element has no 'data-settag' value or property`);
+                        }
+                        break;
+                     }
+                  case 'image':
+                     {
+                        if (el.tagName !== "IMG") {
+                           console.error(el);
+                           return console.error(`↑ you have assigned 'data-image' property to a (${el.tagName}) element`);
+                        } else if (typeof imageData === 'undefined' || imageData === "") {
+                           console.error(el);
+                           return console.error(`↑ this element has no 'data-image' value or property`);
+                        }
+
+                        let image_src = "", handledTagValues = [], possibleImageSources = [];
+                        imageData.split(",").forEach(data => {
+                           const [value, text] = data.split(':');
+                           handledTagValues.push(value);
+                           possibleImageSources.push(text);
+                        });
+                        const prettyValue = `${Number(value)}`;
+                        if (handledTagValues.includes(prettyValue)) {
+                           image_src = possibleImageSources[handledTagValues.indexOf(prettyValue)];
+                        } else {
+                           // using the first text value by default (if unhandled tag value)
+                           image_src = possibleImageSources[0];
+                        }
+                        el.src = image_src;
+                        break;
+                     }
+                  default:
+                     console.error(el)
+                     console.error(`↑ unhandled animation: (${animation})`);
+                     break;
+               }
+            });
+         });
+      };
+
+      function cycleUpdate() {
+         updateDynamicElements();
+
+         setTimeout(function () {
+            cycleUpdate();
+         }, 3000);
+      }
+
+      // ============================ ACTION ============================
+      initializeDynamicElements();
+      cycleUpdate();
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title></title>
+   <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+   <link rel='stylesheet' type='text/css' href='system/styles/igrX.css' />
+   <script type='text/javascript' src='system/scripts/igrX2.js'></script>
+
+   <style>
+      #actualValues {
+         font-family: Arial, Helvetica, sans-serif;
+         border-collapse: collapse;
+         min-width: 500px;
+         margin: auto;
+         margin-top: 25px;
+         font-size: 1.3em;
+      }
+
+      #actualValues td {
+         text-align: center;
+      }
+
+      #actualValues td:nth-child(1),
+      #actualValues th:nth-child(1) {
+         width: 100px;
+         text-align: right;
+         font-weight: 600;
+      }
+
+      #actualValues td,
+      #actualValues th {
+         border: 1px solid #ddd;
+         padding: 8px 15px;
+      }
+
+      #actualValues tr:nth-child(even) {
+         background-color: #f2f2f2;
+      }
+
+      #actualValues tr:hover {
+         background-color: #ddd;
+      }
+
+      #actualValues th {
+         padding-top: 12px;
+         padding-bottom: 12px;
+         text-align: left;
+         background-color: #0f4d9e;
+         color: white;
+         text-align: center;
+      }
+
+      .last {
+         width: 50px;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="wrpdiv">
+      <table id="actualValues">
+         <thead>
+            <th>Parametrs</th>
+            <th>L1</th>
+            <th>L2</th>
+            <th>L3</th>
+            <th>Mērvienība</th>
+         </thead>
+         <tbody>
+            <tr>
+               <td>Spriegumi</td>
+               <td data-tag="Part1_L1_V"></td>
+               <td data-tag="Part1_L2_V"></td>
+               <td data-tag="Part1_L3_V"></td>
+               <td class="last">V</td>
+            </tr>
+            <tr>
+               <td>Strāvas</td>
+               <td data-tag="Part1_L1_A"></td>
+               <td data-tag="Part1_L2_A"></td>
+               <td data-tag="Part1_L3_A"></td>
+               <td class="last">A</td>
+            </tr>
+            <tr>
+               <td>Jaudas</td>
+               <td data-tag="Part1_L1_P"></td>
+               <td data-tag="Part1_L2_P"></td>
+               <td data-tag="Part1_L3_P"></td>
+               <td class="last">kW</td>
+            </tr>
+            <tr>
+               <td>cos φ</td>
+               <td data-tag="Part1_L1_Cos"></td>
+               <td data-tag="Part1_L2_Cos"></td>
+               <td data-tag="Part1_L3_Cos"></td>
+            </tr>
+            <tr>
+               <td>Kilovatstundas</td>
+               <td data-tag="Part1_kWh" data-floor="true" colspan="3"></td>
+               <td class="last">kWh</td>
+            </tr>
+            <tr>
+               <td>Induktīva enerģija</td>
+               <td data-tag="Part1_kvarL" data-floor="true" colspan="3"></td>
+               <td class="last">kvarhL</td>
+            </tr>
+            <tr>
+               <td>Kapacitīva enerģija</td>
+               <td data-tag="Part1_kvarC" data-floor="true" colspan="3"></td>
+               <td class="last">kvarhC</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+
+   <script src="scripts/frontend/functions.js"></script>
+   <script>
+      // @ts-check
+      (async function () {
+         const data = new Proxy([], {
+            set: (target, key, val) => {
+               if (key === 'length') return true;
+               const { name, value } = val;
+               target[key] = val;
+               const el = document.querySelector(`[data-tag="${name}"]`);
+               if (el) {
+                  let newValue = (value === null) ? '0' : value;
+                  if (value !== null && !isNaN(Number(value))) {
+                     newValue = el['dataset'].floor ? parseInt(value).toString() : (Number(value)).toFixed(1);
+                  }
+                  if (el.textContent !== newValue) {
+                     el.textContent = newValue;
+                  }
+               }
+               return true;
+            },
+         });
+
+         setInterval(async () => {
+            if (sessionStorage.getItem('currentPage') === 'al_actual_data.html') {
+               // @ts-ignore               
+               const dbData = await runSqlSelect('al1_select_all_tags');              
+               if (dbData.length) {
+                  data.length = 0;
+                  dbData.forEach((tag) => data.push(tag));
+               }
+            }
+         }, 3000);
+      })();
+   </script>
+</body>
+
+</html>

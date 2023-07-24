@@ -1,0 +1,56 @@
+﻿<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link href="system/styles/igrX.css" rel="stylesheet" type="text/css"/>
+        <title>SVG Loader</title>
+    </head>
+    <body scroll="no" class="no-scroll">
+    </body>
+	
+	<script type="text/javascript" src="system/scripts/igrX2.js"></script>
+	<script type='text/javascript'>
+		
+		window['preload'] = new function() {
+			this['load'] = function() {
+				var svgEmbeds = document.getElementsByTagName("embed");
+				var opt = {};
+				
+				// Get saved data from localStorage
+				var setting = localStorage['getItem']('_faceplate');
+				
+				if(!!setting){
+					// Save data to sessionStorage
+					sessionStorage.setItem('_faceplate_ss', setting);	
+				}
+				else{
+					// Get saved data from sessionStorage
+					setting = sessionStorage.getItem('_faceplate_ss');
+				}
+				
+				opt.faceplate = JSON['parse'](!!setting ? setting : '{}');
+				localStorage['removeItem']('_faceplate');
+				
+				var svg = new window['svgEngine'](svgEmbeds[0], function(svgObj) {
+					setTimeout(function(){
+						svgObj['realTime'](true);
+					}, 1000);
+				}, opt);
+			};
+			return this;
+		};
+		
+		var params = location.search.substring(1).split('&'),
+			src;
+		for (var i in params) {
+			var param = params[i].split('=');
+			if (param[0] == 'src')
+				src = param[1];
+		}
+		if (src.match("javascript:") || src.match("data:") || src.match("[\:\*\/\?\"\|\<\>]"))
+			document.body.innerHTML="<div style='z-index:0;overflow:hidden'height='100%'width='100%'><h1>Error: XSS detected. This may be a hacking attempt.</h1></div>"
+		else
+			document.body.innerHTML="<embed type='image/svg+xml'style='z-index:0;overflow:hidden'id='idsvg'wmode='transparent'height='100%'width='100%'src='"+src+"'/>";
+	</script>
+    
+</html>

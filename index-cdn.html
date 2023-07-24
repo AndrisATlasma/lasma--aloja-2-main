@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>IGX System</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=yes" />  -->
+  <link rel="shortcut icon" href="images/favicon.ico" />
+
+  <!-- CSS -->
+  <link href="https://www.integraxor.com/cdn/hotlink-ok/6.1.729.2/system/styles/igrX2.css" rel="stylesheet" type="text/css" />
+  
+	<style type="text/css">
+	
+	.fullwidth{
+		width: 100%;
+		height: 100%;
+		background-color: #FFFFFF;
+	}
+	.content{
+		width: 100%;
+		height: 600px;
+		padding: 5px;
+	}
+
+	.content-header{
+		width: 100%;
+		height: 25px;
+	}
+
+	.project-title{
+		font-size: 20px;
+		text-align: center;
+		line-height:50px;
+		padding-left: 10px;
+		color: dark grey;
+	}
+
+	.project-title-mini{
+		font-size: 20px;
+		text-align: center;
+		line-height:50px;
+		padding-left: 10px;
+		color: dark grey;
+	}
+
+	.content-alarm{
+		width: 100%;
+		height: 100%;
+		#padding-left: 15px;
+		#padding-right: 15px;
+	}
+
+	.highlight{
+		color: #ffcc00;
+	}
+
+	.footer {
+	  position: absolute;
+	  bottom: 0;
+	  width: 100%;
+	  height: 100%;
+	  background-color: #f5f5f5;
+	  z-index: 999;
+	}
+
+	#footer {
+		overflow: auto;
+	}
+
+	.alarm-table{
+		left: 0px;
+		position:relative;
+		min-width: 800px;
+	}
+
+	.content-header>h1{
+		font-size:18px;
+	}
+	
+	#project-title{
+		text-align: left;
+		height: 50px;
+		overflow-y: hidden;
+	}
+	
+	#project-title-mini{
+		text-align: left;
+		height: 50px;
+		overflow-y: hidden;
+	}
+
+	#project-title-mini{
+		display:none;
+	}
+	
+	table, th, td {
+	   border: 1px solid white;
+	}
+	
+	html, body{
+		height: 100%;
+	}
+	
+	@media screen and (max-width:768px){    
+		#project-title{
+			display:none;
+		}
+		
+		#project-title-mini{
+			display:block;
+		}
+		
+		.content-alarm{
+			display:none;
+		}
+		
+		//.svg-wrapper{
+		//	overflow:scroll;
+		//	-webkit-overflow-scrolling: touch;
+		//}
+		
+		.svg-wrapper > embed{
+			width: 100%;
+			height: 100%;
+		}
+		
+		#logo{
+			display:none;
+		}
+		
+		#content-wrapper{	
+			//padding-top:50px;
+		}
+		
+		.main-sidebar{	
+			padding-top:50px;
+		}
+		
+		.control-sidebar{
+			padding-top:50px;
+		}
+		
+		.html-container{
+			width: 100%;
+			height: 100%;
+			overflow: scroll;
+			-webkit-overflow-scrolling: touch;
+		}
+		
+		.html-container> iframe{
+			min-width: 1000px;
+		}
+	}
+	
+	#qr-code-content > canvas{
+		padding: 30px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	#qr-code-content > img{
+		padding: 30px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	li > a > span {
+		white-space: normal;
+	}
+	
+	</style>
+</head>
+<body class="hold-transition skin-red sidebar-mini sidebar-collapse">
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="index.html" class="logo" id="logo">
+		<!-- mini logo for sidebar mini 50x50 pixels -->
+		<div id="logo-mini" class="logo-mini">
+			<img id="logo-icon" class="pull-left"  src="https://www.integraxor.com/cdn/hotlink-ok/6.1.729.2/system/images/igrx.png" alt="IGX" style="height:40px;width:40px;margin-top:5px;margin-left:4px;padding:5px;" />
+		</div>
+		<!-- logo for regular state and mobile devices -->
+		<div id="logo-lg" class="logo-lg">
+			<img id="logo-icon" class="pull-left" src="https://www.integraxor.com/cdn/hotlink-ok/6.1.729.2/system/images/igrx.png" alt="IGX" style="height:40px;width:40px;margin-top:5px;padding:5px;" />
+			<span>IGX system</span>
+		</div>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+		<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+			<span class="sr-only">Toggle navigation</span>
+		</a>
+		<div id="project-title-mini" class="project-title-mini pull-left" style="overflow:hidden;">
+			<span>Project Title</span>
+		</div>
+		<div id="project-title" class="project-title pull-left" style="overflow:hidden;">
+			<span>Project Title or Project Name or Site Name</span>
+		</div>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+		  <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="https://www.integraxor.com/cdn/hotlink-ok/6.1.729.2/system/images/user.png" class="user-image" alt="User Image">
+			  <span class="hidden-xs" id="sec-username">Guest</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="https://www.integraxor.com/cdn/hotlink-ok/6.1.729.2/system/images/user.png" class="img-circle" alt="User Image">
+
+                <p id="sec-username2">
+                  Guest
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body" style="display: none;">
+				<div class="row">
+				  <div class="col-xs-2 text-center"> 
+                  </div>
+					  <div class="col-xs-8 text-center">
+						<a href="javascript:window['sec_module']['userrole_summary']()">User Role Summary</a>
+					  </div>
+                  <div class="col-xs-2 text-center"> 
+                  </div>
+                </div>
+				<br>
+				<div class="row">
+				  <div class="col-xs-2 text-center"> 
+                  </div>
+					  <div class="col-xs-8 text-center">
+						<a href="javascript:window['sec_module']['change_password']()">Change Password</a>
+					  </div>
+                  <div class="col-xs-2 text-center"> 
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left" id="sec-login-btn"">
+                  <a href="javascript:window['sec_module']['loginPopup']()" class="btn btn-default btn-flat">Login</a>
+                </div>
+                <div class="pull-right" id="sec-logout-btn" style="visibility:hidden;">
+                  <a href="#" class="btn btn-default btn-flat">Logout</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+		  
+		  <!-- Control QR Button -->
+          <li>
+            <a href="javascript:window['sec_module']['showqrcode']()" data-toggle="control-qr"><i class="fa fa-qrcode"></i></a>
+          </li>
+		  
+		  <!-- Internet Gateway Button -->
+		  <li id="igg8way-btn" style="display:none">
+            <a href="javascript:window['sec_module']['showigg8waylink']()"><i class="fa fa-share-alt"></i></a>
+          </li>
+		  
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gear"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div id="content-wrapper" class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1 id="content-header-title" class="pull-left" style="padding:5px;">
+        Page Title
+        <!-- <small>Control panel</small> -->
+      </h1>
+	  <div class="pull-right" id='{attr:"get",tag:"app.currentTime"}' style="padding:5px;"></div>
+    </section>
+	
+	<section id="content" class="content">
+	</section>
+	
+	<section id="content-alarm" class="content-alarm">
+		<div id="footer"></div>
+	</section>
+
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+	</div>
+  </aside>
+  
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+  
+</div>
+
+<script type="text/javascript">
+  var AdminLTEOptions = {
+    sidebarExpandOnHover: false
+  };
+</script>
+
+<script type="text/javascript" src="https://www.integraxor.com/cdn/hotlink-ok/6.1.729.2/system/scripts/igrX2.js"></script>
+<script type="text/javascript">
+
+igrx.time( 60 );
+
+var opt = {};
+
+opt['alarm'] = {
+    "mode": "footer",
+    "row-per-page": 2, // This number will define how many rows will be shown
+    //"row-footer": 2, // If alarm in footer mode, this will define how many rows will be shown in the footer
+    "order": "state",  // "state" or "timestamp"
+    // "audio": "media/ding.ogg",
+    "column": {
+        "time_stamp": true,
+        "tag_name": false,
+        "group_name": true,
+        "description": false,
+        "message": true,
+        "nvalue": true,
+        "old_nvalue": true,
+        "svalue": false,
+        "old_svalue": false,
+        "inactive_timestamp": true,
+        "ack_timestamp": true,
+        "ack_user": false
+    },
+    "live": true
+};
+
+opt['general'] = {
+	"force_login": false, // Set to true to force user to login before being able to do anything.
+	"no_footer_page": [ "alarm.htm" ] // Array of filenames (string) where footer should not be shown.
+};
+
+window['svg_vk_enable'] = false;		// enable or disable the Virtual Keyboard in SVG during set tag
+window['svg_vk_autopopup'] = false;		// enable or disable the Virtual Keyboard to automatically popup in SVG during set tag
+
+$(document).ready( function() {
+	setTimeout(function(){ 
+		window['preload'] = new window['preload']( opt['general'] );
+		window['menuHandler'] = new window['menuHandler']( null, function(){});
+		
+		var index = new window['htmEngine'](document.getElementsByTagName('html')[0]);
+		new window.alarm( document.getElementById('footer'), opt['alarm']);
+	}, 1000);
+});
+
+</script>
+</body>
+</html>

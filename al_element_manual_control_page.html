@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title></title>
+   <!-- <meta http-equiv='content-type' content='text/html; charset=utf-8' /> -->
+   <meta http-equiv='content-type' content='application/javascript; charset=utf-8' />
+   <link rel='stylesheet' type='text/css' href='system/styles/igrX.css' />
+   <script type='text/javascript' src='system/scripts/igrX2.js'></script>
+
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         font-family: Arial, Helvetica, sans-serif;
+         font-size: 20px;
+      }
+
+      body {
+         background-color: #BFC0C2;
+      }
+
+      #mc_page_container {
+         margin: auto;
+         display: flex;
+         width: 100vw;
+         display: flex;
+         flex-direction: column;
+      }
+
+      #mc_page_title {
+         font-size: 1.4em;
+         text-align: center;
+         font-weight: 600;
+         margin-bottom: 3px;
+         padding: 5px;
+      }
+
+
+      #mc_info {
+         font-size: 1.5em;
+         display: flex;
+         flex-direction: column;
+      }
+
+      button {
+         font-size: 1em;
+         padding: 3px 5px;
+      }
+
+      .vertCenterFlex {
+         display: flex;
+         align-items: center;
+         text-align: center;
+         justify-content: center;
+      }
+
+      .middlevcf {
+         text-align: right;
+         font-weight: 600;
+         justify-content: flex-end;
+      }
+
+      .rfd {
+         background-color: rgb(31, 67, 133);
+         color: white;
+      }
+
+      /* INPUTS */
+      input {
+         margin-right: 3px;
+      }
+
+      input[type='number'] {
+         max-width: 100px;
+         text-align: center;
+      }
+
+      .mervienibas {
+         text-align: center;
+         /* width: 35px; */
+         margin-left: 5%;
+      }
+
+      /* BUTTONS */
+      button {
+         margin-left: 10px;
+         padding: 5px 10px;
+         cursor: pointer;
+      }
+
+      #saveInputTags {
+         margin-left: -9px;
+      }
+
+      /* WARNING → SAVE TAG VALUES */
+      .warning {
+         margin-left: 3%;
+         display: flex;
+         align-items: center;
+      }
+
+      /* ROWS */
+      .mc_page_row {
+         display: flex;
+         align-items: center;
+         padding: 5px 10px;
+         border-bottom: 1.9px solid gray;
+      }
+
+      .hoverable:hover {
+         background-color: #a1a1a1;
+      }
+
+      .kontrolesRow {
+         background-color: #ecda91;
+      }
+
+      #Alarms {
+         display: flex;
+         flex-direction: row;
+         align-items: center;
+         justify-content: center;
+         padding: 5px 10px;
+         border: none;
+         gap: 20px;
+         flex-wrap: wrap;
+         margin-left: -10%;
+      }
+
+      .mc_page_row div:nth-child(1) {
+         text-align: right;
+         margin-right: 20px;
+         width: 41%;
+      }
+
+      /* ERROR CONTAINER */
+      .error {
+         background-color: #ff6e66;
+         padding: 10px 19px;
+         border: 1px solid black;
+         font-weight: 600;
+      }
+
+      /* Element picker */
+      .pickerCont {
+         display: flex;
+         justify-content: flex-end;
+         padding: 6px;
+      }
+
+      #searchDropdown {
+         width: 600px;
+      }
+
+      label {
+         margin-right: 5px;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="pickerCont">
+      <label for="searchDropdown">Elements:</label>
+      <select name="searchDropdown" id="searchDropdown">
+         <option value="" disabled selected>Izvēlieties elementu</option>
+      </select>
+   </div>
+
+   <div id="mc_page_container">
+      <div id="mc_page_title" class='rfd'></div>
+      <div id="mc_page_content">
+         <div id="mc_info">
+
+         </div>
+      </div>
+   </div>
+
+
+   <script defer>
+      // ============================ DB STUFF ============================
+      function ps_elements_select(el_id) {
+         return new Promise(resolve => {
+            runSql('elements_select_by_id', { el_id }, { outfmt: 'json', dbgroup: 'postgres' }, function (results) {
+               if (results.statusCode !== 200) resolve(false);
+               resolve(results.responseJson);
+            });
+         });
+      };
+
+      // ============================ GLOBALS ============================
+      let elem_id, motorstundasTag = false;
+
+      const elementNames = [`Pieņemšanas`, `Pieņemšanas elevators`, `Trīs ceļu plūsmas dalītājs`, `Trīs ceļu plūsmas dalītājs`, `Bunkurs 1.`, `Aizbīdnis`, `2-plūsmu vārsts DV20DA`, `Bunkurs 2.`, `Aizbīdnis`, `Produkta izādes/dozēšanas transportieris`, `Produkta izādes/dozēšanas transportiera ventilators`, `Ķēdes transportieris uz vibroseparatoru`, `Vibroseparators. Rotācijas priekštīrītājs`, `Vibroseparators. Aspirācijas ventilators`, `Akmeņu atdalītājs. Vibromotors 1`, `Akmeņu atdalītājs. Vibromotors 2`, `Akmeņu atdalītājs. Aspirācijas ventilators`, `Paraugu ņēmējs 1`, `Akmeņu atdalītāja elevators E50`, `Kvadrātbunkurs 1. Motorizēts šīberis  BA20E`, `Aizbīdnis BA20E zem kvadrātbunkura 1 /2-plūsmu vārsts DV20DA`, `Skrūves dozators`, `Lobītājs. Piedziņas motors`, `Lobītājs. Akmeņu starpas regulēšanas motors`, `Lobītājs. Ventilators`, `Lobītāja elevators E50`, `Vibroseparators. Vibromotors 1`, `Vibroseparators. Vibromotors 2`, `Gliemežtransportieris  No PCLN2 uz BE2`, `Plūsmas dalītāju DV20DA`, `Paraugu ņēmējs 2`, `Vibroseparatora elevators E50`, `Kvadrātbunkurs 2. Motorizēts šīberis  BA20E`, `Skrūves dozators 2`, `Filtra vadības bloks 1`, `Filtra ventilators`, `Rotācijas vārsts Agrotech HT-250`, `Filtra vadības bloks 2 `, `Filtra ventilators`, `Rotācijas vārsts Agrotech HT-250`, `Kvadrātbunkurs 1`, `Kvadrātbunkurs 2`, `Vibroseparators. Rotācijas priekštīrītājs`];
+      const elApzimejumi = ["CC6001", "BE6005", "VM6009", "VM6010", "BU1", "VM6006", "VM6008", "Bu2", "VM6007", "CC6002", "FN6003", "CC6004", "CL6011", "FN6047", "DE6013", "DE6014", "FN6015", "SM6017", "BE6017", "VM6029", "VM6018", "DZ6020", "HL6021", "HL6023", "FN6022", "BE6024", "DE6025", "DE6026", "CS6027", "VM6019", "SM6031", "BE6030", "VM6032", "DZ6033", "FC6041", "FN6040", "RV6037", "FC6043", "FN6042", "RV6038", "KVB1", "KVB2", "CL6012"];
+
+      const raw_allElemData = `1	1	1		1	1	1		1				
+1	1		1	1	1			1				
+1			1	1	1							
+1			1	1	1							
+		1				1						
+1			1	1	1							
+1			1	1	1							
+		1				1						
+1			1	1	1							
+1	1	1		1	1	1		1	1	1		1
+1	1			1	1			1				
+1	1	1		1	1	1		1				
+1	1			1	1			1				
+1	1			1	1			1				
+1	1			1	1			1				
+1	1			1	1			1				
+1	1			1	1			1				
+			1	1	1							
+1	1		1	1	1			1				
+1			1	1								
+1			1	1								
+1	1			1	1				1	1		1
+1	1			1	1			1	1	1		1
+1	1			1								
+1	1			1	1					1		
+1	1	1	1	1	1	1		1				
+1	1			1	1			1				
+1	1			1	1			1				
+1	1			1	1			1				
+1			1	1	1							
+			1	1	1							
+1	1	1	1	1	1	1		1				
+1			1	1								
+1	1			1	1			1	1			
+1				1	1						1	
+1	1			1	1			1		1		
+1	1			1	1			1				
+1				1	1						1	
+1	1			1	1			1		1		1
+1	1			1	1			1				
+		1				1						
+		1				1						
+1	1			1	1	1						`.split('\n').map(row => row.split('\t'));
+
+      let allDynamicElements = [], allInputAndButtonElements = [], showNoDataAlert = false, previousActualElementId = null;
+
+      // ============================ FUNCTIONS ============================
+      function hideWarningsAndErrors() {
+         Array.from(document.querySelectorAll(".warning")).forEach(warningDiv => $(warningDiv).hide());
+         const allErrorDivs = Array.from(document.querySelectorAll(".error"));
+         if (allErrorDivs.length) allErrorDivs.forEach(errDiv => $(errDiv).hide());
+      }
+
+      function returnTagNamesFromRawData(id) {
+         // Motor Err	Contactor Err 	OVf err	Rot Err	Start T	Stop T	Ovf delay	Set rot sens speed	Moto T	work speed (0-100%)	Starvas Fb	Delta P	frekvence\
+         const raw_elemData = raw_allElemData[id];
+         // generating tag names based on data from xls (returns tagName or false)
+         const elem_name = elementNames[id] ? `${elementNames[id]} (${elApzimejumi[id]}) ` : `Elementa nosaukums nav atrasts!`;
+
+         const startDelayTag = raw_elemData[4] === "1" ? `startDelay_ID${id}` : false;
+         let stopDelayTag = raw_elemData[5] === "1" ? `stopDelay_ID${id}` : false;
+         if (id === 29) {
+            stopDelayTag = false;
+         }
+         const overflowDelayTag = raw_elemData[6] === "1" ? `ovfDelay_ID${id}` : false;
+         motorstundasTag = raw_elemData[8] === "1" ? `ElementID${id}_MotoT` : false;
+         let speedSetpointTag = raw_elemData[7] === "1" ? `x` : false;
+         if (id === 33) {
+            speedSetpointTag = `DZ6033_setFr_2`;
+         }
+
+         let workSpeedSetpointTag = false;
+
+         if (raw_elemData[9] === "1") {
+            if (id === 9) {
+               workSpeedSetpointTag = `CC6002_setFr`;
+            } else if (id === 21) {
+               workSpeedSetpointTag = `DZ6020_setFr`;
+            } else if (id === 22) {
+               workSpeedSetpointTag = `HL6021_setFr`;
+            } else if (id === 33) {
+               workSpeedSetpointTag = `DZ6033_setFr`;
+            } else if (id === 35) {
+               workSpeedSetpointTag = `FN6040_setFr`;
+            } else {
+               workSpeedSetpointTag = `x`;
+            }
+         };
+
+         let current = raw_elemData[10] === "1";
+         if (id === 24) {
+            current = false;
+         }
+         const frequency = raw_elemData[12] === "1";
+         const motorErrTag = raw_elemData[0] === "1";
+         const contactorErrTag = raw_elemData[1] === "1";
+         const overflowErrTag = raw_elemData[2] === "1";
+         const rotErrTag = raw_elemData[3] === "1";
+
+         const controlTag = `comand_ID${id}`;
+         const stateTag = `state_ID${id}`;
+
+         let controlButtonTextOptions = false;
+         if ([5, 8, 19, 32].includes(id)) { // VM6006
+            controlButtonTextOptions = `0:atvērt,1:aizvērt`;
+         } else if (id === 6) { // VM6008
+            controlButtonTextOptions = `0:pārslēgt uz CC6004,1:pārslēgt uz bunkuru 2`;
+         } else if (id === 29) {
+            controlButtonTextOptions = `0:pārslēgt uz sampler 2,1:pārslēgt uz avarijas izl.`;
+         } else if (id === 20) {
+            controlButtonTextOptions = `0:pārslēgt uz avarijas izl.,1:pārslēgt uz dozatoru 1`;
+         }
+
+         return { controlButtonTextOptions, stateTag, elem_name, motorErrTag, contactorErrTag, overflowErrTag, rotErrTag, startDelayTag, stopDelayTag, overflowDelayTag, speedSetpointTag, workSpeedSetpointTag, current, frequency, controlTag };
+      }
+
+      function renderHtml(elementId) {
+         const { controlButtonTextOptions, stateTag, elem_name, motorErrTag, contactorErrTag, overflowErrTag, rotErrTag, startDelayTag, stopDelayTag, overflowDelayTag, speedSetpointTag, workSpeedSetpointTag, current, frequency, controlTag } = returnTagNamesFromRawData(elementId);
+
+         document.getElementById('mc_page_title').textContent = `${elem_name}  ID${elementId}`;
+         document.getElementById("mc_info").innerHTML = `
+            ${(current || frequency || elementId === 35) ? `<div class="mc_page_row">
+               <div></div>
+               <div style="font-weight: 600; margin-left:-20px; margin-top:10px;">Aktuālie dati</div>
+            </div>`: ""}
+            ${current ? `<div class="mc_page_row hoverable">
+                              <div>Strāva :</div>
+                              <div id="infoDiv" style="display: flex;">
+                                 <div data-animation="value" data-dbcolbeingread="strava" style="text-align:center;width:100px; margin-right:5px;font-weight: 600;"> </div>
+                                 <div class="mervienibas">A</div>
+                              </div>
+                           </div>` : ''}
+            ${frequency || elementId === 35 ? `<div class="mc_page_row hoverable">
+                              <div>Frekvence :</div>
+                              <div id="infoDiv" style="display: flex;">
+                                 <div data-animation="value" data-dbcolbeingread="frekv" style="text-align:center;width:100px; margin-right:5px;font-weight: 600;"></div>
+                                 <div class="mervienibas">Hz</div>
+                              </div>
+                           </div>` : ''}
+
+            <div class="mc_page_row" style="margin-top:10px;">
+                <div></div>
+                <div style="font-weight: 600; margin-left:-6px;">Iestatījumi</div>
+            </div>
+            ${startDelayTag ? `<div class="mc_page_row hoverable">
+                                 <div>${[19, 20, 29, 32].includes(elementId) ? 'Pārslēgšanas laiks' : 'Palaišanas aizture'} :</div>
+                                 <div id="infoDiv" style="display: flex;">
+                                    <input data-tagbeingwritten="${startDelayTag}" data-modified="false" type="number" min="0" step="0.1">
+                                    <div class="mervienibas">s</div>
+                                 </div>
+                                 <div class="warning">
+                                    Neaizmirstiet saglabāt izmaiņas!
+                                 </div>
+                              </div>`: ''}
+
+            ${stopDelayTag ? `<div class="mc_page_row hoverable">
+                                 <div>Apstašanas aizture :</div>
+                                 <div id="infoDiv" style="display: flex;">
+                                    <input type="number" min="0" step="0.1" data-tagbeingwritten="${stopDelayTag}" data-modified="false">
+                                    <div class="mervienibas">s</div>
+                                 </div>
+                                 <div class="warning">
+                                    Neaizmirstiet saglabāt izmaiņas!
+                                 </div>
+                              </div>`: ''}
+
+            ${elementId === 17 || elementId === 30 ? `<div class="mc_page_row hoverable">
+                                 <div>Parauga ņemšanas laiks :</div>
+                                 <div id="infoDiv" style="display: flex;">
+                                    <input type="number" min="0" step="0.1" data-tagbeingwritten="SM${elementId === 17 ? '1' : '2'}_samplingTime" data-modified="false">
+                                    <div class="mervienibas">s</div>
+                                 </div>
+                                 <div class="warning">
+                                    Neaizmirstiet saglabāt izmaiņas!
+                                 </div>
+                              </div>
+                              <div class="mc_page_row hoverable">
+                                 <div>Pauzes laiks :</div>
+                                 <div id="infoDiv" style="display: flex;">
+                                    <input type="number" min="0" step="0.1" data-tagbeingwritten="SM${elementId === 17 ? '1' : '2'}_pauza" data-modified="false">
+                                    <div class="mervienibas">s</div>
+                                 </div>
+                                 <div class="warning">
+                                    Neaizmirstiet saglabāt izmaiņas!
+                                 </div>
+                              </div>
+                              `: ''}
+
+
+            ${overflowDelayTag ? `<div class="mc_page_row hoverable">
+                                    <div>Pārplūdes nostrādes aizture :</div>
+                                    <div id="infoDiv" style="display: flex;">
+                                       <input type="number" min="0" step="0.1" data-tagbeingwritten="${overflowDelayTag}" data-modified="false">
+                                       <div class="mervienibas">s</div>
+                                    </div>
+                                    <div class="warning">
+                                       Neaizmirstiet saglabāt izmaiņas!
+                                    </div>
+                                 </div>`: ''}
+
+
+            ${workSpeedSetpointTag ? `<div class="mc_page_row hoverable">
+                                    <div>${elementId === 33 ? 'Pirmais ātrums' : 'Darba ātruma iestatījums'} :</div>
+                                    <div id="infoDiv" style="display: flex;">
+                                       <input type="number" min="0" step="0.1" data-tagbeingwritten="${workSpeedSetpointTag}" data-modified="false">
+                                       <div class="mervienibas">%</div>
+                                    </div>
+                                    <div class="warning">
+                                       Neaizmirstiet saglabāt izmaiņas!
+                                    </div>
+                                 </div>` : ''}
+
+            ${elementId === 35 ? `<div class="mc_page_row hoverable">
+                                    <div>Darba ātruma iestatījums :</div>
+                                    <div id="infoDiv" style="display: flex;">
+                                       <input type="number" min="0" step="0.1" data-tagbeingwritten="FN6040_setFr" data-modified="false">
+                                       <div class="mervienibas">%</div>
+                                    </div>
+                                    <div class="warning">
+                                       Neaizmirstiet saglabāt izmaiņas!
+                                    </div>
+                                 </div>` : ''}
+
+                                 
+            
+            ${speedSetpointTag ? `<div class="mc_page_row hoverable">
+                                    <div>${elementId === 33 ? 'Otrais ātrums' : 'Ātruma iestatījums'} :</div>
+                                    <div id="infoDiv" style="display: flex;">
+                                       <input type="number" min="0" step="0.1" data-tagbeingwritten="${speedSetpointTag}" data-modified="false">
+                                       <div class="mervienibas">%</div>
+                                    </div>
+                                    <div class="warning">
+                                       Neaizmirstiet saglabāt izmaiņas!
+                                    </div>
+                                 </div>`: ''}
+
+            ${motorstundasTag ? `<div class="mc_page_row hoverable">
+                                    <div>Intervāls starp motora apkopēm :</div>
+                                    <div id="infoDiv" style="display: flex;">
+                                       <input type="number" min="0" step="0.1" data-tagbeingwritten="serviceInterval_ID${elementId}" data-modified="false">
+                                       <div class="mervienibas">motorstundas</div>
+                                    </div>
+                                    <div class="warning">
+                                       Neaizmirstiet saglabāt izmaiņas!
+                                    </div>
+                                 </div>` : ''}
+
+            <div class="mc_page_row hoverable">
+                <div></div>
+                <button id="saveInputTags">saglabāt</button>
+            </div>
+
+            ${elementId !== 23 ? `<div class="mc_page_row" style="margin-top:10px; background-color: #ffe683;">
+                <div></div>
+                <div style="font-weight: 600; margin-left:-6px;">Kontrole</div>
+            </div>
+
+            ${![10, 15, 27].includes(elementId) ? `<div class="mc_page_row kontrolesRow">
+               <div>Kontrole :</div>
+               <button data-animation="text,settag" data-dbcolbeingread="comand" data-tagread="${controlTag}" data-text="${controlButtonTextOptions ? controlButtonTextOptions : '0:Ieslēgt,1:Izslēgt'}" data-tagbeingwritten="${controlTag}" data-settag="0:1,1:0,4:0" style="margin-left: 0;">
+               </button>
+
+               ${[17, 30].includes(elementId) ? `
+                  <button data-animation="settag" data-tagbeingwritten="comand_ID${elementId}" data-settag="0:4">Paņemt paraugu tagad</button>
+               `: ''}
+            </div>`: ''}
+                  `: ''}
+
+            ${motorstundasTag ? `<div class="mc_page_row kontrolesRow">
+                                    <div>Motorstundas :</div>
+                                    <div id="infoDiv" style="display: flex;">
+                                       <div data-animation="value" data-dbcolbeingread="moto_time_h" style="text-align:center;width:100px;font-weight: 600;margin-right:5px;"></div>
+                                    </div>
+                                    <button id="veiktApkopi">Tika veikta apkope</button>
+                                    <button data-animation="settag" data-tagbeingwritten="ElementID${elementId}_MotoT" data-settagconfirm="Vai Jūs gribat nonullēt motorstundas?" data-settag="0:0">nomest uz 0</button>
+                                 </div>
+                                 <div class="mc_page_row kontrolesRow">
+                                    <div>Līdz apkopei :</div>
+                                    <div id="infoDiv" style="display: flex;">
+                                       <div data-animation="value" data-dbcolbeingread="service_time_left_h" style="text-align:center;width:100px; margin-right:5px;font-weight: 600;"></div>
+                                       <div class="mervienibas">motorstundas</div>
+                                    </div>
+                                 </div>`: ''}
+         
+            ${(motorErrTag || contactorErrTag || overflowErrTag || rotErrTag) ? `
+               <div class="mc_page_row" style="border:none;">
+                  <div></div>
+                  <div style="font-weight: 600; margin-top:10px;">Kļūdas</div>
+               </div>
+               <div id="Alarms">
+                  ${motorErrTag ? `
+                     <div data-animation="opacity" data-dbcolbeingread="m_err" class="error" display="hidden">Motora kļūda</div>
+                  `: ''}
+                  ${contactorErrTag ? `
+                     <div data-animation="opacity" data-dbcolbeingread="cont_err" class="error" display="hidden">Kontaktora kļūda</div>
+                  `: ''}
+                  ${overflowErrTag ? `
+                     <div data-animation="opacity" data-dbcolbeingread="ovf_err" class="error" display="hidden">Pārplūdes kļūda</div>
+                  `: ''}
+                  ${rotErrTag ? `
+                     <div data-animation="opacity" data-dbcolbeingread="rot_err" class="error" display="hidden">Rotācijas devēja kļūda</div>   
+                  `: ''}
+                  
+                  <div data-animation="opacity" data-dbcolbeingread="mototime_err" class="error" display="hidden">Nepieciešams veikt motora apkopi</div>   
+               </div>
+            `: ''}
+
+            <div style="width:100%; text-align:center;"> 
+               <button data-animation="settag" data-tagbeingwritten="ResetErr" data-settag="0:1">nomest kļūdas</button>
+            </div>
+         `;
+
+         // hiding all warnings and errors by default
+         hideWarningsAndErrors();
+      };
+
+      function loadAndCacheInputValues() {
+         return [...document.querySelectorAll('input[type="number"]')].map(input => {
+            let tagvalue = getTag(input.dataset.tagbeingwritten);
+            if (!tagvalue || tagvalue === null || tagvalue === '') tagvalue = `0`;
+            tagvalue = `${tagvalue}`;
+
+            if (input.value !== tagvalue) input.value = tagvalue;
+            return input.value;
+         });
+      }
+
+      function handleInteractiveElements(allButtonElements) {
+         // caching input values to be able to show "save" warnings if any value changes
+         let inputFieldValues = loadAndCacheInputValues();
+         // notifying the user: the input has been modified and there is a need to save changes.
+         [...document.querySelectorAll("input[type='number']")].forEach((input, index) => {
+            input.addEventListener('input', function () {
+               const inputValue = this.value;
+               const warningDiv = this.closest(".mc_page_row").querySelector(".warning");
+               if (inputFieldValues[index] !== inputValue) {
+                  // → input value has been changed ←
+                  $(warningDiv).show();
+                  this.dataset.modified = "true";
+               } else {
+                  // → input value has not been changed (has the last value) ←
+                  $(warningDiv).hide();
+                  this.dataset.modified = "false";
+               }
+            });
+         });
+
+         // saving input values into our virtual tags
+         document.getElementById("saveInputTags").addEventListener("click", function () {
+            [...document.querySelectorAll("input[data-modified='true']")].forEach(input => {
+               input.dataset.modified = "false"; // resetting data attribute
+               $(input.closest(".mc_page_row").querySelector(".warning")).hide(); // hide warning
+               const tagValueToBeSet = Number(input.value); // saving the PROPER tag value
+               // error handling (false input data)
+               if (!input.value || isNaN(tagValueToBeSet)) return alert("pārbaudiet ievadīto vērtību");
+
+               // → input data is proper → writing it into the tag
+               setTag(input.dataset.tagbeingwritten, tagValueToBeSet);
+            });
+
+            // updating all input field values on save after a delay (to make sure that values have been written into the PLC).
+            setTimeout(() => inputFieldValues = loadAndCacheInputValues(), 3000);
+         });
+
+         const veiktApkopiPoga = document.getElementById("veiktApkopi");
+         if (veiktApkopiPoga !== null) {
+            veiktApkopiPoga.addEventListener("click", function () {
+               if (window.confirm("Vai Jūs esat veikuši motora apkopi?")) {
+                  const currentMotoH = getTag(`ElementID${elem_id}_MotoT`);
+                  setTag(`motoTime_lastCheck_ID${elem_id}`, currentMotoH);
+                  console.warn(`written: ${currentMotoH} into tag motoTime_lastCheck_ID${elem_id}, ${typeof currentMotoH}`);
+               }
+            });
+         };
+
+         if (allButtonElements.length) {
+            allButtonElements.forEach(el => {
+               const { tagread, settag: settagData, settagconfirm: confirmData } = el.dataset;
+
+               if (typeof settagData === 'undefined' || settagData === "") {
+                  console.error(el);
+                  return console.error(`↑ this element has no 'data-settag' value or property`);
+               }
+
+               let valueWritten, handledTagValues = [], possibleValuesWritten = [];
+               settagData.split(",").forEach(data => {
+                  const [value, text] = data.split(':');
+                  handledTagValues.push(value);
+                  possibleValuesWritten.push(text);
+               });
+
+               el.addEventListener("click", function () {
+                  if (typeof tagread === 'undefined') {
+                     if (typeof confirmData !== 'undefined') {
+                        if (!window.confirm(confirmData)) return;
+                     }
+
+                     valueWritten = parseInt(possibleValuesWritten[0]);
+                  } else {
+
+                     const value = getTag(tagread);
+                     const prettyValue = `${Number(value)}`;
+
+                     if (handledTagValues.includes(prettyValue)) {
+                        valueWritten = parseInt(possibleValuesWritten[handledTagValues.indexOf(prettyValue)]);
+                     } else {
+                        // using the first text value by default (if unhandled tag value)
+                        valueWritten = parseInt(possibleValuesWritten[0]);
+                     }
+                  }
+
+                  setTag(el.dataset.tagbeingwritten, valueWritten);
+                  console.warn(`written: ${valueWritten} into tag ${el.dataset.tagbeingwritten}, ${typeof valueWritten}`);
+               });
+            });
+         }
+      }
+
+      function renderPage() {
+         // drawing the page based on the data from Aloja_Programming data.xls file (Elements tab).
+         elem_id = localStorage.getItem('elementId');
+         if (!elem_id && elem_id !== 0) return alert("Nav saņemts elementa ID numurs!");
+         elem_id = parseInt(elem_id);
+         // ← we have the elementId, filling the html content →
+         renderHtml(elem_id);
+         // ← we have the html content, collecting elements... →
+         allDynamicElements = Array.from(document.querySelectorAll('[data-dbcolbeingread]'));
+         allInputAndButtonElements = Array.from(document.querySelectorAll('button[data-tagbeingwritten]'));
+         // ← ...and adding event listeners  →
+         handleInteractiveElements(allInputAndButtonElements);
+      }
+
+      async function cyclePageUpdate() {
+         // debugger;
+
+         let newElementId = localStorage.getItem('elementId');
+         if (!newElementId && newElementId !== 0) location.reload();
+         newElementId = parseInt(newElementId);
+         // if the user has clicked on another element page, just trigger the manual control page refresh (all data reload).
+         if (newElementId !== elem_id) return document.getElementById("searchDropdown").value = newElementId;
+
+         // getting element data from the database
+         const data = await ps_elements_select(elem_id);
+         if ((!data || !data.length) && showNoDataAlert) {
+            showNoDataAlert = false;
+            return alert(`Error getting db data (table "al_elements") for id:(${elem_id})`);
+         }
+
+         // updating page elements based on db data
+         allDynamicElements.forEach(el => {
+            const { animation: animationData, dbcolbeingread: dbcol, tagread: tagRead, animation: animations, text: textData, settag: settagData, image: imageData } = el.dataset;
+            if (typeof animationData === 'undefined' || animationData === "") {
+               console.error(el);
+               return console.error(`↑ this element has no 'data-animation' value or property`);
+            };
+
+            let value = data[0][dbcol];
+
+            animations.split(',').forEach(animation => {
+               switch (animation) {
+                  case 'value':
+                     if (!isNaN(Number(value))) value = Number(value).toFixed(1);
+                     el.textContent = value === null ? 'null' : value;
+                     break;
+                  case 'text':
+                     {
+                        if (typeof textData === 'undefined' || textData === "") {
+                           console.error(el);
+                           return console.error(`↑ this element has no 'data-text' value or property`);
+                        }
+
+                        let handledTagValues = [], possibleTextValues = [];
+                        textData.split(",").forEach(data => {
+                           const [value, text] = data.split(':');
+                           handledTagValues.push(value);
+                           possibleTextValues.push(text);
+                        });
+                        // handling null,'',0,false
+                        const prettyValue = `${Number(value)}`;
+                        let text = possibleTextValues[0];  // using the first text value by default (if unhandled tag value)
+                        if (handledTagValues.includes(prettyValue)) text = possibleTextValues[handledTagValues.indexOf(prettyValue)];
+
+                        if (el.textContent !== text) el.textContent = text;
+                        break;
+                     }
+                  case 'opacity':
+                     {
+                        const prettyValue = `${Number(value)}`;
+                        prettyValue === '1' ? $(el).show() : $(el).hide();
+                        break;
+                     }
+                  case 'settag':
+                     {
+                        if (typeof settagData === 'undefined' || settagData === "") {
+                           console.error(el);
+                           return console.error(`↑ this element has no 'data-settag' value or property`);
+                        }
+                        break;
+                     }
+                  case 'image':
+                     {
+                        if (el.tagName !== "IMG") {
+                           console.error(el);
+                           return console.error(`↑ you have assigned 'data-image' property to a (${el.tagName}) element`);
+                        }
+
+                        if (typeof imageData === 'undefined' || imageData === "") {
+                           console.error(el);
+                           return console.error(`↑ this element has no 'data-image' value or property`);
+                        }
+
+                        let handledTagValues = [], possibleImageSources = [];
+                        imageData.split(",").forEach(data => {
+                           const [value, text] = data.split(':');
+                           handledTagValues.push(value);
+                           possibleImageSources.push(text);
+                        });
+                        const prettyValue = `${Number(value)}`;
+                        // using the first text value by default (if unhandled tag value)
+                        let image_src = possibleImageSources[0];
+                        if (handledTagValues.includes(prettyValue)) image_src = possibleImageSources[handledTagValues.indexOf(prettyValue)];
+
+                        if (el.src !== image_src) el.src = image_src;
+                        break;
+                     }
+                  default:
+                     console.error(el)
+                     console.error(`↑ unhandled animation: (${animation})`);
+                     break;
+               }
+            });
+         });
+
+         // recursion
+         setTimeout(cyclePageUpdate, 1000);
+      }
+
+      function initializeThePage() {
+         // rendering the original manual control page by default
+         renderPage();
+         // launched cycle page update (no interval handling needed since this is a separate window)
+         cyclePageUpdate();
+      }
+
+
+      // =============================== ACTION! ===============================
+      initializeThePage();
+      // initializing the dropdown → dropdown value change will result in rendering of different manual control pages
+      $(document).ready(function () {
+         // $('#searchDropdown').select2();
+         const searchDropdown = document.getElementById("searchDropdown");
+         searchDropdown.innerHTML = `${elementNames.map((el, index) => [38, 39].includes(index) ? '' : `<option value=${index}>${elApzimejumi[index]} (${el})</option>`).join("")}`;
+         searchDropdown.value = elem_id;
+
+
+         searchDropdown.addEventListener("change", function () {
+            const selected = [...this.selectedOptions][0];
+            const selectedValue = selected.value;
+            localStorage.setItem('elementId', selectedValue);
+
+            setTimeout(() => location.reload(), 0);
+         });
+      });
+   </script>
+</body>
+
+</html>

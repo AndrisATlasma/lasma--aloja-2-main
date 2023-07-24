@@ -1,0 +1,125 @@
+#acceptance {
+  background-color: #00a323;
+  margin-left: 1rem;
+}
+
+#acceptance-module {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #acceptance-box {
+    position: relative;
+    height: auto;
+    width: auto;
+    background-color: rgb(151, 255, 250);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  #acceptance-text {
+    font-size: xx-large;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+  }
+  
+  #saveAcceptance {
+    padding: 10px 20px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: rgb(3, 218, 14);
+    cursor: pointer;
+  
+  }
+  #saveAcceptance:hover {
+    background-color: rgb(40, 148, 45);
+  }
+  #saveAcceptance2 {
+    padding: 10px 20px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: rgb(3, 218, 14);
+    cursor: pointer;
+  
+  }
+  #saveAcceptance2:hover {
+    background-color: rgb(40, 148, 45);
+  }
+  .acceptance_container_1 {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 20px;
+    align-items: left;
+  }
+  .acceptance_container_2 {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 20px;
+    align-items: center;
+  }
+
+  
+  label {
+    font-weight: bold;
+    text-align: right;
+    color: rgb(112, 112, 112)
+  }
+  
+  input, select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  #acceptance-close-button {
+    border: none;
+    background: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  #acceptance-close-button:hover {
+    color: #ff0000;
+  }
+.acception_active{
+  background-color: rgb(165, 165, 165);
+  height: 35px;
+  width: 150px;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.acception_inactive{
+  background-color: rgb(230, 230, 230);
+  height: 25px;
+  width: 130px;
+  border-radius: 3px;
+  margin: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.noFirstWeight{
+  background-color: rgb(230, 230, 230);
+  height: 25px;
+  width: 130px;
+  border-radius: 3px;
+  margin: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none;
+  opacity: 0.5;
+}

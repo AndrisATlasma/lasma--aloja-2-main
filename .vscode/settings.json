@@ -1,0 +1,34 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#b6000f",
+    "activityBar.background": "#b6000f",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#032000",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#b6000f",
+    "statusBar.background": "#83000b",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#b6000f",
+    "statusBarItem.remoteBackground": "#83000b",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#83000b",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#83000b99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#83000b",
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5433,
+      "driver": "PostgreSQL",
+      "name": "Windows 10",
+      "database": "aloja2",
+      "username": "postgres",
+      "password": "lasma"
+    }
+  ]
+}

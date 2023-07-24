@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="system/styles/igrX.css" />
+    <link rel="stylesheet" type="text/css" href="styles/sakumlapa.css" />
+    <link rel="stylesheet" type="text/css" href="styles/modal.css" />
+    <script type="text/javascript" src="system/scripts/igrX2.js"></script>
+
+</head>
+
+<body>
+    <main class="kn-page-sakumlapa">
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <select id="route-select">
+                            <option value="-1" disabled>Izvēlieties maršrutu</option>
+                            {{#each routes}}
+                            <option value="{{id}}" style="color: {{color}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </li>
+                    <li><button id="startRoute" disabled>Start</button></li>
+                    <li><button id="endRoute" disabled>Stop</button></li>
+                    <li><button id="showRoute" disabled style="display:none"
+                            title="Maršruts būs apskatāms tik ilgi, kamēr turēsiet nospiestu peles taustiņu">Apskatīt</button>
+                    </li>
+                    <li style="flex-grow: 1">&nbsp;</li>
+                    <li>
+                        <button class="tag-button" data-tag="Part3_RESET_EL"
+                            data-confirm="Vai vēlaties nomest elementu kļūdas?">
+                            Nomest elementu kļūdas
+                        </button>
+                    </li>
+                    <li>
+                        <button class="tag-button" data-tag="P3_RESER_ROUTE"
+                            data-confirm="Vai vēlaties nomest maršrutu kļūdas?">
+                            Nomest maršrutu kļūdas
+                        </button>
+                    </li>
+                    <li><button id="debugModeButton">Debug</button></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="kn-main-container">
+            <svg width="2010" height="972" viewBox="0 0 2010 972" fill="none" xmlns="http://www.w3.org/2000/svg" class="kn-fullscreen-svg">
+                <g id="IMG">
+                    <rect id="BG_RECT" width="2010" height="972" fill="#99999A" />
+                    <path id="bag_3"
+                        d="M1259 865.5L1264.5 863L1276 886.5H1345L1359 863L1362.5 865.5L1349 889V960.5H1273.5V889L1259 865.5Z"
+                        fill="#CFCFCF" stroke="#414141" stroke-width="2" />
+                    <text id="Filtra Prote&#196;&#171;ns" fill="black"         
+                        font-family="Inter" font-size="22" font-weight="bold" letter-spacing="0.005em">
+                        <tspan x="1392.81" y="908.5">Filtra&#10;</tspan>
+                        <tspan x="1375.22" y="935.5">Prote&#x12b;ns</tspan>
+                    </text>
+                    <g id="RoutLines">
+                        <path id="Arrow_101_102" d="M192 5L192 132" stroke="#5B5B5B" stroke-width="5"
+                            stroke-linecap="square" />
+                        <path id="Arrow_102_103" d="M192 384V457" stroke="#5B5B5B" stroke-width="5" stroke-linecap="square" />
+                        <path id="Arrow_103_104"
+                            d="M278 486V539.604C278 545.127 273.523 549.604 268 549.604H224C218.477 549.604 214 554.081 214 559.604V628"
+                            stroke="#5B5B5B" stroke-width="5" stroke-linecap="square" />
+                        <path id="Arrow_104_105" d="M214 677.5V878" stroke="#5B5B5B" stroke-width="5"
+                            stroke-linecap="square" />
+                        <path id="Arrow_105_106" d="M568 489V738" stroke="#5B5B5B" stroke-width="5" stroke-linecap="square" />
+                        <path id="Arrow_106_107" d="M917 489V738" stroke="#5B5B5B" stroke-width="5" stroke-linecap="square" />
+                        <path id="Arrow_107_108"
+                            d="M1550 486.5L1550 652.5L1321 652.5C1315.48 652.5 1311 656.977 1311 662.5L1311 738"
+                            stroke="#5B5B5B" stroke-width="5" stroke-linecap="square" />
+                        <path id="Arrow_108_109"
+                            d="M1704 486L1704 643C1704 648.523 1699.52 653 1694 653L1321 653C1315.48 653 1311 657.477 1311 663L1311 739"
+                            stroke="#5B5B5B" stroke-width="5" stroke-linecap="square" />
+                        <path id="Arrow_109_110" d="M568 218L568 192C568 186.477 572.477 182 578 182L874.5 182"
+                            stroke="#5B5B5B" stroke-width="5" stroke-linecap="square" />
+                        <path id="Arrow_110_111"
+                            d="M948.203 141.543L1235.5 141.543C1241.02 141.543 1245.5 146.02 1245.5 151.543L1245.5 347.543C1245.5 353.066 1249.98 357.543 1255.5 357.543L1433.2 357.543"
+                            stroke="#5B5B5B" stroke-width="5" />
+                        <path id="Arrow_111_112"
+                            d="M325.5 823.5L325.5 434.771C325.5 429.249 329.977 424.771 335.5 424.771L525.555 424.771"
+                            stroke="#5B5B5B" stroke-width="5" />
+                        <path id="Arrow_112_113"
+                            d="M1801.5 900.971L1908 900.971C1913.52 900.971 1918 896.494 1918 890.971L1918 162.971C1918 157.448 1913.52 152.971 1908 152.971L1844.5 152.971"
+                            stroke="#5B5B5B" stroke-width="5" />
+                        <path id="line_13" d="M1770.75 731.588L1770.63 665.381L2004 665.381" stroke="#5B5B5B"
+                            stroke-width="2" stroke-dasharray="4 4" />
+                        <path id="line_14" d="M1178.05 392.502L1770 392.502L1770 443L1748.5 443L1734 431.5"
+                            stroke="#1051F5" stroke-width="2" stroke-dasharray="8 8" />
+                        <path id="line_15" d="M1625.45 392.784L1625.45 444.784L1655.5 444.784L1673 433" stroke="#1051F5"
+                            stroke-width="2" stroke-dasharray="8 8" />
+                        <path id="line_16" d="M1178.04 409.502L1618.5 409.502L1618.5 444.502L1600.5 444.502L1584 431.5"
+                            stroke="#1051F5" stroke-width="2" stroke-dasharray="8 8" />
+                        <path id="line_17" d="M1487.47 409.819L1487.47 445.819L1503.5 445.819L1522.5 432"
+                            stroke="#1051F5" stroke-width="2" stroke-dasharray="8 8" />
+                        <path id="line_18" d="M1111.13 390.483L853.5 390.483L853.5 452.483L880.5 452.483L895 445.5"
+                            stroke="#1051F5" stroke-width="2" stroke-dasharray="8 8" />
+                        <path id="Arrow_113_114" d="M1442.84 286.475L1322.5 286.475L1322.5 250.475L1334.5 250.475"
+                            stroke="#5B5B5B" stroke-width="2" />
+                        <path id="Arrow_114_200" d="M1364.67 249.628L1379 249.628L1379 179.628L1442.67 179.628"
+                            stroke="#5B5B5B" stroke-width="2" />
+                    </g>
+                    <g id="MNM1">
+                        <g id="MNM1_presure">
+                            <path id="Rectangle 840"
+                                d="M261 611C261 608.239 263.239 606 266 606H384C386.761 606 389 608.239 389 611V632C389 634.761 386.761 637 384 637H266C263.239 637 261 634.761 261 632V611Z"
+                                fill="#025700" />
+                            <text id="ID203_presure" fill="white"         
+                                font-family="Arial" font-size="25" font-weight="bold" letter-spacing="0.005em"
+                                 x="266.92" y="630.167">#####</text>
+                            <text id="mPa" fill="white"         
+                                font-family="Arial" font-size="22" letter-spacing="0.005em">
+                                <tspan x="342.43" y="630.127">kPa</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <g id="MNM2">
+                        <g id="MNM2_presure">
+                            <path id="Rectangle 840_2"
+                                d="M674 193C674 190.239 676.239 188 679 188H797C799.761 188 802 190.239 802 193V214C802 216.761 799.761 219 797 219H679C676.239 219 674 216.761 674 214V193Z"
+                                fill="#025700" />
+                            <text id="ID206_presure" fill="white"         
+                                font-family="Arial" font-size="25" font-weight="bold" letter-spacing="0.005em"
+                                x="679.92" y="212.167">#####</text>
+                            <text id="mPa_2" fill="white"         
+                                font-family="Arial" font-size="22" letter-spacing="0.005em">
+                                <tspan x="755.43" y="212.127">kPa</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <g id="MNM3">
+                        <g id="MNM3_presure">
+                            <path id="Rectangle 840_3"
+                                d="M1009 110C1009 107.239 1011.24 105 1014 105H1132C1134.76 105 1137 107.239 1137 110V131C1137 133.761 1134.76 136 1132 136H1014C1011.24 136 1009 133.761 1009 131V110Z"
+                                fill="#025700" />
+                            <text id="ID219_presure" fill="white"         
+                                font-family="Arial" font-size="25" font-weight="bold" letter-spacing="0.005em"
+                                x="1014.92" y="129.167">#####
+                            </text>
+                            <text id="mPa_3" fill="white"         
+                                font-family="Arial" font-size="22" letter-spacing="0.005em">
+                                <tspan x="1090.43" y="129.127">kPa</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <g id="MNM4">
+                        <g id="MNM4_presure">
+                            <path id="Rectangle 840_4"
+                                d="M1845 551C1845 548.239 1847.24 546 1850 546H1968C1970.76 546 1973 548.239 1973 551V572C1973 574.761 1970.76 577 1968 577H1850C1847.24 577 1845 574.761 1845 572V551Z"
+                                fill="#025700" />
+                            <text id="ID211_presure" fill="white"         
+                                font-family="Arial" font-size="25" font-weight="bold" letter-spacing="0.005em"
+                                x="1850.92" y="570.167">#####
+                            </text>
+                            <text id="mPa_4" fill="white"         
+                                font-family="Arial" font-size="22" letter-spacing="0.005em">
+                                <tspan x="1926.43" y="570.127">kPa</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <g id="bag_2">
+                        <g id="Group 286">
+                            <path id="path_bag_2" d="M863 865.5L868.5 863L880 886.5H949L963 863L966.5 865.5L953 889V960.5H877.5V889L863 865.5Z" fill="#CFCFCF" stroke="#414141" stroke-width="2"/>
+                            <path id="Rectangle 841" d="M988 780C988 777.239 990.239 775 993 775H1192C1194.76 775 1197 777.239 1197 780V801.5V823C1197 825.761 1194.76 828 1192 828H993C990.239 828 988 825.761 988 823V780Z" fill="#231FE3"/>
+                            <text id="ID216_weight" fill="white"          font-family="Arial" font-size="45" font-weight="bold" letter-spacing="0.005em"
+                                 x="1002.86" y="816.601">#####
+                            </text>
+                            <text id="KG" fill="white"          font-family="Arial" font-size="35" letter-spacing="0.005em">
+                                <tspan x="1144.92" y="810.134">kg</tspan>
+                            </text>
+                            <text id="Prote&#196;&#171;ns" fill="#232323"          font-family="Inter" font-size="22" font-weight="bold" letter-spacing="0.005em">
+                                <tspan x="988" y="766.5">Prote&#x12b;ns</tspan>
+                            </text>
+                        </g>
+                        <path id="Rectangle 843"
+                            d="M991 851C991 848.239 993.239 846 996 846H1153.64C1156.4 846 1158.64 848.239 1158.64 851V872.5V894C1158.64 896.761 1156.4 899 1153.64 899H996C993.239 899 991 896.761 991 894V851Z"
+                            fill="#656565" />
+                        <text id="ID216_weight_h" fill="white"         
+                            font-family="Arial" font-size="36" font-weight="bold" letter-spacing="0.005em"
+                            x="995.304" y="885.98">####
+                        </text>
+                        <text id="KG/h" fill="white"          font-family="Arial"
+                            font-size="20" letter-spacing="0.005em">
+                            <tspan x="1088.99" y="885.594">kg/min</tspan>
+                        </text>
+                    </g>
+                    <g id="bag_1">
+                        <g id="Group 285">
+                            <path id="path_bag_1" d="M517 865.5L522.5 863L534 886.5H603L617 863L620.5 865.5L607 889V960.5H531.5V889L517 865.5Z" fill="#CFCFCF" stroke="#414141" stroke-width="2"/>
+                            <path id="Rectangle 840_5" d="M637 780C637 777.239 639.239 775 642 775H836C838.761 775 841 777.239 841 780V801.5V823C841 825.761 838.761 828 836 828H642C639.239 828 637 825.761 637 823V780Z" fill="#231FE3"/>
+                            <text id="ID215_weight" fill="white"          font-family="Arial" font-size="45" font-weight="bold" letter-spacing="0.005em"
+                                 x="651.856" y="816.601">#####
+                            </text>
+                            <text id="KG_2" fill="white"          font-family="Arial" font-size="35" letter-spacing="0.005em">
+                                <tspan x="794.324" y="811.134">kg</tspan>
+                            </text>
+                            <path id="Rectangle 841_2"
+                                d="M637 854C637 851.239 639.239 849 642 849H799.638C802.399 849 804.638 851.239 804.638 854V875.5V897C804.638 899.761 802.399 902 799.638 902H642C639.239 902 637 899.761 637 897V854Z"
+                                fill="#656565" />
+
+                            <path id="Rectangle 842"
+                                d="M637 854C637 851.239 639.239 849 642 849H799.638C802.399 849 804.638 851.239 804.638 854V875.5V897C804.638 899.761 802.399 902 799.638 902H642C639.239 902 637 899.761 637 897V854Z"
+                                fill="#656565" />
+                            <text id="ID215_weight_h" fill="white"         
+                                font-family="Arial" font-size="36" font-weight="bold" letter-spacing="0.005em"
+                                x="641.304" y="888.98">####
+                            </text>
+                            <text id="KG/h_2" fill="white"         
+                                font-family="Arial" font-size="20" letter-spacing="0.005em">
+                                <tspan x="734.994" y="888.594">kg/min</tspan>
+                            </text>
+                            <text id="Ciete / milti" fill="#232323"         
+                                font-family="Inter" font-size="22" font-weight="bold" letter-spacing="0.005em">
+                                <tspan x="651.32" y="766.5">Ciete / milti</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    
+
+                    <g id="group_id213">
+                        <g id="ID206_FP">
+                            <g id="Group 39">
+                                <path id="Rectangle 839"
+                                    d="M631 78C631 75.2386 633.239 73 636 73H702C704.761 73 707 75.2386 707 78V164C707 166.761 704.761 169 702 169H636C633.239 169 631 166.761 631 164V78Z"
+                                    fill="#2F2F2F" />
+                                <text id="CF6054_txt" fill="white"         
+                                    font-family="Arial" font-size="17" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="639.235" y="90.8936">CF6054</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 282">
+                                <path id="Rectangle 840_6"
+                                    d="M634 100C634 97.2386 636.239 95 639 95H699C701.761 95 704 97.2386 704 100V125C704 127.761 701.761 130 699 130H639C636.239 130 634 127.761 634 125V100Z"
+                                    fill="#710A0A" />
+                                <text id="ID206_A" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="635.722" y="120.28">###
+                                </text>
+                                <text id="A" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="686.618" y="119.394">A</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 283">
+                                <path id="Rectangle 840_7"
+                                    d="M634 136C634 133.239 636.239 131 639 131H699C701.761 131 704 133.239 704 136V161C704 163.761 701.761 166 699 166H639C636.239 166 634 163.761 634 161V136Z"
+                                    fill="#041F62" />
+                                <text id="ID206_FR" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="635.348" y="155.78">###
+                                </text>
+                                <text id="Hz" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="682.852" y="154.394">Hz</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="ID205_FP">
+                            <g id="Group 39_2">
+                                <path id="Rectangle 839_2"
+                                    d="M533 78C533 75.2386 535.239 73 538 73H604C606.761 73 609 75.2386 609 78V164C609 166.761 606.761 169 604 169H538C535.239 169 533 166.761 533 164V78Z"
+                                    fill="#2F2F2F" />
+                                <text id="CF6053_txt" fill="white"         
+                                    font-family="Arial" font-size="17" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="541.235" y="90.8936">CF6053</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 282_2">
+                                <path id="Rectangle 840_8"
+                                    d="M536 100C536 97.2386 538.239 95 541 95H601C603.761 95 606 97.2386 606 100V125C606 127.761 603.761 130 601 130H541C538.239 130 536 127.761 536 125V100Z"
+                                    fill="#710A0A" />
+                                <text id="ID205_A" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="537.348" y="120.78">###
+                                </text>
+                                <text id="A_2" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="590.118" y="119.394">A</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 283_2">
+                                <path id="Rectangle 840_9"
+                                    d="M536 136C536 133.239 538.239 131 541 131H601C603.761 131 606 133.239 606 136V161C606 163.761 603.761 166 601 166H541C538.239 166 536 163.761 536 161V136Z"
+                                    fill="#041F62" />
+                                <text id="ID205_FR" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="537.348" y="155.78">###
+                                </text>
+                                <text id="Hz_2" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="584.852" y="154.394">Hz</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="ID204_FP">
+                            <g id="Group 39_3">
+                                <path id="Rectangle 839_3"
+                                    d="M435 78C435 75.2386 437.239 73 440 73H506C508.761 73 511 75.2386 511 78V164C511 166.761 508.761 169 506 169H440C437.239 169 435 166.761 435 164V78Z"
+                                    fill="#2F2F2F" />
+                                <text id="CF6052_txt" fill="white"         
+                                    font-family="Arial" font-size="17" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="443.235" y="90.8936">CF6052</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 282_3">
+                                <path id="Rectangle 840_10"
+                                    d="M438 100C438 97.2386 440.239 95 443 95H503C505.761 95 508 97.2386 508 100V125C508 127.761 505.761 130 503 130H443C440.239 130 438 127.761 438 125V100Z"
+                                    fill="#710A0A" />
+                                <text id="ID204_A" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="439.348" y="120.78">###
+                                </text>
+                                <text id="A_3" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="492.118" y="119.394">A</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 283_3">
+                                <path id="Rectangle 840_11"
+                                    d="M438 136C438 133.239 440.239 131 443 131H503C505.761 131 508 133.239 508 136V161C508 163.761 505.761 166 503 166H443C440.239 166 438 163.761 438 161V136Z"
+                                    fill="#041F62" />
+                                <text id="ID204_FR" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="439.348" y="155.78">###
+                                </text>
+                                <text id="Hz_3" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="486.852" y="154.394">Hz</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="path_id213">
+                            <path
+                                d="M553 218H583.5V227V231.375L589.5 225.5H593L598 231.375V235.75L593 237V244.5H605.5H612V304H605.5H586H551H531H524.5V244.5H531H544.5V237L539 235.75V231.375L543 225.5H547L548.5 227L553 231.375V227V218Z"
+                                fill="currentColor" />
+                            <path
+                                d="M527 306.5H609.5V329H620.75H632V345H609.5V350L622.5 366.5L609.5 366.75V383.5L579.5 457H557L547.408 433.5L527 437.5V410H537.816L527 383.5V366.75H515L527 350V345H506.5V329H516.75H527V306.5Z"
+                                fill="currentColor" />
+                            <path
+                                d="M496.5 278.5V274.5H494H490H482.5V249V244.5V214.5H496.5L500 212.5H508.5V208H510.5V212.5H520H526.5L531.5 218.5V234.5L526.5 238H520H516V249V251H522V278.5H496.5Z"
+                                fill="currentColor" />
+                            <path 
+                                d="M640 280.5V276.5H642.5H646.5H654V251V246.5V216.5H640L636.5 214.5H628V210H626V214.5H616.5H610L605 220.5V236.5L610 240H616.5H620.5V251V253H614.5V280.5H640Z"
+                                fill="currentColor" />
+                            <path
+                                d="M553 244.5H583.5M553 244.5V235.75M553 244.5H551M583.5 244.5V235.75M583.5 244.5H586M553 227V218H583.5V227M553 227H583.5M553 227V231.375M583.5 227V231.375M553 235.75H583.5M553 235.75V231.375M583.5 235.75V231.375M551 244.5V249M551 244.5H544.5M586 244.5V249M586 244.5H593M586 304H551M586 304V286M586 304H605.5M551 304V286M551 304H531M551 286H586M551 286V249M586 286V249M551 249H586M605.5 244.5H612V304H605.5M605.5 244.5V304M605.5 244.5H593M531 244.5H524.5V304H531M531 244.5V304M531 244.5H544.5M583.5 231.375L589.5 225.5H593L598 231.375V235.75L593 237V244.5M553 231.375L548.5 227L547 225.5H543L539 231.375V235.75L544.5 237V244.5M609.5 306.5H612M609.5 306.5H527M609.5 306.5V329M609.5 383.5H527M609.5 383.5H613.5M609.5 383.5L579.5 457H557L547.408 433.5M609.5 383.5V366.75M527 383.5H522.5M527 383.5L537.816 410M527 383.5V366.75M524.5 306.5H527M527 306.5V329M537.816 410H527V437.5L547.408 433.5M537.816 410L547.408 433.5M609.5 329V345M609.5 329H620.75M609.5 345H632V329H620.75M609.5 345V350M609.5 350L622.5 366.5L609.5 366.75M609.5 350V366.75M527 350L515 366.75H527M527 350V366.75M527 350V345M527 345H506.5V329H516.75M527 345V329M527 329H516.75M516.75 329V316.5H493.5M620.75 329V316.5H643.5M496.5 274.5V278.5H522V251H516V249M496.5 274.5V258.5M496.5 274.5H494M496.5 214.5L500 212.5H508.5M496.5 214.5H482.5V244.5M496.5 214.5V238M520 212.5H526.5L531.5 218.5V234.5L526.5 238H520M520 212.5V238M520 212.5H510.5M516 238H520M516 238H496.5M516 238V249M496.5 238V244.5M516 249H496.5M496.5 249V255M496.5 249V244.5M496.5 249H482.5M496.5 255H516M496.5 255V258.5M496.5 258.5H494V274.5M494 274.5H490M490 274.5H482.5V249M490 274.5V261M490 222.5H494V229.5H490M490 222.5H487V229.5H490M490 222.5V218.5M490 222.5V229.5M490 229.5V234.5M482.5 244.5H496.5M482.5 244.5V249M508.5 212.5V208H510.5V212.5M508.5 212.5H510.5M640 276.5V280.5H614.5V253H620.5V251M640 276.5V260.5M640 276.5H642.5M640 216.5L636.5 214.5H628M640 216.5H654V246.5M640 216.5V240M616.5 214.5H610L605 220.5V236.5L610 240H616.5M616.5 214.5V240M616.5 214.5H626M620.5 240H616.5M620.5 240H640M620.5 240V251M640 240V246.5M620.5 251H640M640 251V257M640 251V246.5M640 251H654M640 257H620.5M640 257V260.5M640 260.5H642.5V276.5M642.5 276.5H646.5M646.5 276.5H654V251M646.5 276.5V263M646.5 224.5H642.5V231.5H646.5M646.5 224.5H649.5V231.5H646.5M646.5 224.5V220.5M646.5 224.5V231.5M646.5 231.5V236.5M654 246.5H640M654 246.5V251M628 214.5V210H626V214.5M628 214.5H626M562.5 252.5H575.5L581.5 257.5L583.5 261V274L581.5 279.5L575.5 283H562.5L557 279.5L553 274V261L555 257.5L562.5 252.5ZM562.5 257.5H572.5L578 262.5V271.5L572.5 277.5H562.5L557 271.5V262.5L562.5 257.5ZM501 219V229.5H510.5V219H501ZM635.5 221V231.5H626V221H635.5Z"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+
+                        <text id="CLSF1" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="539.311" y="347.434">CLSF1</tspan>
+                        </text>
+                    </g>
+                    <g id="group_id206">
+                        <rect id="xx" x="612.5" y="209.5" width="47" height="71" stroke="black" stroke-opacity="0.02" fill="#2F2F2F" fill-opacity="0.01" fill="#2F2F2F" fill-opacity="0.01"/>
+                    </g>
+                    <g id="group_id205">
+                        <rect id="xx" x="533.5" y="210.5" width="70" height="96" stroke="black" stroke-opacity="0.02" fill="#2F2F2F" fill-opacity="0.01"/>
+                    </g>
+                    <g id="group_id204">
+                        <rect id="A_4" x="475.5" y="206.5" width="57" height="73" stroke="black" stroke-opacity="0.02" fill="#2F2F2F" fill-opacity="0.01"/>
+                    </g>
+
+                    <g id="group_id200">
+                        <g id="path_id200">
+                            <path d="M271.5 134V187H275V196H271.5V257H113V196H109V187H113V134H271.5Z" fill="currentColor" />
+                            <path
+                                d="M113.5 258H271L280 281.5H257.722L208 369.5V373.5V381H174.5V373.5V369.5L126.357 281.5H105.5L113.5 258Z"
+                                fill="currentColor" />
+                            <path
+                                d="M271.5 134H278M271.5 134V187M271.5 134H113M271.5 187V196M271.5 187H113M271.5 187H275V196H271.5M271.5 196V257H113V196M271.5 196H113M107 134H113M113 134V187M113 196V187M113 196H109V187H113M113.5 258H271M113.5 258L105.5 281.5H126.357M113.5 258L126.357 281.5M271 258L280 281.5H257.722M271 258L257.722 281.5M174.5 369.5H208M174.5 369.5L126.357 281.5M174.5 369.5V373.5M208 369.5L257.722 281.5M208 369.5V373.5M174.5 373.5V381H208V373.5M174.5 373.5H208"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                        <circle id="ID200_HL" cx="192" cy="173" r="12" fill="currentColor"/>
+                        <circle id="ID200_LL" cx="192" cy="351" r="12" fill="currentColor"/>
+                        <circle id="ID200_full" cx="192" cy="351" r="12" />
+                        <text id="KVB3_2" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="165.311" y="161.434">KVB3</tspan>
+                        </text>
+                    </g>
+                    <g id="group_id201">
+                        <g id="ID201_FP">
+                            <g id="Group 39_4">
+                                <path id="Rectangle 839_4"
+                                    d="M67 466C67 463.239 69.2386 461 72 461H138C140.761 461 143 463.239 143 466V552C143 554.761 140.761 557 138 557H72C69.2386 557 67 554.761 67 552V466Z"
+                                    fill="#2F2F2F" />
+                                <text id="DZ6049_txt" fill="white"         
+                                    font-family="Arial" font-size="17" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="75.2354" y="478.894">DZ6049</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 282_4">
+                                <path id="Rectangle 840_12"
+                                    d="M70 488C70 485.239 72.2386 483 75 483H135C137.761 483 140 485.239 140 488V513C140 515.761 137.761 518 135 518H75C72.2386 518 70 515.761 70 513V488Z"
+                                    fill="#710A0A" />
+                                <text id="ID201_A" 
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="71.3476" y="508.78">###
+                                </text>
+                                <text id="A_4" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="124.118" y="507.394">A</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 283_4">
+                                <path id="Rectangle 840_13"
+                                    d="M70 524C70 521.239 72.2386 519 75 519H135C137.761 519 140 521.239 140 524V549C140 551.761 137.761 554 135 554H75C72.2386 554 70 551.761 70 549V524Z"
+                                    fill="#041F62" />
+                                <text id="ID201_FR" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="71.3476" y="543.78">###
+                                </text>
+                                <text id="Hz_4" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="118.852" y="542.394">Hz</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <text id="DZ6049" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="210.395" y="456.434">DZ6049</tspan>
+                        </text>
+                        <g id="path_id201">
+                            <path
+                                d="M148.5 464.5H164V462H170V464.5H173V462H178V464H185V459.5H198V464.5H285.5V477H282V483.5H270V477H178V480H173V477H170V480H164V477H148.5V464.5Z"
+                                fill="currentColor" />
+                            <path
+                                d="M164 464.5H148.5V477H164M164 477V462H170V464.5M164 477V480H170V477M170 464.5H173M170 464.5V477M173 464.5V462H178V464M173 464.5V477M173 477V480H178V477M173 477H170M178 477H270M178 477V464M270 477V483.5H282V477M270 477L276 471L282 477M282 477H285.5V464.5H198M198 464.5V459.5H185V464M198 464.5V468.5H185V464M185 464H178"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                    </g>
+                    <g id="group_id202">
+                        <g id="ID202_FP">
+                            <g id="Group 39_5">
+                                <path id="Rectangle 839_5"
+                                    d="M17 836C17 833.239 19.2386 831 22 831H88C90.7614 831 93 833.239 93 836V922C93 924.761 90.7614 927 88 927H22C19.2386 927 17 924.761 17 922V836Z"
+                                    fill="#2F2F2F" />
+                                <text id="IM6050_txt" fill="white"         
+                                    font-family="Arial" font-size="17" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="27.1279" y="848.894">IM6050</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 282_5">
+                                <path id="Rectangle 840_14"
+                                    d="M20 858C20 855.239 22.2386 853 25 853H85C87.7614 853 90 855.239 90 858V883C90 885.761 87.7614 888 85 888H25C22.2386 888 20 885.761 20 883V858Z"
+                                    fill="#710A0A" />
+                                <text id="ID202_A" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="21.3476" y="878.78">###
+                                </text>
+                                <text id="A_5" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="74.1179" y="877.394">A</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 283_5">
+                                <path id="Rectangle 840_15"
+                                    d="M20 894C20 891.239 22.2386 889 25 889H85C87.7614 889 90 891.239 90 894V919C90 921.761 87.7614 924 85 924H25C22.2386 924 20 921.761 20 919V894Z"
+                                    fill="#041F62" />
+                                <text id="ID202_FR" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="21.3476" y="913.78">###
+                                </text>
+                                <text id="Hz_5" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="68.8523" y="912.394">Hz</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <text id="IM6050" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="104.621" y="859.434">IM6050</tspan>
+                        </text>
+                        <g id="path_id202">
+                            <path
+                                d="M291.5 844V940.5V945V963.5H124V945H133V940.5H124L116.5 917.5V913.5H102.5L98 910V872.5L102.5 867.5H116.5H173V872.5H177.5V879V881.5H199V887V897.5V913.5H177.5H173V910H120V917.5H133H168H204V913V908V898V881.5H209H246.25H252.5V896V908V913V940.5V945H259.5V940.5V870.5H252.5V876.5H246.25V870.5H233V854.5H246.25V850.5H252.5V854.5H259.5V844H291.5Z"
+                                fill="currentColor" />
+                            <path
+                                d="M291.5 940.5V844H259.5V854.5M291.5 940.5H259.5M291.5 940.5V945M259.5 940.5V870.5M259.5 940.5V945M291.5 945V963.5H124V945H133M291.5 945H259.5M259.5 854.5H233V870.5H246.25M259.5 854.5V870.5M259.5 870.5H246.25M246.25 870.5V876.5M246.25 876.5H252.5V850.5H246.25V876.5ZM252.5 940.5V913M252.5 940.5H231.5M252.5 940.5V945M204 940.5H231.5M204 940.5V917.5M204 940.5H168M204 940.5V945M252.5 908H204M252.5 908V913M252.5 908V896M204 908V913M204 908V898M252.5 913H204M204 913V917.5M231.5 913.5V940.5M204 917.5H168M168 917.5V940.5M168 917.5H133M168 940.5H133M168 940.5V945M133 917.5V940.5M133 917.5H120M133 940.5H124L116.5 917.5M133 940.5V945M116.5 917.5H120M116.5 917.5V913.5M177.5 881.5H199V887M177.5 881.5V887M177.5 881.5V879V872.5H173M177.5 913.5H199V897.5M177.5 913.5H173V910M177.5 913.5V897.5M173 872.5V867.5H116.5M173 872.5V910M116.5 867.5H102.5L98 872.5V910L102.5 913.5H116.5M116.5 867.5V913.5M173 910H120V917.5M209 890H246.25M209 890V881.5M209 890V898H204M246.25 890V881.5M246.25 890V896H252.5M246.25 881.5H252.5V896M246.25 881.5H209M209 881.5H204V898M177.5 897.5H199M177.5 897.5V887M199 897.5V887M199 887H177.5M133 945H168M168 945H204M204 945H252.5M252.5 945H259.5M233 947V955H250V947H233ZM175 947V955H159.5V947H175Z"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                    </g>
+                    <g id="group_id203">
+                        <g id="ID203_FP">
+                            <g id="Group 39_6">
+                                <path id="Rectangle 839_6"
+                                    d="M376 836C376 833.239 378.239 831 381 831H447C449.761 831 452 833.239 452 836V922C452 924.761 449.761 927 447 927H381C378.239 927 376 924.761 376 922V836Z"
+                                    fill="#2F2F2F" />
+                                <text id="IM6051_txt" fill="white"         
+                                    font-family="Arial" font-size="17" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="386.128" y="848.894">IM6051</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 282_6">
+                                <path id="Rectangle 840_16"
+                                    d="M379 858C379 855.239 381.239 853 384 853H444C446.761 853 449 855.239 449 858V883C449 885.761 446.761 888 444 888H384C381.239 888 379 885.761 379 883V858Z"
+                                    fill="#710A0A" />
+                                <text id="ID203_A" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="380.348" y="878.78">###
+                                </text>
+                                <text id="A_6" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="433.118" y="877.394">A</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 283_6">
+                                <path id="Rectangle 840_17"
+                                    d="M379 894C379 891.239 381.239 889 384 889H444C446.761 889 449 891.239 449 894V919C449 921.761 446.761 924 444 924H384C381.239 924 379 921.761 379 919V894Z"
+                                    fill="#041F62" />
+                                <text id="ID203_FR" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="380.348" y="913.78">###
+                                </text>
+                                <text id="Hz_6" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="427.852" y="912.394">Hz</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <text id="IM6051" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="329.621" y="819.434">IM6051</tspan>
+                        </text>
+                        <g id="path_id203">
+                            <path
+                                d="M315.5 878.5L311 874.5V866V847.5V825H338.5V847.5V853.5H345.25V849.5H359V851H346.5V853.5H366V858.5H338.5V866V874.5L333 878.5H338.5H341.5V881H344V888H346.5V884.5H357.5V900.5H346.5V896H344V900.5H341.5V906H338.5V909.5H303V912.5H297.5V940.5H295V844H297.5V870H303V882.5V901.5L307 906H315.5V878.5Z"
+                                fill="currentColor" />
+                            <path
+                                d="M315.5 878.5L311 874.5V866M315.5 878.5V906M315.5 878.5H324.25M333 878.5L338.5 874.5V866M333 878.5H338.5M333 878.5H328.625M311 847.5V825H338.5V847.5M311 847.5V866M311 847.5H338.5M311 866H308.5M311 866H338.5M338.5 847.5V853.5M338.5 866H341.5M338.5 866V858.5M338.5 858.5V853.5M338.5 858.5H324.5V853.5H338.5M338.5 858.5H366V853.5H346.5M338.5 853.5H345.25M338.5 878.5H341.5V881H344V888H346.5V884.5H357.5V900.5H346.5V896H344V900.5H341.5V906H338.5M338.5 878.5V884.5M338.5 906H315.5M338.5 906V909.5H303M338.5 906V896M315.5 906H307L303 901.5M307 878.5L303 882.5M303 882.5V901.5M303 882.5V870H297.5M303 901.5V909.5M297.5 870V844H295V940.5H297.5V912.5M297.5 870V912.5M297.5 912.5H303V909.5M338.5 884.5H328.5V896H338.5M338.5 884.5V896M324.25 878.5V874.5H328.5L328.625 878.5M324.25 878.5H328.625M345.25 853.5V849.5H359V851H346.5V853.5M345.25 853.5H346.5M316 878.5H306.5L305.5 880"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                    </g>
+                    <g id="group_id207">
+                        <text id="RV6055" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="629.023" y="478.434">RV6055</tspan>
+                        </text>
+                        <g id="path_id207">
+                            <path
+                                d="M581.5 486H556V483.5L545.5 471.5L556 461.5V459.5H581.5V464.5H590V467H596.5V464.5V462.5H603V464.5H621.5V470V475V480H603V482.5H596.5V477.5H590V479H581.5V486Z"
+                                fill="currentColor" />
+                            <path
+                                d="M556 461.5V459.5H581.5V464.5M556 461.5L545.5 471.5L556 483.5M556 461.5V483.5M556 483.5V486H581.5V479M581.5 464.5H590V459.5V467M581.5 464.5V479M590 483.5V479M590 479H581.5M590 479V477.5M590 467H596.5M590 467V472.25M596.5 467V464.5V462.5H603V464.5H621.5V470M596.5 467V470M596.5 477.5H590M596.5 477.5V482.5H603V480H621.5V475M596.5 477.5V475M590 477.5V472.25M596.5 475H621.5M596.5 475V472.25M621.5 475V470M596.5 470H621.5M596.5 470V472.25M590 472.25H596.5"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                    </g>
+                    <g id="group_id219">
+                        <g id="path_id219">
+                            <path
+                                d="M896 155V122.5H936H946V155H936H930.5V164V175.25L932.5 175.5H936L946 178.5L951.5 182V287H954.5V291H951.5H948.5L938.328 353L948.5 369H935.703L927.5 419H938.5V435L927.5 457.5H905L892.5 435V419H905L896.406 369H883L894 355L883 291H878.5V287H883V199.447L878.5 198.5V167L904.5 172.816L918 174.5H924.5L930.5 175.25V164H901V155H896Z"
+                                fill="currentColor" />
+                            <path
+                                d="M946 120V122.5M946 159V155M946 155V122.5M946 155H936M946 122.5H936M936 122.5H896V155H901M936 122.5V155M936 155H930.5M930.5 155V175.5M930.5 155H901M901 155V170M898 164H934M878.5 164V167M878.5 202.5V198.5M878.5 167V198.5M878.5 167L904.5 172.816M878.5 198.5L883 199.447M883 199.447L916.5 206.5V175.5L904.5 172.816M883 199.447V291M883 291H948.5M883 291L894 355M951.5 182V291H948.5M951.5 182L943 186L937.5 188.5H932.5H926H918.5L926 186L930.5 182L928 178.5L924.5 175.5L918 174.5M951.5 182L946 178.5L936 175.5H932.5L924.5 174.5H918M918 174.5L904.5 172.816M892.5 435V419H905L896.406 369M892.5 435L905 457.5H927.5L938.5 435M892.5 435H938.5M938.5 435V419H927.5M927.5 419V422H905L905.5 420M927.5 419L935.703 369M948.5 291H954.5V287H878.5V291H948.5ZM948.5 291L938.328 353M935.703 369H948.5L938.328 353M935.703 369L938.328 353M894 355L883 369H896.406M894 355L896.406 369"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                        <text id="RV6056" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="887.084" y="272.434">CISE1</tspan>
+                        </text>
+                    </g>
+                    <g id="group_id208">
+                        <text id="RV6056_2" fill="black"         
+                            font-family="Arial" font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="976.523" y="478.934">RV6056</tspan>
+                        </text>
+                        <g id="path_id208">
+                            <path
+                                d="M929 486.5H903.5V484L893 472L903.5 462V460H929V465H937.5V467.5H944V465V463H950.5V465H969V470.5V475.5V480.5H950.5V483H944V478H937.5V479.5H929V486.5Z"
+                                fill="currentColor" />
+                            <path
+                                d="M903.5 462V460H929V465M903.5 462L893 472L903.5 484M903.5 462V484M903.5 484V486.5H929V479.5M929 465H937.5V460V467.5M929 465V479.5M937.5 484V479.5M937.5 479.5H929M937.5 479.5V478M937.5 467.5H944M937.5 467.5V472.75M944 467.5V465V463H950.5V465H969V470.5M944 467.5V470.5M944 478H937.5M944 478V483H950.5V480.5H969V475.5M944 478V475.5M937.5 478V472.75M944 475.5H969M944 475.5V472.75M969 475.5V470.5M944 470.5H969M944 470.5V472.75M937.5 472.75H944"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                    </g>
+                    <g id="group_id209">
+                        <text id="RV6058" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="1475.02" y="504.434">RV6058</tspan>
+                        </text>
+                        <g id="path_id209">
+                            <path
+                                d="M1542.21 486H1564.02V484.019L1573 474.509L1564.02 466.585V465H1542.21V468.962H1534.94V470.943H1529.38V468.962V467.377H1523.82V468.962H1508V473.321V477.283V481.245H1523.82V483.226H1529.38V479.264H1534.94V480.453H1542.21V486Z"
+                                fill="currentColor" />
+                            <path
+                                d="M1564.02 466.585V465H1542.21V468.962M1564.02 466.585L1573 474.509L1564.02 484.019M1564.02 466.585V484.019M1564.02 484.019V486H1542.21V480.453M1542.21 468.962H1534.94V465V470.943M1542.21 468.962V480.453M1534.94 484.019V480.453M1534.94 480.453H1542.21M1534.94 480.453V479.264M1534.94 470.943H1529.38M1534.94 470.943V475.104M1529.38 470.943V468.962V467.377H1523.82V468.962H1508V473.321M1529.38 470.943V473.321M1529.38 479.264H1534.94M1529.38 479.264V483.226H1523.82V481.245H1508V477.283M1529.38 479.264V477.283M1534.94 479.264V475.104M1529.38 477.283H1508M1529.38 477.283V475.104M1508 477.283V473.321M1529.38 473.321H1508M1529.38 473.321V475.104M1534.94 475.104H1529.38"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                    </g>
+                    <g id="group_id210">
+                        <text id="RV6059" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="1629.02" y="504.434">RV6059</tspan>
+                        </text>
+                        <g id="path_id210">
+                            <path
+                                d="M1694.21 486H1716.02V484.019L1725 474.509L1716.02 466.585V465H1694.21V468.962H1686.94V470.943H1681.38V468.962V467.377H1675.82V468.962H1660V473.321V477.283V481.245H1675.82V483.226H1681.38V479.264H1686.94V480.453H1694.21V486Z"
+                                fill="currentColor" />
+                            <path
+                                d="M1716.02 466.585V465H1694.21V468.962M1716.02 466.585L1725 474.509L1716.02 484.019M1716.02 466.585V484.019M1716.02 484.019V486H1694.21V480.453M1694.21 468.962H1686.94V465V470.943M1694.21 468.962V480.453M1686.94 484.019V480.453M1686.94 480.453H1694.21M1686.94 480.453V479.264M1686.94 470.943H1681.38M1686.94 470.943V475.104M1681.38 470.943V468.962V467.377H1675.82V468.962H1660V473.321M1681.38 470.943V473.321M1681.38 479.264H1686.94M1681.38 479.264V483.226H1675.82V481.245H1660V477.283M1681.38 479.264V477.283M1686.94 479.264V475.104M1681.38 477.283H1660M1681.38 477.283V475.104M1660 477.283V473.321M1681.38 473.321H1660M1681.38 473.321V475.104M1686.94 475.104H1681.38"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                    </g>
+                    <g id="group_id211">
+                        <text id="FN6060" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="1659.39" y="872.434">FN6060</tspan>
+                        </text>
+                        <g id="ID211_FP">
+                            <g id="Group 39_7">
+                                <path id="Rectangle 839_7"
+                                    d="M1529 836C1529 833.239 1531.24 831 1534 831H1600C1602.76 831 1605 833.239 1605 836V922C1605 924.761 1602.76 927 1600 927H1534C1531.24 927 1529 924.761 1529 922V836Z"
+                                    fill="#2F2F2F" />
+                                <text id="FN6060_txt" fill="white"         
+                                    font-family="Arial" font-size="17" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="1537.24" y="848.894">FN6060</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 282_7">
+                                <path id="Rectangle 840_18"
+                                    d="M1532 858C1532 855.239 1534.24 853 1537 853H1597C1599.76 853 1602 855.239 1602 858V883C1602 885.761 1599.76 888 1597 888H1537C1534.24 888 1532 885.761 1532 883V858Z"
+                                    fill="#710A0A" />
+                                <text id="ID211_A" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="1533.35" y="878.78">###
+                                </text>
+                                <text id="A_7" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="1586.12" y="877.394">A</tspan>
+                                </text>
+                            </g>
+                            <g id="Group 283_7">
+                                <path id="Rectangle 840_19"
+                                    d="M1532 894C1532 891.239 1534.24 889 1537 889H1597C1599.76 889 1602 891.239 1602 894V919C1602 921.761 1599.76 924 1597 924H1537C1534.24 924 1532 921.761 1532 919V894Z"
+                                    fill="#041F62" />
+                                <text id="ID211_FR" fill="white"         
+                                    font-family="Arial" font-size="21" font-weight="bold" letter-spacing="0.005em"
+                                    x="1533.35" y="913.78">###
+                                </text>
+                                <text id="Hz_7" fill="white"         
+                                    font-family="Arial" font-size="17" letter-spacing="0.005em">
+                                    <tspan x="1580.85" y="912.394">Hz</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="path_id211">
+                            <path
+                                d="M1756.5 734.5H1782.5L1783.47 738.5L1786 749H1790.5V844H1786L1777 858V861.5V864L1783.5 884.5H1786H1802V916H1786H1783.5L1777 935.5V948.5V959L1762.5 958.858L1731 958.55V965H1716V958.404L1684 958.091V965H1671V957.964L1638.5 957.647V965H1623.5V957.5V948.5V922H1762.5V874.5V861.5H1777V858H1762.5L1753.5 844H1748.5V749H1753.5L1755.67 738.5L1756.5 734.5Z"
+                                fill="currentColor" />
+                            <path
+                                d="M1623.5 918.5L1618 914.5V886L1623.5 881H1636.5H1650V878.5V874.5H1654.5L1654.75 881H1673L1677.5 884.5V895H1682.5H1691.5V890.5H1697V895H1702.25H1707.5L1713 890.5H1715.25H1717.5H1723H1743V886H1747.5V890.5H1748.5H1753.5L1760.5 896.5V905.5L1751 918.5H1707.5L1711 911L1707.5 905.5H1702.25H1697V911H1691.5V905.5L1682.5 905.018L1677.5 904.75V914.5L1673 918.5H1636.5H1623.5Z"
+                                fill="currentColor" />
+                            <path
+                                d="M1786 749H1790.5V844H1786M1786 749H1753.5M1786 749V844M1786 749L1783.47 738.5M1753.5 749H1748.5V844H1753.5M1753.5 749V844M1753.5 749L1755.67 738.5M1786 844L1777 858M1786 844H1769.75M1753.5 844L1762.5 858M1753.5 844H1769.75M1755.67 738.5L1756.5 734.5H1782.5L1783.47 738.5M1755.67 738.5H1783.47M1762.5 858H1777M1762.5 858L1769.75 844M1777 858L1769.75 844M1777 858V864M1762.5 859.5V874.5M1762.5 948.5H1777M1762.5 948.5H1623.5M1762.5 948.5V922M1777 948.5V935.5M1777 948.5V959L1762.5 958.858M1756.5 861.5H1780.5M1777 864L1783.5 884.5M1777 864V874.25M1783.5 884.5H1786M1783.5 884.5H1777M1783.5 916L1777 935.5M1783.5 916H1786M1783.5 916H1777M1777 935.5V916M1786 884.5H1802V916H1786M1786 884.5V916M1777 884.5V916M1777 884.5V874.25M1762.5 874.5L1777 874.25M1762.5 874.5V922M1623.5 957.5V948.5M1623.5 957.5L1638.5 957.647M1623.5 957.5V965H1638.5V957.647M1623.5 948.5V922H1762.5M1777 960.5V965H1762.5V958.858M1762.5 958.858L1731 958.55M1731 958.55V965H1716V958.404M1731 958.55L1716 958.404M1716 958.404L1684 958.091M1684 958.091V965H1671V957.5L1638.5 957.647M1684 958.091L1638.5 957.647M1673 881V918.5M1673 881L1677.5 884.5V895M1673 881H1654.75M1673 918.5L1677.5 914.5V904.75M1673 918.5H1636.5M1677.5 895V904.75M1677.5 895H1682.5M1717.5 890.5H1715.25M1715.25 890.5H1713L1707.5 895H1702.25M1715.25 890.5H1723M1691.5 905.5V911H1697V905.5H1702.25M1691.5 905.5V896.5M1691.5 905.5L1682.5 905.018M1677.5 904.75L1682.5 905.018M1717.5 892V898.5H1748.5V890.5M1748.5 890.5H1753.5L1760.5 896.5V905.5L1751 918.5H1707.5L1711 911L1707.5 905.5H1702.25M1748.5 890.5H1747.5M1747.5 912L1744.5 916M1716 912L1713 916M1702.25 895H1697V890.5H1691.5V895H1682.5M1702.25 895V905.5M1682.5 895V905.018M1718.5 889.5V886H1723V890.5M1723 890.5H1743M1743 890.5V886H1747.5V890.5M1743 890.5H1747.5M1636.5 881H1623.5L1618 886V914.5L1623.5 918.5H1636.5M1636.5 881V918.5M1636.5 881H1650M1654.75 881L1654.5 874.5H1650V878.5V881M1654.75 881H1650M1748.5 909.5V902H1717.5V909.5H1748.5ZM1647.5 932V935.5L1650 938.5H1656L1658.5 935.5V932L1656 928H1650L1647.5 932ZM1727 928H1732.5L1735 931V935.5L1732 938.5H1728L1724.5 936V931L1727 928Z"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                    </g>
+                    <g id="group_id214">
+                        <text id="FLTR2" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="1602.61" y="122.434">FLTR2</tspan>
+                        </text>
+                        <g id="path_id214">
+                            <path
+                                d="M1391.5 142.5H1444.5V134H1806V142.5H1809.5L1845 134V170L1809.87 160.5L1810.06 170L1810.4 186.5L1811.07 219.5L1811.2 226L1811.49 240.25H1817.5V254.5H1811.78L1813 260H1811.89L1812.27 278.5H1817.5V292H1812.54L1812.76 302.5L1813 314.5H1807.5V514.5H1794.5V393.043L1776.7 375.5L1759.5 358.543V373.5H1769.17L1733.38 427.5L1724.43 441L1711.5 460.5H1694.5L1681.34 441L1658 406.436H1651.18H1606.04H1597.77L1574.26 441L1561 460.5H1542.5L1529.85 441L1486.05 373.5L1484.76 371.5L1480.96 375.5L1461.5 396V515H1449V371.5H1434.5V342H1449V314.5H1444.5V302.5V260H1439.5V252.236L1391.5 230.5V226V219.5V194.5V170V142.5Z"
+                                fill="currentColor" />
+                            <path
+                                d="M1809.5 142.5L1809.87 160.5M1809.5 142.5L1845 134V170L1809.87 160.5M1809.5 142.5H1806M1444.5 142.5H1391.5V170M1444.5 142.5H1493.5M1444.5 142.5V170M1444.5 142.5V134H1806V142.5M1391.5 226V219.5M1391.5 226H1439.5M1391.5 226V230.5M1391.5 226L1444.5 248.5M1811.2 226L1811.07 219.5M1811.2 226H1806M1811.2 226L1811.49 240.25M1811.07 219.5H1755M1811.07 219.5L1810.4 186.5M1391.5 219.5V194.5M1391.5 219.5H1493.5M1391.5 194.5H1809.5M1391.5 194.5V170M1493.5 142.5V219.5M1493.5 142.5H1495M1493.5 219.5H1495M1495 219.5V142.5M1495 219.5H1545M1495 142.5H1545M1545 142.5V219.5M1545 142.5H1547M1545 219.5H1547M1547 219.5V142.5M1547 219.5H1596.5M1547 142.5H1596.5M1596.5 142.5V219.5M1596.5 142.5H1599M1596.5 219.5H1599M1599 219.5V142.5M1599 219.5H1648.5M1599 142.5H1648.5M1648.5 142.5V219.5M1648.5 142.5H1651M1648.5 219.5H1651M1651 219.5V142.5M1651 219.5H1701M1651 142.5H1701M1701 142.5V219.5M1701 142.5H1703M1701 219.5H1703M1703 219.5V142.5M1703 219.5H1752.5M1703 142.5H1752.5M1752.5 142.5V219.5M1752.5 142.5H1755M1752.5 219.5H1755M1755 219.5V142.5M1755 142.5H1806M1810.4 186.5L1810.06 170M1810.4 186.5L1794.5 186.455M1810.06 170H1453.5L1450.5 175.5V180.5L1453.5 185.5L1461 185.521M1810.06 170L1809.87 160.5M1444.5 170H1391.5M1444.5 170V230.5M1450.5 226V260H1439.5V226M1450.5 226H1439.5M1450.5 226H1547M1444.5 230.5H1391.5M1444.5 230.5V248.5M1391.5 230.5L1444.5 254.5M1444.5 254.5V252.5V248.5M1444.5 254.5V302.5M1461 185.521V302.5M1461 185.521L1628 185.989M1461 302.5H1444.5M1461 302.5H1544.5M1444.5 302.5V314.5H1449M1812.76 302.5L1813 314.5H1794.5M1812.76 302.5L1812.54 292M1812.76 302.5H1803.63H1794.5M1794.5 186.455V302.5M1794.5 186.455L1711.5 186.223M1794.5 302.5H1711.5M1711.5 186.223L1628 185.989M1711.5 186.223V260M1711.5 302.5H1628M1711.5 302.5V260M1628 185.989V260M1628 302.5H1544.5M1628 302.5V260M1545 221.5L1544.76 260M1544.5 302.5L1544.76 260M1544.76 260H1547V226M1547 226H1630M1628 260H1630V226M1630 226H1713.5M1711.5 260H1713.5V226M1713.5 226H1806M1806 226V260H1809.5H1813L1811.78 254.5M1811.78 254.5L1811.49 240.25M1811.78 254.5H1817.5V240.25H1811.49M1811.78 254.5L1812.27 278.5M1495 248.5H1478.5V287H1495M1495 248.5V287M1495 248.5H1512M1495 287H1512M1512 248.5H1529V287H1512M1512 248.5V287M1580 248.5H1563.5V287H1580M1580 248.5V287M1580 248.5H1595.5M1580 287H1595.5M1595.5 287H1611V248.5H1595.5M1595.5 287V248.5M1662.5 248.5H1648.5V287H1662.5M1662.5 248.5V287M1662.5 248.5H1678.5M1662.5 287H1678.5M1678.5 287H1694.5V248.5H1678.5M1678.5 287V248.5M1746 248.5H1729.5V287H1746M1746 248.5V287M1746 248.5H1762M1746 287H1762M1762 248.5H1778V287H1762M1762 248.5V287M1812.27 278.5H1817.5V292H1812.54M1812.27 278.5L1812.54 292M1807.5 313V514.5H1794.5V349M1794.5 314.5H1737.5M1794.5 314.5V321M1449 314.5V515H1461.5V396M1449 314.5H1461.5M1461.5 314.5H1519M1461.5 314.5V321M1461.5 342H1434.5V371.5H1461.5M1461.5 342V349M1461.5 342V338M1461.5 371.5V396M1461.5 371.5V349M1727.5 314.5H1737.5M1727.5 314.5H1529M1727.5 314.5V320.75M1737.5 314.5V320.75M1529 314.5H1519M1529 314.5L1527.96 321M1461.5 396L1454 391.5L1476.67 369M1461.5 396L1480.96 375.5M1519 314.5V320.75M1794.5 321L1759.5 320.846M1794.5 321V349M1737.5 320.75V327L1756.5 346M1737.5 320.75L1756.5 320.833M1727.5 320.75V327L1759.5 358.543M1727.5 320.75L1722 320.757M1527.96 321L1527 327L1499.98 355.464M1527.96 321L1535 320.991M1519 320.75V327L1499.98 345.874M1519 320.75L1497.5 320.843M1461.5 321V338M1461.5 321L1497.5 320.843M1756.5 320.833V346M1756.5 320.833L1759.5 320.846M1756.5 346L1759.5 349M1759.5 320.846V349M1759.5 349L1775 364.5M1793 340.5L1775 364.5M1775 364.5L1779.5 369M1794.5 349L1779.5 369M1779.5 369L1802 391.5L1797.5 396L1776.7 375.5M1776.7 375.5L1742 427.5M1776.7 375.5L1759.5 358.543M1770.5 371.5L1769.17 373.5M1628 362L1635.76 373.5M1628 362V320.875M1628 362V373.5M1628 362L1601.47 401M1484.76 371.5L1480.96 375.5M1484.76 371.5L1486.05 373.5M1484.76 371.5L1497.06 358.543M1515 427.5L1480.96 375.5M1476.67 369L1461.5 349M1476.67 369L1480.96 364.747M1480.96 364.747L1461.5 338M1480.96 364.747L1499.98 345.874M1675.5 441H1731.5M1580 441H1525M1722 320.757V373.5H1719V320.761M1722 320.757L1719 320.761M1719 320.761L1688.5 320.799M1756.5 357.5V373.5H1688.5M1635.76 373.5H1650.49M1635.76 373.5L1654.33 401M1618 373.5H1607.5M1486.05 373.5L1542.5 460.5H1561L1597.77 406.436M1486.05 373.5H1497.5M1759.5 358.543V373.5H1769.17M1769.17 373.5L1733.38 427.5M1535 320.991V373.5M1535 320.991L1537 320.989M1535 373.5H1537M1535 373.5H1525M1537 373.5V320.989M1537 373.5H1569.5M1537 320.989L1569.5 320.948M1569.5 320.948V373.5M1569.5 320.948L1607.5 320.9M1569.5 373.5H1580M1607.5 320.9V373.5M1607.5 320.9L1628 320.875M1607.5 373.5H1580M1628 320.875L1650.49 320.846M1650.49 320.846V373.5M1650.49 320.846L1688.5 320.799M1650.49 373.5H1688.5M1688.5 320.799V373.5M1499.5 321L1499.98 345.874M1499.98 355.464L1499.5 373.5M1499.98 355.464L1497.06 358.543M1499.5 373.5H1497.5M1499.5 373.5H1525M1497.5 373.5L1497.06 358.543M1497.06 345.874L1497.5 320.843M1628 373.5L1592 427.5M1628 373.5L1666 427.5M1601.47 401H1654.33M1601.47 401L1597.77 406.436M1654.33 401L1658 406.436M1658 406.436L1694.5 460.5H1711.5L1733.38 427.5M1658 406.436H1597.77M1675.5 375.5V430.5M1733.38 427.5L1731.5 375.5M1580 373.5V427.5M1525 373.5V427.5M1682.5 384H1724.5V422H1682.5V384ZM1532 384H1574V422H1532V384Z"
+                                stroke="#525254" stroke-width="3" />
+                        </g>                        
+                    </g>
+                    <g id="ID214_XXpresure_2">
+                        <path id="Rectangle 840_20"
+                            d="M1311 296C1311 293.239 1313.24 291 1316 291H1434C1436.76 291 1439 293.239 1439 296V317C1439 319.761 1436.76 322 1434 322H1316C1313.24 322 1311 319.761 1311 317V296Z"
+                            fill="#025700" />
+                        <text id="ID214_presure" fill="white"         
+                            font-family="Arial" font-size="25" font-weight="bold" letter-spacing="0.005em"
+                            x="1316.92" y="315.167">#####
+                        </text>
+                        <text id="mPa_5" fill="white"         
+                            font-family="Arial" font-size="22" letter-spacing="0.005em">
+                            <tspan x="1392.43" y="315.127">kPa</tspan>
+                        </text>
+                    </g>
+                    <g id="group_id215">
+                        <text id="CV6034" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="533.838" y="936.434">CV6034</tspan>
+                        </text>
+                        <g id="path_id215">
+                            <path
+                                d="M511.5 742.5V964.5H523.5V848.5L559.5 849.5V845H523.5V834H559.5V830.5H523.5V758H614V830.5H577.5V834H614V845H577.5V849.5H614V964.5H624.5V742.5H511.5Z"
+                                fill="currentColor" />
+                            <path
+                                d="M556.152 785.5H580.304H582.5V806.5L577.5 825V855.5H560.5V825L555 805.5V785.5H556.152Z"
+                                fill="currentColor" />
+                            <path
+                                d="M608.5 758L580.304 785.5M580.304 785.5L568 797.5L556.152 785.5M580.304 785.5H556.152M580.304 785.5H582.5V806.5L577.5 825V855.5H560.5V825L555 805.5V785.5H556.152M556.152 785.5L529 758M511.5 964.5V742.5H624.5V964.5H614V849.5H577.5V845H614V834H577.5V830.5H614V758H523.5V830.5H559.5V834H523.5V845H559.5V849.5L523.5 848.5V964.5H511.5Z"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                    </g>
+                    <g id="group_id216">
+                        <text id="CV6057" fill="black"          font-family="Arial"
+                            font-size="20" font-weight="bold" letter-spacing="0em">
+                            <tspan x="879.838" y="939.434">CV6057</tspan>
+                        </text>
+                        <g id="path_id216">
+                            <path
+                                d="M859 742V964H871V848L907 849V844.5H871V833.5H907V830H871V757.5H961.5V830H925V833.5H961.5V844.5H925V849H961.5V964H972V742H859Z"
+                                fill="currentColor" />
+                            <path d="M903.652 785H927.804H930V806L925 824.5V855H908V824.5L902.5 805V785H903.652Z"
+                                fill="currentColor" />
+                            <path
+                                d="M956 757.5L927.804 785M927.804 785L915.5 797L903.652 785M927.804 785H903.652M927.804 785H930V806L925 824.5V855H908V824.5L902.5 805V785H903.652M903.652 785L876.5 757.5M859 964V742H972V964H961.5V849H925V844.5H961.5V833.5H925V830H961.5V757.5H871V830H907V833.5H871V844.5H907V849L871 848V964H859Z"
+                                stroke="#525254" stroke-width="3" />
+                        </g>
+                    </g>
+                    <g id="XXgroup_id217">
+                        <g id="path_id217">
+                            <path
+                                d="M1254 742V964H1266V848L1302 849V844.5H1266V833.5H1302V830H1266V757.5H1356.5V830H1320V833.5H1356.5V844.5H1320V849H1356.5V964H1367V742H1254Z"
+                                fill="#BBBBBB" />
+                            <path d="M1298.65 785H1322.8H1325V806L1320 824.5V855H1303V824.5L1297.5 805V785H1298.65Z"
+                                fill="#BBBBBB" />
+                            <path
+                                d="M1351 757.5L1322.8 785M1322.8 785L1310.5 797L1298.65 785M1322.8 785H1298.65M1322.8 785H1325V806L1320 824.5V855H1303V824.5L1297.5 805V785H1298.65M1298.65 785L1271.5 757.5M1254 964V742H1367V964H1356.5V849H1320V844.5H1356.5V833.5H1320V830H1356.5V757.5H1266V830H1302V833.5H1266V844.5H1302V849L1266 848V964H1254Z"
+                                stroke="#545252" stroke-width="3" />
+                        </g>
+                    </g>
+                    <g id="Debug_ID">
+                        <g id="IDS">
+                            <g id="Group 40">
+                                <rect id="Rectangle 47" x="140" y="791" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="202" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="143.917" y="814.271">202</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_2">
+                            <g id="Group 40_2">
+                                <rect id="Rectangle 47_2" x="404" y="791" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="203" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="407.917" y="814.271">203</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_3">
+                            <g id="Group 40_3">
+                                <rect id="Rectangle 47_3" x="140" y="427" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="201" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="143.917" y="450.271">201</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_4">
+                            <g id="Group 40_4">
+                                <rect id="Rectangle 47_4" x="53" y="139" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="200" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="56.9167" y="162.271">200</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <!--
+                        <g id="IDS_5">
+                            <g id="Group 40_5">
+                                <rect id="Rectangle 47_5" x="295" y="258" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="218" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="298.917" y="281.271">218</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        -->
+                        <g id="IDS_6">
+                            <g id="Group 40_6">
+                                <rect id="Rectangle 47_6" x="423" y="210" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="204" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="426.917" y="233.271">204</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_7">
+                            <g id="Group 40_7">
+                                <rect id="Rectangle 47_7" x="664" y="210" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="206" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="667.917" y="233.271">206</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_8">
+                            <g id="Group 40_8">
+                                <rect id="Rectangle 47_8" x="475" y="280" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="205" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="478.917" y="303.271">205</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_9">
+                            <g id="Group 40_9">
+                                <rect id="Rectangle 47_9" x="489" y="459" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="207" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="492.917" y="482.271">207</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_10">
+                            <g id="Group 40_10">
+                                <rect id="Rectangle 47_10" x="645" y="717" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="215" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="648.917" y="740.271">215</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_11">
+                            <g id="Group 40_11">
+                                <rect id="Rectangle 47_11" x="984" y="715" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="216" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="987.917" y="738.271">216</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <!--
+                        <g id="IDS_12">
+                            <g id="Group 40_12">
+                                <rect id="Rectangle 47_12" x="1376" y="750" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="217" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="1379.92" y="773.271">217</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    -->
+                        <g id="IDS_13">
+                            <g id="Group 40_13">
+                                <rect id="Rectangle 47_13" x="1693" y="795" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="211" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="1696.92" y="818.271">211</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_14">
+                            <g id="Group 40_14">
+                                <rect id="Rectangle 47_14" x="1727" y="460" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="210" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="1730.92" y="483.271">210</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_15">
+                            <g id="Group 40_15">
+                                <rect id="Rectangle 47_15" x="1576" y="460" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="209" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="1579.92" y="483.271">209</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_16">
+                            <g id="Group 40_16">
+                                <rect id="Rectangle 47_16" x="1605" y="61" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="214" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="1608.92" y="84.2707">214</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_17">
+                            <g id="Group 40_17">
+                                <rect id="Rectangle 47_17" x="841" y="459" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="208" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="844.917" y="482.271">208</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_18">
+                            <g id="Group 40_18">
+                                <rect id="Rectangle 47_18" x="957" y="209" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="219" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="960.917" y="232.271">219</tspan>
+                                </text>
+                            </g>
+                        </g>
+                        <g id="IDS_19">
+                            <g id="Group 40_19">
+                                <rect id="Rectangle 47_19" x="635" y="338" width="48" height="29.4545" rx="6"
+                                    fill="#881818" />
+                                <text id="213" fill="white"         
+                                    font-family="Roboto" font-size="23" font-weight="bold" letter-spacing="0em">
+                                    <tspan x="638.917" y="361.271">213</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Vector 4">
+                        <path
+                            d="M209.5 631.5H219.5V637.5H227.5V647.5V659.5L222 673.5H207.5L201 659.5V647.5V637.5H209.5V631.5Z"
+                            fill="#BBBBBB" />
+                        <path
+                            d="M209.5 637.5V631.5H219.5V637.5M209.5 637.5H201V647.5M209.5 637.5H219.5M219.5 637.5H227.5V647.5M197.5 659.5H230.5M230.5 647.5H227.5M227.5 647.5V659.5L222 673.5H207.5L201 659.5V647.5M197.5 647.5H201M207.5 642.5V655H222V642.5H207.5Z"
+                            stroke="#525254" stroke-width="3" />
+                    </g>
+                    <g id="pump">
+                        <path
+                            d="M1339.5 214H1362V221H1359V228V242H1362V246H1365V255H1362V258H1353.75H1348.5H1341.5V251H1335V246H1341.5V242H1344.5L1345 235L1344.5 233.5H1355.5L1359 228V221H1341.5H1339.5V214Z"
+                            fill="#BBBBBB" />
+                        <path
+                            d="M1359 221H1362V214H1339.5V221H1341.5M1359 221L1355.5 217.5L1352.5 215.5H1348.5L1344.5 217.5L1341.5 221M1359 221H1341.5M1359 221V228M1341.5 222.5V228L1344.5 233.5M1344.5 233.5H1355.5L1359 228M1344.5 233.5L1345 235L1344.5 242M1359 228V242M1359 242H1362V246M1359 242H1353.75M1344.5 242H1341.5V246M1344.5 242H1348.5M1341.5 246H1335V251H1341.5M1341.5 246V251M1341.5 251V258H1348.5M1362 246H1365V255H1362M1362 246V255M1362 255V258H1353.75M1348.5 242V258M1348.5 242H1353.75M1348.5 258H1353.75M1353.75 242V258"
+                            stroke="#525254" stroke-width="4" />
+                    </g>
+                    <path id="compressor" d="M1111 425.5V373.5H1177.5V425.5H1111Z" stroke="#04CB00" stroke-width="3" />
+                </g>
+            </svg>
+
+
+
+        </div>
+        <div id="message-module">
+            <div id="message-box">
+                <p id="message-text"></p>
+                <button class="tag-button" id="DropErr"  data-confirm="Vai vēlaties nomest elementu kļūdas?">Nomest Elementa Kļūdas</button>
+                
+                <button id="close-button"> Aizvērt </button> 
+                
+                
+                
+            </div>
+        </div>
+    </main>
+    <script>
+
+    </script>
+    <script src="scripts/npm/gsap.min.js"></script>
+    <script src="scripts/npm/handlebars.min.js"></script>
+    <script src="scripts/frontend/functions.js"></script>
+    <script type="module" src="scripts/sakumlapa/index.js"></script>
+</body>
+
+</html>

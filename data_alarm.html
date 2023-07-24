@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+
+        table tr:nth-child(even) {
+            background-color: rgb(201, 201, 201);
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="table">
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script>
+
+        const data = `1	1	1		1	1	1		1				
+1	1		1	1	1			1				
+1			1	1	1							
+1			1	1	1							
+		1				1						
+1			1	1	1							
+1			1	1	1							
+		1				1						
+1			1	1	1							
+1	1	1		1	1	1		1	1	1		1
+1	1			1	1			1				
+1	1	1		1	1	1		1				
+1	1			1	1			1				
+1	1			1	1			1				
+1	1			1	1			1				
+1	1			1	1			1				
+1	1			1	1			1				
+			1	1	1							
+1	1		1	1	1			1				
+1			1	1								
+1			1	1								
+1	1			1	1				1	1		1
+1	1			1	1			1	1	1		1
+1	1			1								
+1	1			1	1					1		
+1	1	1	1	1	1	1		1				
+1	1			1	1			1				
+1	1			1	1			1				
+1	1			1	1			1				
+1			1	1	1							
+			1	1	1							
+1	1	1	1	1	1	1		1				
+1			1	1								
+1	1			1	1			1	1			
+1				1	1						1	
+1	1			1	1			1		1		
+1	1			1	1			1				
+1				1	1						1	
+1	1			1	1			1		1		1
+1	1			1	1			1				
+		1				1						
+		1				1						
+1	1					1						`;
+
+        const el_names = ['CC6001', 'BE6005', 'VM6009', 'VM6010', 'BU1', 'VM6006', 'VM6008', 'Bu2', 'VM6007', 'CC6002', 'FN6003', 'CC6004', 'CL6011', 'FN6047', 'DE6013', 'DE6014', 'FN6015', 'SM6017', 'BE6017', 'VM6029', 'VM6018', 'DZ6020', 'HL6021', 'HL6023', 'FN6022', 'BE6024', 'DE6025', 'DE6026', 'CS6027', 'VM6019', 'SM6031', 'BE6030', 'VM6032', 'DZ6033', 'FC6041', 'FN6040', 'RV6037', 'FC6043', 'FN6042', 'RV6038', 'KVB1', 'KVB2', 'CL6012'];
+
+        const theadData = `Motor Err	Contactor Err 	OVf err	Rot Err	Trauksme (motor err)	Trauksme (cont err)	Trauksme (ovf err)	Trauksme (rot err)`;
+        const table = document.getElementById('table');
+        table.querySelector('thead').innerHTML = `<th>id</th><th>element</th>${theadData.split('\t').map(name => `<th>${name}</th>`).join('')}`;
+
+        table.querySelector('tbody').innerHTML = data.split('\n').map((rowData, index) => `<tr><td>${index}</td><td>${el_names[index]}</td>${rowData.split('\t').map((cell, id) => {
+            if (id < 4) return `<td>${cell}</td>`
+            if (id === 4) { // motor error
+                if (rowData.split('\t')[0] === '1') {
+                    if (index === 34 || index === 37) return `<td>${el_names[index]} - Filtra vadības bloka kļūda</td>`;
+                    return `<td>${el_names[index]} - Motora aizsardzības kļūda</td>`;
+                }
+                return '<td></td>';
+            }
+            if (id === 5) { // contactor error
+                if (rowData.split('\t')[1] === '1') return `<td>${el_names[index]} - Kontaktora kļūda</td>`;
+                return `<td></td>`;
+            }
+            if (id === 6) { // overflow error
+                if (rowData.split('\t')[2] === '1') {
+                    if (index === 25 || index === 31) return `<td>${el_names[index]} - Lentes kļūda</td>`;
+                    return `<td>${el_names[index]} - Pārplūdes devēja kļūda</td>`;
+                }
+                return `<td></td>`;
+            }
+            if (id === 7) { // rotation error
+                if (rowData.split('\t')[3] === '1') return `<td>${el_names[index]} - Griešanas kļūda</td>`;
+                return `<td></td>`;
+            }
+
+            return '';
+        }).join('')}</tr>`).join('');
+
+
+        [...document.querySelectorAll("td")].forEach(el => {
+            el.addEventListener("click", () => {
+                console.log(el.textContent);
+            })
+        })
+    </script>
+</body>
+
+</html>
+
+
+<!-- 
+    
+
+
+
+
+ -->

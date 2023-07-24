@@ -1,0 +1,195 @@
+{
+   "enabled" : true,
+   "max" : 100,
+   "min" : 0,
+   "name" : "Weight",
+   "pens" : [
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "enabled" : true,
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  },
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  }
+               ],
+               "name" : "Area 1"
+            },
+            {
+               "children" : [
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  },
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  }
+               ],
+               "name" : "Area 2"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "Site 1"
+      },
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  },
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  }
+               ],
+               "name" : "Area 1"
+            },
+            {
+               "children" : [
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  },
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  }
+               ],
+               "name" : "Area 2"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "Site 2"
+      },
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  },
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  }
+               ],
+               "name" : "Area 1"
+            },
+            {
+               "children" : [
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  },
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  }
+               ],
+               "name" : "Area 2"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "Site 3"
+      },
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  },
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  }
+               ],
+               "name" : "Area 1"
+            },
+            {
+               "children" : [
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  },
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  }
+               ],
+               "name" : "Area 2"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "Site 4"
+      },
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  },
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  }
+               ],
+               "name" : "Area 1"
+            },
+            {
+               "children" : [
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  },
+                  {
+                     "format" : "#.###",
+                     "name" : "Weight Cook",
+                     "tag" : "weight_cook"
+                  }
+               ],
+               "name" : "Area 2"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "Site 5"
+      }
+   ],
+   "unit" : "kg"
+}

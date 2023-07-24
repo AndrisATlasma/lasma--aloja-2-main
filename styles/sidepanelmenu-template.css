@@ -1,0 +1,60 @@
+.side-panel {
+	font-size: 100%; /* Can be specified either in terms of %, em, or px. Default size 100% OR 1em OR 12px */
+	font-weight: bold; /* Default bold */
+	width: 220px; /* Side panel width. Default 220px */
+	border: 1px solid #aab1b9; /* Side panel border. Can be removed. Default 1px solid #aab1b9 */
+}
+
+ul.spmenu {
+	background: #0d1218; /* default #0d1218 (dark blue) */
+}
+
+ul.spmenu ul {
+	margin: 0 0 0 6px; /* Indentation for each submenu level. default 0 0 0 6px which means create margin 6px from left for each level */
+}
+
+/* Each of these lvl-x classes corresponds to the submenu depth in the menu. 
+More levels (e.g. lvl-6 and above) can be defined if the submenu depth defined in Project Editor runs more than the 5 levels defined here. */
+ul.spmenu ul.lvl-1 {
+	background: #8e44ad; /* default #8e44ad (purple) */
+}
+
+ul.spmenu ul.lvl-2 {
+	background: #0eade1; /* default #0eade1 (light blue) */
+}
+
+ul.spmenu ul.lvl-3 {
+	background: #2ecc71; /* default #2ecc71 (light green) */
+}
+
+ul.spmenu ul.lvl-4 {
+	background: #f1c40f; /* default #f1c40f (light yellow) */
+}
+
+ul.spmenu ul.lvl-5 {
+	background: #ff4040; /* default #ff4040 (brick red) */
+}
+
+ul.spmenu a {
+	line-height: 30px; /* height for each item in the menu. default 30px */
+	padding: 0 10px; /* text padding. default 0 10px */
+	text-decoration: none; /* default is none so that the texts are not underlined like a normal hyperlink */
+}
+
+ul.spmenu a.inactivelink > span {
+	color: white; /* text colour for inactive links. default white */
+}
+
+ul.spmenu a.activelink > span {
+	color: #da0; /* text colour for active link (link to current page). default #da0 (orange) */
+}
+
+ul.spmenu li {
+	border-top: 2px solid #040608; /* line separator between each menu items. default is 2px solid #040608 */
+}
+
+ul.spmenu > li:first-child { border-top: none; } /* related with the border-top definition above this.  */
+
+ul.spmenu a:hover span {
+	color: #aab1b9; /* text colour on hover. default is #aab1b9 */
+}

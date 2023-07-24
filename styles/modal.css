@@ -1,0 +1,26 @@
+.modal__container {
+  background-color: #fff;
+  padding: 1em 0 0;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.25em;
+}
+
+.modal__title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.5em;
+}
+
+.modal__content {
+  margin-top: 1em;
+  line-height: 1.5;
+  color: rgba(0,0,0,.8);
+}

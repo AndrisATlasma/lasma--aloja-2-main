@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="system/styles/igrX.css" />
+  <link rel="stylesheet" type="text/css" href="styles/sakumlapa.css" />
+  <link rel="stylesheet" type="text/css" href="styles/productManage.css" />
+  <link rel="stylesheet" type="text/css" href="styles/orderManage.css" />
+  <link rel="stylesheet" type="text/css" href="styles/acceptance.css" />
+  <link rel="stylesheet" type="text/css" href="styles/modal.css" />
+  <script type="text/javascript" src="system/scripts/igrX2.js"></script>
+
+  <style>
+    .centered_div {
+
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+    }
+
+    #coeficient {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      width: 200px;
+    }
+
+    #save_coeficient {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #save_coeficient:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="centered_div">
+
+      <input type="text" name="coeficient" id="coeficient">
+      <button id="save_coeficient">Saglabāt</button>
+
+    </div>
+
+  </main>
+
+
+  <script src="scripts/npm/gsap.min.js"></script>
+
+  <script>
+    const dbSetting = { outfmt: 'json', dbgroup: '_postgres' };
+
+    document.addEventListener('DOMContentLoaded', async function () {
+      var coefic = await get_coeficient();
+      var input_field = document.getElementById('coeficient');
+      input_field.value = coefic[0].coeficient;
+
+    })
+
+
+    var save_btn = document.getElementById('save_coeficient');
+    save_btn.addEventListener('click', function () {
+ 
+
+      var new_coeficient = document.getElementById('coeficient').value;
+      save_new_coeficient(new_coeficient);
+      alert('Jaunais koeficients saglabāts');
+
+    })
+
+
+
+    function get_coeficient() {
+      return new Promise(resolve => {
+        runSql('get_coeficient', {}, dbSetting, function (results) {
+          if (results.statusCode !== 200) {
+            console.info(`Nesanāca`);
+            resolve(false);
+          }
+          resolve(results.responseJson);
+        });
+      });
+    };
+
+    function save_new_coeficient(coef) {
+      return new Promise(resolve => {
+        runSql('update_coeficient', { coef }, dbSetting, function (results) {
+          if (results.statusCode !== 200) {
+            console.info(`Nesanāca`);
+            resolve(false);
+          }
+          resolve(results.responseJson);
+        });
+      });
+    };
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

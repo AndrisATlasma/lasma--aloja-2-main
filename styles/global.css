@@ -1,0 +1,19 @@
+.navbar-static-top .navbar-custom-menu .navbar-nav > li:last-of-type {
+    display: none;
+}
+
+.navbar-static-top .navbar-custom-menu .pull-left {
+    padding-right: 1em;
+}
+
+div#unregistered-bar {
+    display: none !important;
+}
+
+#unregistered-bar + .wrapper {
+    top: 0 !important;
+}
+
+.highlight{
+    color: #e3000b !important;
+}

@@ -1,0 +1,2681 @@
+{
+   "enabled" : true,
+   "max" : 70,
+   "min" : -10,
+   "name" : "Miscellaneous",
+   "pens" : [
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "enabled" : true,
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "enabled" : true,
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "enabled" : true,
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "enabled" : true,
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 5"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 6"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 7"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 8"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 9"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 10"
+                  }
+               ],
+               "name" : "Area 1"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 5"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 6"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 7"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 8"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 9"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 10"
+                  }
+               ],
+               "name" : "Area 2"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 5"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 6"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 7"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 8"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 9"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 10"
+                  }
+               ],
+               "name" : "Area 3"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "Site 1"
+      },
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  }
+               ],
+               "name" : "Area 1"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  }
+               ],
+               "name" : "Area 2"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  }
+               ],
+               "name" : "Area 3"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "Site 2"
+      },
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  }
+               ],
+               "name" : "Area 1"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  }
+               ],
+               "name" : "Area 2"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  }
+               ],
+               "name" : "Area 3"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "Site 3"
+      },
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  }
+               ],
+               "name" : "Area 1"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  }
+               ],
+               "name" : "Area 2"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "0",
+                           "name" : "Time in Second",
+                           "tag" : "app.currentTime.second"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Minute",
+                           "tag" : "app.currentTime.minute"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Hour",
+                           "tag" : "app.currentTime.hour"
+                        },
+                        {
+                           "format" : "0",
+                           "name" : "Time in Day",
+                           "tag" : "app.currentTime.day"
+                        }
+                     ],
+                     "name" : "Device 4"
+                  }
+               ],
+               "name" : "Area 3"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "Site 4"
+      }
+   ],
+   "unit" : "-"
+}

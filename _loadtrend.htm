@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link href="system/styles/igrX.css" rel="stylesheet" type="text/css"/>
+		<title>Trending Loader</title>
+	</head>
+	<body scroll="no" class="no-scroll">
+		<div class='trend' id='placeholder' style='top:0;left:0;'></div>
+	</body>
+<script type='text/javascript' src='system/scripts/igrX2.js'></script>
+<script type='text/javascript'>
+	
+	var pen = JSON.parse(sessionStorage.getItem('_loadtrendPen') ? sessionStorage.getItem('_loadtrendPen') : '{}');
+	sessionStorage.removeItem('_loadtrendPen');
+	var opt = JSON.parse(sessionStorage.getItem('_loadtrendOpt') ? sessionStorage.getItem('_loadtrendOpt') : '{}');
+	sessionStorage.removeItem('_loadtrendOpt');
+
+	var plot = igrx.trend( '#placeholder', {
+	'pen_setting': pen,
+	'option': opt
+	});
+	</script>
+
+</html>

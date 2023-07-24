@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Plot</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="system/styles/igrX.css" />
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" media="screen, print" href="system/styles/plot.compat.css" />
+    <![endif]-->
+</head>
+<body>
+    <div class='trend' id='placeholder' style='top:0;left:0;min-width:1000px'></div>
+</body>
+
+<script type="text/javascript" src="system/scripts/igrX2.js"></script>
+<script type="text/javascript">
+
+var pen = [
+    {
+        name: 'Temperature',
+        enabled: true,
+        unit: '&deg;C',
+        min: 0,
+        max: 100,
+        pens: [
+            {
+                name: 'Temp Cook',
+                tag: 'temperature_cook',
+                format: '#.##'
+            },
+            {
+                name: 'Temp Air',
+                enabled: false,
+                tag: 'temperature_air',
+                format: '#.##'
+            }
+        ]
+    },
+    {
+        name: 'Pressure',
+        enabled: true,
+        unit: 'bar',
+        min: 0,
+        max: 100,
+        pens: [
+            {
+                name: 'Press Cook',
+                tag: 'pressure_cook',
+                format: '#.###'
+            }
+        ]
+    },
+    {
+        name: 'Weight',
+        enabled: true,
+        unit: 'kg',
+        min: 0,
+        max: 100,
+        pens: [
+            {
+                name: 'Weight Cook',
+                tag: 'weight_cook',
+                format: '###'
+            }
+        ]
+    },
+    {
+        name: 'Miscellaneous',
+        enabled: true,
+        unit: '-',
+        min: -10,
+        max: 70,
+        pens: [
+            {
+                name: 'Time in Second',
+                tag: 'app.currentTime.second',
+				showMarker: true,
+                format: '0'
+            },
+            {
+                name: 'Time in Minute',
+                tag: 'app.currentTime.minute',
+                format: '0'
+            },
+            {
+                name: 'Time in Hour',
+                tag: 'app.currentTime.hour',
+                format: '0'
+            },
+            {
+                name: 'Time in Day',
+                tag: 'app.currentTime.day',
+                format: '0'
+            }
+        ]
+    },
+    
+];
+var opt = {
+    'gridx': 10,
+    'skip': true,
+    'lograte': 5000,
+    'title': 'Temperature',
+    'backgroundColor': 'white',
+    'refLineColor': 'black',
+	//'showMarker': true,
+    'lineWidth': 2
+};
+
+var plot = igrx.trend( '#placeholder', {
+    'pen_setting': pen,
+    'option': opt
+});
+
+</script>
+</html>

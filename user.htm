@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Operator Log</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="system/styles/igrX.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="user"></div>
+</body>
+<script type="text/javascript" src="system/scripts/igrX2.js"></script>
+<script type="text/javascript">
+var opt = {
+    'column': {
+        'time_stamp': true,
+        'user_name': true,
+        'source': true,
+        'user_level': false,
+        'user_label': false,
+        'request': true,
+        'detail': true
+    },
+    'row-per-page': 30
+}
+var usr = igrx.userlog( document.getElementById('user'), opt);
+</script>
+</html>

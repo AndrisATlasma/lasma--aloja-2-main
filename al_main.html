@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+    <link rel='stylesheet' type='text/css' href='system/styles/igrX.css' />
+    <script type='text/javascript' src='system/scripts/igrX2.js'></script>
+    <link rel="stylesheet" type="text/css" href="styles/al_control.css" />
+    <style>
+        /* MARKUP */
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            /* --bar1height: 20%; */
+            font-size: 20px;
+            background-color: #A4A4A4;
+        }
+
+        input,
+        select {
+            height: 30px;
+            font-size: 18px;
+            box-sizing: border-box;
+        }
+
+        #m_wrap {
+            display: grid;
+            grid-template-columns: 2fr 2fr;
+        }
+
+
+        .section {
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        .mc_page_row {
+            display: flex;
+        }
+
+        /* BAR GRAPHS */
+        #bar_T1,
+        #bar_T2 {
+            max-height: 800px;
+            position: relative;
+        }
+
+        #bar_T1::before,
+        #bar_T2::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: -2;
+            background: #525252;
+        }
+
+        #bar_T1::after {
+            content: '';
+            background: var(--t1_bg);
+            height: var(--bar1height);
+            transition: 0.7s;
+            display: block;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+
+        #bar_T2::after {
+            content: '';
+            background: var(--t2_bg);
+            height: var(--bar2height);
+            transition: 0.7s;
+            display: block;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+
+        /* ELEMENTS */
+        label {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            border: 1px solid black;
+            border-radius: 2px;
+        }
+
+        /* input[type="number"] {
+            max-width: 80px;
+        } */
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        select {
+            text-align: center;
+            max-width: 220px;
+        }
+
+        .inputDiv {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5px 10px;
+        }
+
+
+        #pienemsanasParametri {
+            margin: auto;
+            margin-bottom: 20px;
+            display: flex;
+            margin-top: 12px;
+            justify-content: space-around;
+        }
+
+        /* BUTTONS */
+        .btnDiv {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .btnbtnDiv {
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 2px;
+            text-align: center;
+            background-color: #ffffff;
+            border: 1px solid grey;
+            margin-bottom: 3px;
+
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .btnbtnDiv:hover {
+            background-color: #bfbfbf;
+        }
+
+        .btnbtnDiv:active {
+            background-color: #999999;
+        }
+
+        .bar_T2 .fill {
+            background-color: green;
+            z-index: -1;
+        }
+
+        /*
+
+
+        #atlautPienemsanu,
+        #startPriekstirisana,
+        #startLobisana {
+            background-color: #1d9650;
+        }
+
+        #atlautPienemsanu:hover,
+        #startPriekstirisana:hover,
+        #startLobisana:hover {
+            background-color: #1d964fe2;
+        }
+
+
+        #atlautPienemsanu:active,
+        #startPriekstirisana:active,
+        #startLobisana:active {
+            background-color: #146d39e2;
+        }
+
+
+
+        #atceltPienemsanu,
+        #stopPriekstirisana,
+        #stopLobisana {
+            background-color: rgb(142, 22, 22);
+        }
+
+        #atceltPienemsanu:hover,
+        #stopPriekstirisana:hover,
+        #stopLobisana:hover {
+            background-color: rgba(209, 13, 13, 0.823);
+        }
+
+        #atceltPienemsanu:active,
+        #stopPriekstirisana:active,
+        #stopLobisana:active {
+            background-color: rgba(165, 15, 15, 0.823);
+        }
+*/
+        .wbtn {
+            background-color: white;
+        }
+
+        input[data-group] {
+            text-align: center;
+            margin-right: 5px;
+        }
+
+        /* reset errors button */
+        #resetErr {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        /* TABLE */
+        #prieksLobTable {
+            text-align: center;
+        }
+
+        #prieksLobTable td {
+            text-align: center;
+            padding: 5px 10px;
+        }
+
+        #prieksLobTable td:nth-child(1) {
+            text-align: right;
+        }
+
+        /*  ************************************************* 8*/
+        .grid-container {
+            background-color: #A4A4A4;
+            height: 100%;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-gap: 15px;
+        }
+
+        .smalGrid {
+            height: 50px;
+            margin: 0px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .smalGrid2 {
+            height: 50px;
+            margin: 0px;
+            display: grid;
+            grid-template-columns: 2fr 2fr 2fr 1fr;
+            gap: 5px;
+        }
+        .smalGrid3 {
+            height: 50px;
+            margin: 0px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .scalesText1 {
+            height: 50px;
+            background-color: #9b9a9a;
+        }
+
+        .scalesText2 {
+            height: 50px;
+            background-color: #c0c0c0;
+        }
+
+        .bagText {
+            height: 30px;
+            text-align: center;
+            background-color: rgb(255, 144, 18);
+        }
+
+        .scatesTitle {
+
+            height: 50px;
+            text-align: center;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .buttonDiv {
+            display: flex;
+            justify-content: center;
+            height: 80px;
+            padding: auto;
+            background-color: rgb(224, 224, 224);
+        }
+
+        .scalesButton {
+            align-self: center;
+            height: 60px;
+            width: 80px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .scalesMesure {
+            text-align: right;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .scalesMesureLabel {
+            text-align: left;
+            font-size: 20px;
+
+        }
+
+        .saveButton {
+            background-color: #8de7b3;
+        }
+
+        .saveButton:hover {
+            background-color: #75c094;
+        }
+
+        .item1 {}
+
+        .my-custom-class {
+            width: 90% !important;
+            padding: 5px;
+            border-radius: 5px;
+            /* citi stili pēc vēlēšanās */
+        }
+
+        .grid-btn-control {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* Izveido 4 kolonnas ar vienādu platību */
+            grid-gap: 10px;
+            grid-row-gap: 20px;
+            padding: 20px;
+            /* Norāda atstarpi starp elementiem */
+        }
+
+        .control-btn {
+            height: 80%;
+            width: 80%;
+            background-color: rgb(224, 224, 224);
+
+        }
+
+        .control-btn-elements {
+
+            height: 25%;
+            display: flex;
+            /* Izmanto flexbox */
+            justify-content: center;
+            /* Horizontālā centrēšana */
+            align-items: center;
+            /* Vertikālā centrēšana */
+            margin: 10px;
+        }
+
+        .control-btn-on {
+            position: relative;
+            background-color: #b2fcd1;
+            width: 80%;
+            height: 80%;
+            border-radius: 7px;
+           /* -webkit-transition-duration: 0.4s; */
+            /* Safari */
+           /* transition-duration: 0.4s; */
+           /* text-decoration: none;*/
+           /* overflow: hidden;*/
+            cursor: pointer;
+        }
+        .lobisana_work{
+            background-color: #25da01;
+        }
+/*
+        .control-btn-on-job {
+            position: relative;
+            background-color: #8de7b3;
+            width: 80%;
+            height: 80%;
+            border-radius: 7px;
+            -webkit-transition-duration: 0.4s;
+          
+            transition-duration: 0.4s;
+            text-decoration: none;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .control-btn-on-job::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 15px;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(#1fff2a, rgb(211, 255, 13));
+            opacity: 0;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0% {
+                transform: scale(0.5);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0.5);
+                opacity: 0.5;
+            }
+        }
+
+        .control-btn-on:after {
+            content: "";
+            background: #ffffff;
+            display: block;
+            position: absolute;
+            padding-top: 300%;
+            padding-left: 350%;
+            margin-left: -20px !important;
+            margin-top: -120%;
+            opacity: 0;
+            transition: all 0.8s
+        }
+
+        .control-btn-on:active:after {
+            padding: 0;
+            margin: 0;
+            opacity: 1;
+            transition: 0s
+        }
+*/
+        .control-btn-on:hover {
+            background-color: #75c094;
+        }
+
+        .control-btn-off:hover {
+            background-color: #b41616;
+        }
+
+        .btn-disabled {
+            pointer-events: none;
+            opacity: 0.5;
+
+        }
+
+        .control-btn-off {
+            height: 80%;
+            width: 80%;
+            background-color: #ff6d6d;
+            border-radius: 7px;
+        }
+
+        .control-btn-off-disabled {
+            pointer-events: none;
+            opacity: 0.5;
+            height: 80%;
+            width: 80%;
+            background-color: #fc9595;
+            border-radius: 15px;
+        }
+
+        .control-text {
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .order_text_active {
+            font-size: x-large;
+            color: #58f4ff;
+        }
+
+        .order_text_paused {
+            font-size: x-large;
+            color: #f1ff2b;
+        }
+
+        .adaptivs-svars {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Apstiprinājuma css *******************************/
+        .confirm-dialog {
+  display: none; /* Pievienots, lai noklusējuma stāvoklī dialogs nebūtu redzams */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.confirm-dialog.show {
+  display: flex; /* Pievienots, lai rādītu dialogu, kad tam ir klase .show */
+}
+
+.confirm-dialog-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+
+.confirm-dialog-content h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.confirm-dialog-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.confirm-dialog-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.confirm-dialog-btn {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-dialog-btn.confirm {
+  background-color: #3cc13b;
+  color: #fff;
+}
+
+.confirm-dialog-btn.cancel {
+  background-color: #d11a2a;
+  color: #fff;
+}
+
+    </style>
+</head>
+
+<body>
+    <button data-tagbeingread="resetErr" data-animation="settag" data-settag="0:1" data-tagbeingwritten="ResetErr"
+        class="btnbtnDiv" id="resetErr">nomest kļūdas</button>
+
+    <div id="m_wrap">
+        <div style="display:flex; justify-content: center;
+        align-items: center;" class="section grid-btn-control" id="route_control">
+            <div class="control-btn" id="bu1_btn">
+                <div class="control-btn-elements">
+                    <text class="control-text">Tīrīšana no BU1</text>
+                </div>
+                <div class="control-btn-elements"><button id="bu1_on" class="control-btn-on">ON</button></div>
+                <div class="control-btn-elements"><button id="bu1_off" class="control-btn-off">OFF</button></div>
+                <div class="control-btn-elements"><text id="bu1_text" class ="adaptivs-svars"></text>
+                </div>
+            </div>
+            <div class="control-btn" id="bu2_btn">
+                <div class="control-btn-elements">
+                    <text class="control-text">Tīrīšana no BU2</text>
+                </div>
+                <div class="control-btn-elements"><button id="bu2_on" class="control-btn-on">ON</button></div>
+                <div class="control-btn-elements"><button id="bu2_off" class="control-btn-off">OFF</button></div>
+                <div class="control-btn-elements"><text id="bu2_text" class ="adaptivs-svars"></text>
+                </div>
+            </div>
+            <div class="control-btn" id="poguKopa2">
+                <div class="control-btn-elements">
+                    <text class="control-text">Lobīšana</text>
+                </div>
+                <div class="control-btn-elements"><button id="startPriekstirisana" class="control-btn-on">ON</button>
+                </div>
+                <div class="control-btn-elements"><button id="stopPriekstirisana" class="control-btn-off">OFF</button>
+                </div>
+                <div class="control-btn-elements"><text id="lobisana_text" class ="adaptivs-svars"></text>
+                </div>
+            </div>
+            <div class="control-btn">
+                <div class="control-btn-elements">
+                    <text class="control-text">Weifang</text>
+                </div>
+                <div class="control-btn-elements"><button id="weifang_on" class="control-btn-on">ON</button></div>
+                <div class="control-btn-elements"><button id="weifang_off" class="control-btn-off">OFF</button></div>
+                <div class="control-btn-elements"><text id="weifan_text" class ="adaptivs-svars"></text>
+                </div>
+            </div>
+
+
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: space-between;" class="section">
+            <div style="text-align: center; font-weight: 600;">Lobīšanas posma vadība</div>
+            <div style="margin:15px;">
+                <table id="prieksLobTable">
+                    <tbody>
+                        <tr>
+                            <td>Tvertne:</td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Partijas NR:</td>
+                            <td id="T1_partija"></td>
+                            <td id="T2_partija"></td>                            
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button id="T1_control_in_use">Sākt izmantot partiju</button>                                
+                            </td>
+                            <td>
+                                <button id="T2_control_in_use">Sākt izmantot partiju</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align: center;">
+                Lobīšanas posma statuss:<text id="order_state_text" style="font-size: x-large;"></text>
+                <span data-tagbeingread="vLobisanasRouteState" data-animation="text"
+                    data-text="0:apstādināts,1:strādā,true:strādā"></span>
+            </div>
+        </div>
+        <div class="section"
+            style="display: flex; flex-direction: row; justify-content: space-evenly; height:calc(100vh - 285px);">
+            <div style="display: flex; flex-direction: column; width:40%; max-width:300px;">
+                <div style="text-align: center; margin:10px;">Tvertne 1</div>
+                <div style="flex:1;" class="bar" id="bar_T1">
+                    <div
+                        style="border:2px solid black; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
+
+                        <div
+                            style="margin:10px; display: flex; flex-direction: column; align-items: center; background-color: white; padding:5px 12px; border-radius: 6px;">
+                            <div>Partijas NR: <span id="T1_PartijasNumurs" style="font-weight: 600;"></span></div>
+                            <div>Produkts: <span id="T1_Produkts" style="font-weight: 600;"></span></div>
+                            <div>Līmenis: <span data-animation="value" data-tagbeingread="BU2_LVL"
+                                    style="font-weight:600;"></span><b><text id="BU1_LVL"></text>%</b></div>
+                        </div>
+                        <div
+                            style="margin:10px; display: flex; flex-direction: column; align-items: center; padding:4px 4px 1px 4px; border-radius: 5px;">
+
+                            <div style="position:absolute; bottom:0; left:0; width:100%; height:0; background-color: rgba(55, 252, 242, 0.418); z-index: -1;"
+                                class="fill" id="T1_fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; width:40%; max-width:300px;">
+                <div style="text-align: center; margin:10px;">Tvertne 2</div>
+                <div style="flex:1; position:relative;" class="bar" id="bar_T2">
+                    <div
+                        style="border:2px solid black; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around; position:relative;">
+                        <div
+                            style="margin:10px; display: flex; flex-direction: column; align-items: center; background-color: white; padding:5px 12px; border-radius: 6px;">
+                            <div>Partijas NR: <span id="T2_PartijasNumurs" style="font-weight: 600;"></span></div>
+                            <div>Produkts: <span id="T2_Produkts" style="font-weight: 600;"></span></div>
+                            <div>Līmenis: <span data-animation="value" data-tagbeingread="BU2_LVL"
+                                    style="font-weight:600;"></span><b><text id="BU2_LVL"></text>%</b></div>
+                        </div>
+                        <div
+                            style="margin:10px; display: flex; flex-direction: column; align-items: center; padding:4px 4px 1px 4px; border-radius: 5px;">
+
+                        </div>
+                        <div style="position:absolute; bottom:0; left:0; width:100%; height:0; background-color: rgba(55, 252, 242, 0.418); z-index: -1;"
+                            class="fill" id="T2_fill"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="display: flex; flex-direction: column;">
+                <div id="bunkerBtn">
+                    <div style="text-align: center; margin:10px;">Pārkraut:</div>
+                    
+                    <div data-tagbeingread="enableRoute_BU1toBU2" data-animation="bgcolor"
+                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="T1uzT2Btn">No T1 uz T2</div>
+                    <div data-tagbeingread="enableRoute_BU2toBU1" data-animation="bgcolor"
+                        data-bgcolor="0:#FFFFFF,1:#00FF0A" class="btnbtnDiv" style="font-weight: 600;" id="T2uzT1Btn">No T2 uz T1</div>
+                    <div data-tagbeingread="enableRoute_izlade_no_BU1" data-animation="bgcolor"
+                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="T1uzCar">No T1 uz Auto</div>
+                    <div data-tagbeingread="enableRoute_izlade_no_BU2" data-animation="bgcolor"
+                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="T2uzCar">No T2 uz Auto</div>
+
+
+                    <div data-tagbeingread="enableRoute_izlade_no_BU2" data-animation="bgcolor"
+                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="toT1">Ielāde T1</div>
+                    <div data-tagbeingread="enableRoute_izlade_no_BU2" data-animation="bgcolor"
+                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="toT2">Ielāde T2</div>
+                </div>
+                <div class="btnbtnDiv" data-en_tagname="enableRoute_izlade_no_BU2"
+                    style="font-weight: 600; display:none; background-color: #f32323; " id="hidde_STOP">STOP: <text
+                        id="hidden_text"></text></div>
+            </div>
+
+        </div>
+        <div class="section grid-container">
+            <!--########################################## Svaru darbība    ################################################-->
+
+            <div class="item1">
+                <div class="scatesTitle"><text id="ID43_title" class="adaptivs-svars"></text></div>
+                <div class="bagText" id="ID43_bag_bg"><text id="ID43_bag">MAISS PILNS</text></div>
+                <div class="smalGrid scalesText1"><text id="ID43_weight" class="scalesMesure">####</text><text
+                        class="scalesMesureLabel">kg</text></div>
+                <div class="smalGrid scalesText2"><text id="ID43_weight_min" class="scalesMesure">####</text>
+                    <text class="scalesMesureLabel">kg/min</text>
+                </div>
+                <div class="smalGrid buttonDiv"><button class="scalesButton saveButton"
+                        id="ID43_ScaleSaveBtn">Saglabāt</button><button class="scalesButton"
+                        id="ID43_ZeroSaveBtn">Nonullēt</button></div>
+            </div>
+            <div class="item1">
+                <div class="scatesTitle"><text id="ID44_title" class="adaptivs-svars"></text></div>
+                <div class="bagText" id="ID44_bag_bg"><text id="ID44_bag">MAISS PILNS</text></div>
+                <div class="smalGrid2 "><text class="adaptivs-svars">Mērķis:</text><text class="adaptivs-svars"
+                        id="SetWeight_ID44"></text><text id="ID44_weight" class="scalesMesure">####</text>
+                    <text class="scalesMesureLabel">kg</text>
+                </div>
+                <div class="smalGrid scalesText2"><text id="ID44_weight_min" class="scalesMesure">####</text><text
+                        class="scalesMesureLabel">kg/min</text></div>
+                <div class="smalGrid buttonDiv"><button class="scalesButton saveButton"
+                        id="ID44_ScaleSaveBtn">Saglabāt</button><button class="scalesButton"
+                        id="ID44_ZeroSaveBtn">Nonullēt</button></div>
+            </div>
+            <div class="item1">
+                <div class="scatesTitle"><text id="ID45_title" class="adaptivs-svars"></text></div>
+                <div class="bagText" id="ID45_bag_bg"><text id="ID45_bag">MAISS PILNS</text></div>
+                <div class="smalGrid2 "><text class="adaptivs-svars">Mērķis:</text><text class="adaptivs-svars"
+                        id="SetWeight_ID45"></text><text id="ID45_weight" class="scalesMesure">####</text>
+                    <text class="scalesMesureLabel">kg</text>
+                </div>
+                <div class="smalGrid scalesText2"><text id="ID45_weight_min" class="scalesMesure">####</text><text
+                        class="scalesMesureLabel">kg/min</text></div>
+                <div class="smalGrid buttonDiv"><button class="scalesButton saveButton"
+                        id="ID45_ScaleSaveBtn">Saglabāt</button><button class="scalesButton"
+                        id="ID45_ZeroSaveBtn">Nonullēt</button></div>
+            </div>
+            <div class="item1">
+                <div class="scatesTitle"><text id="ID215_title" class="adaptivs-svars"></text></div>
+                <div class="bagText" id="ID215_bag_bg"><text id="ID215_bag">MAISS PILNS</text></div>
+                <div class="smalGrid2 "><text class="adaptivs-svars">Mērķis:</text><text class="adaptivs-svars"
+                        id="SetWeight_ID215"></text><text id="ID215_weight" class="scalesMesure">####</text>
+                    <text class="scalesMesureLabel">kg</text>
+                </div>
+                <div class="smalGrid scalesText2"><text id="ID215_weight_min" class="scalesMesure">####</text><text
+                        class="scalesMesureLabel">kg/min</text></div>
+                <div class="smalGrid buttonDiv"><button class="scalesButton saveButton"
+                        id="ID215_ScaleSaveBtn">Saglabāt</button><button class="scalesButton"
+                        id="ID215_ZeroSaveBtn">Nonullēt</button></div>
+            </div>
+            <div class="item1">
+                <div class="scatesTitle"><text id="ID216_title" class="adaptivs-svars"></text></div>
+                <div class="bagText" id="ID216_bag_bg"><text id="ID216_bag">MAISS PILNS</text></div>
+                <div class="smalGrid2 "><text class="adaptivs-svars">Mērķis:</text><text class="adaptivs-svars"
+                        id="SetWeight_ID216"></text><text id="ID216_weight" class="scalesMesure">####</text>
+                    <text class="scalesMesureLabel">kg</text>
+                </div>
+                <div class="smalGrid scalesText2"><text id="ID216_weight_min" class="scalesMesure">####</text><text
+                        class="scalesMesureLabel">kg/min</text></div>
+                <div class="smalGrid buttonDiv"><button class="scalesButton saveButton"
+                        id="ID216_ScaleSaveBtn">Saglabāt</button><button class="scalesButton"
+                        id="ID216_ZeroSaveBtn">Nonullēt</button></div>
+            </div>
+            <div class="item1">
+                <div class="bagText" style="height:130px; background-color: rgb(224, 224, 224);"><text id="ID9999_title"
+                        class="adaptivs-svars"></text></div>
+                <div
+                    style="height:50px;  background-color: #c0c0c0; display: flex;  justify-content: center; align-items: center; justify-content: center; ">
+                    <input type="number" class="my-custom-class" id="proteinData">
+                </div>
+                <div class="smalGrid buttonDiv"><button class="scalesButton saveButton"
+                        id="saveProtein">Saglabāt</button><button class="scalesButton" disabled>Nonullēt</button></div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div id="confirm-module">
+        <div id="confirm-box">
+            <button id="confirm-close-button">X</button>
+            <div>
+                <h3>Pabeigt, pauzēt vai atcelt uzdevumu?</h3>
+                <h4>Visiem svariem jābūt saglabātiem!</h4>
+            </div>
+            <div class="smalGrid3">
+                <div>
+                    <button id="doneOrder">Pabeigt</button>
+                </div>
+
+                <div>
+                    <button id="pauseOrder">Pauzēt</button>
+                </div>
+                <div>
+                    <button id="cancleOrder">Atcelt</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="confirm-dialog">
+            <div class="confirm-dialog-overlay"></div>
+            <div class="confirm-dialog-content">
+                <h2>Vai nonullēt svarus?</h2>
+                
+                <div class="confirm-dialog-buttons">
+                    <button class="confirm-dialog-btn confirm">Jā</button>
+                    <button class="confirm-dialog-btn cancel">Nē</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    <script src="./scripts/outerScripts/prepared_statements.js"></script>
+    <script src="./scripts/outerScripts/returnTagObject.js"></script>
+    <script src="./scripts/outerScripts/al_control.js"></script>
+
+    <script defer>
+
+
+
+    </script>
+
+    
+
+
+
+</body>
+
+</html>

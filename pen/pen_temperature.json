@@ -1,0 +1,1724 @@
+{
+   "enabled" : true,
+   "max" : 120,
+   "min" : 0,
+   "name" : "Temperature ",
+   "pens" : [
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "enabled" : true,
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 1"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 2"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 3"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 4"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "parent 1"
+      },
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 1"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 2"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 3"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "parent 2"
+      },
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 1"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 2"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 3"
+            }
+         ],
+         "format" : "#.##",
+         "name" : "parent 3"
+      },
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 1"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 2"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 3"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "parent 4"
+      },
+      {
+         "children" : [
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 1"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 2"
+            },
+            {
+               "children" : [
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 1"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 2"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 3"
+                  },
+                  {
+                     "children" : [
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Cook",
+                           "tag" : "temperature_cook"
+                        },
+                        {
+                           "format" : "#.##",
+                           "name" : "Temp Air",
+                           "tag" : "temperature_air"
+                        }
+                     ],
+                     "name" : "grandchild 4"
+                  }
+               ],
+               "name" : "child 3"
+            }
+         ],
+         "enabled" : false,
+         "format" : "#.##",
+         "name" : "parent 5"
+      }
+   ],
+   "unit" : "&deg;C"
+}

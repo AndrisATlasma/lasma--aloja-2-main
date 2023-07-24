@@ -1,0 +1,6 @@
+.DS_Store
+*.igxsnap
+*.igxbak
+*-snap*.ldb
+/cache
+Aloja.ldb

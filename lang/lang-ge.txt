@@ -1,0 +1,179 @@
+﻿
+1=Aktuell
+2=Historie
+3=Alles Quittieren
+4=Alle Alarme Quittieren
+5=Wechsel zu Aktuell
+6=Wechsel zu Historie
+7=Auswahl Datum
+8=Auswahl Uhrzeit
+9=Alarm Quittieren
+10=Seite
+11=Vorher
+12=Weiter
+
+13=Zeit Kommend
+14=TAG
+15=Gruppe
+16=Beschreibung
+17=Nachricht
+18=Wert
+19=Grenze
+20=Wert
+21=Grenze
+22=Zeit Gehend
+23=Zeit Quittierung
+24=Benutzer Quittierung
+
+25=Lesezeichen hinzufügen
+26=Lesezeichen verankern
+27=Lesezeichen entfernen
+28=Play
+29=Pause
+30=Zurück
+31=Vorherige Seite
+32=Weiter
+33=Nächste Seite
+34=Zoom In
+35=Zoom Out
+36=Drucken
+37=Export
+
+38=Min
+39=Max
+40=Sollwert
+
+41=Bitte gültigen Zeitraum auswählen
+42=Plotting...
+
+43=Erweiteter Filter
+44=Filter
+45=Benutzer
+46=Source
+47=Benutzer Level
+48=Benutzer Bezeichnung
+49=Anforderung
+50=Detail
+51=Name
+52=Konfiguration
+53=Login erforderlich
+54=Report geöffnet
+55=Report aktualisiert
+56=Start Datum/Zeit
+57=Ende Datum/Zeit
+58=Auswahl Report
+59=Stunde(n) pro zeile
+60=Type
+61=Durchschnitt
+62=Total
+63=Maximum
+64=Minimum
+65=Speichern
+66=Speichern als
+67=Öffnen
+68=Schliessen
+69=Löschen
+70=Drucken
+71=Export
+72=Report laden
+73=Generieren von Report-Daten ...
+74=Batch-Report aktualisiert
+75=Echtzeit Modus
+76=Report aktualisieren ...
+77=Report gespeichert
+78=Report laden ...
+79=Report nicht gefunden.
+80=Sind Sie sicher?
+81=Bitte einen Report wählen.
+82=Report konnte nicht gelöscht werden. Bitte überprüfen ob Sie die Berechtigung dazu haben.
+
+83=Zeit
+84=Stunde
+85=Minute
+86=Sekunde
+87=Jetzt
+88=Fertig
+
+89= 
+90= 
+
+91=Login
+92=Logout
+93=Gast
+94=Benutzer
+95=Password
+96=OK
+97=Abbruch
+98=Ungültiger Benutzername oder Passwort !
+99=Aktuelles Passwort
+100=Neues Passwort
+101=Bestätigung neues Passwort
+102=Ihr aktuelles Passwort läuft ab, jetzt bitte ändern !
+103=Password ändern
+104=Bitte in leeres Textfeld eintragen.
+105=Aktuelles Passwort ist nicht korrekt.
+106=Das neue Passwort ist nicht identisch.
+107=Password geändert!
+108=Aktueller Benutzer
+109=IP Addresse
+110=Zeitpunkt der Anmeldung
+111=Rolle
+112=Mehrere Benutzer mit gleichen Rollen sind eingeloggt
+113=Name
+114=Status
+115=Aktion
+116=Anforderung
+117=Zuweisung
+118=Zusammenfassung Benutzer-Rolle
+119=Erweiterte Sicherheitsroutine fehlgeschlagen
+
+120=Maximale Anzahl Kurven erreicht, deaktiviere eine Kurve um fortzusetzen.
+121=Ändern Maßstab Parameter
+122=Skalierung Parameter ändern
+123=Lade Fehler
+124=Minimaler Zoom erreicht
+125=Maximaler Zoom erreicht
+126=Keine Daten in diesem Zeitraum. Zurück zu
+127=Default
+128=Ungültiger Zeitraum. Zurück zu
+129=Laden
+130=Echtzeit Modus
+131=Historie
+132=Drucken
+133=Bitte numerischen Wert eingeben!
+134=Bitte gültigen Min/Max-Wert eingeben!
+
+135=Zusammenfassung
+136=Stündlich
+137=Monatlich
+138=Batch
+
+139=Laden...
+140=Fertig
+
+141=Anzahl der Lesezeichen überschreitet Maximum
+142=Entfernen des ersten Lesezeichens
+143=Anzahl der Anker überschreitet Maximum
+144=Anzahl der Anker überschreitet Maximum
+145=Lesezeichen
+146=Lesezeichen
+147=Anker
+148=gesamt
+
+149=neues und altes Passwort darf nicht identisch sein
+
+150=Start
+151=Ende
+152=Anwenden
+153=Reset
+
+160=übernehmen
+161=Löschen
+162=Enter
+163=Tab
+164=Shift
+
+165=Benutzer ist nicht berechtigt, das folgende(n) Datenpunkt(e) zu ändern : 
+166=Ihre System-Anmeldung ist für diese Aktion nicht ausreichend !
+
+167=Benutzeranmeldung Timeout. Bitte erneut einloggen

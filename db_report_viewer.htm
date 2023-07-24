@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Operator Log</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<link href="system/styles/igrX.css" rel="stylesheet" type="text/css" />
+	
+</head>
+<body>
+
+	<table id="db_report_table1" data-record="{ name:'report_read_grouping', param:{ 'start_time':'2017-01-01 00:00:00', 'end_time':'2017-01-05 00:00:00', 'meter_id': 1, 'meter_name':'meter1' } }"></table>
+	
+	<table id="db_report_table2" data-record="{ name:'report_read_simple', param:{ 'start_time':'2017-01-01 00:00:00', 'end_time':'2017-01-05 00:00:00', 'meter_id': 1, 'meter_name':'meter2' } }"></table>
+</body>
+
+<script type="text/javascript" src="system/scripts/igrX2.js"></script>
+<script type="text/javascript">
+
+var option = [
+	{
+		"type"		: "static",
+		"DOM"		: $("#db_report_table1"),
+		"dbgroup"	: -1
+	},
+	{
+		"type"		: "static",
+		"DOM"		: $("#db_report_table2"),
+		"dbgroup"	: -1
+	}
+]
+
+$(document).ready(function() {
+	var dbreport = igrx.dbreport( option );
+});
+		
+</script>
+</html>

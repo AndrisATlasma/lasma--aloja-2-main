@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+    <link rel='stylesheet' type='text/css' href='system/styles/igrX.css' />
+    <script type='text/javascript' src='system/scripts/igrX2.js'></script>
+    <style>
+        /* PAGE PARTS */
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #bigPageWrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .headContainer {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+        }
+
+
+        .bodyContainer {
+            margin-top: 20px;
+        }
+
+        #tableCont {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* TOP ROW */
+        .topRow {
+            display: flex;
+            justify-content: center;
+            padding: 3px 12px 3px 5px;
+            border: 1px solid grey;
+            border-radius: 6px;
+        }
+
+        .datepickerCont {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        input[type='text'] {
+            text-align: center;
+            font-size: 1em;
+            padding: 5px;
+            border-radius: 5px;
+            max-width: 120px;
+        }
+
+        .btnDiv {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        #getReview {
+            background-color: #009700;
+            font-weight: 600;
+            color: white;
+        }
+
+        #getReview:hover {
+            background-color: #008a00;
+        }
+
+        #getReview:active {
+            background-color: #008a00;
+        }
+
+        /* TABLE */
+        #reviewTable {
+            width: 500px;
+        }
+
+        #reviewTable th,
+        #reviewTable td {
+            text-align: center;
+            padding: 5px 10px;
+            border: none;
+        }
+
+        #reviewTable th {
+            font-size: 22px;
+            color: #fff;
+            line-height: 1.2;
+            background-color: #36304a;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+        }
+
+        #reviewTable tr {
+            color: black;
+            line-height: 1.2;
+            font-weight: unset;
+            border: none;
+        }
+
+        #reviewTable tr:nth-child(even) {
+            background-color: #e8e8e8;
+        }
+
+        #reviewTable {
+            padding-top: 15px;
+        }
+    </style>
+    <link href="./MODULES/select2/css/select2.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="bigPageWrapper">
+        <h3 style="text-align: center;"> Partijas atskaite </h3>
+        <div class="headContainer">
+            <div class="topRow">
+                <div class="datepickerCont">
+                    <label for="from">No:</label>
+                    <input type="text" name="from" id="from">
+                </div>
+                <div class="datepickerCont">
+                    <label for="to">Līdz:</label>
+                    <input type="text" name="to" id="to">
+                </div>
+                <div class="datepickerCont">
+                    <label for="searchDropdown">Partija:</label>
+                    <select name="searchDropdown" id="searchDropdown">
+                        <option value="" disabled selected>Izvēlieties partiju</option>
+                    </select>
+                </div>
+                <div style="display: flex; align-items: flex-end; margin-left:10px; margin-bottom: 1px;">
+                    <div id="getReview" class="btnDiv">Saņemt atskaiti</div>
+                </div>
+            </div>
+        </div>
+        <div class="bodyContainer">
+            <div id="tableCont"> </div>
+        </div>
+    </div>
+
+    <script src="./MODULES/jquery-3.3.1.js"></script>
+    <script src="./MODULES/jquery-ui.js"></script>
+    <script src="./MODULES/select2/js/select2.min.js"></script>
+    <script src="./MODULES/popper.min.js"></script>
+    <script src="./MODULES/bootstrap.min.js"></script>
+    <script src="./MODULES/datatables.min.js"></script>
+    <script src="./MODULES/dataTables.buttons.min.js"></script>
+    <script src="./MODULES/buttons.flash.min.js"></script>
+    <script src="./MODULES/jszip.min.js"></script>
+    <script src="./MODULES/pdfmake.js"></script>
+    <script src="./MODULES/vfs_fonts.js"></script>
+    <script src="./MODULES/buttons.html5.min.js"></script>
+    <script src="./MODULES/buttons.print.min.js"></script>
+    <script defer>
+        // ====================================== DATABASE ======================================
+        function sqlDateStringFormatter(wrongFormatDate) {
+            const twoDigits = (x) => x.toString().length === 1 ? `0${x}` : x;
+            // dd/mm/yy -> mm/dd/yy
+            let [dd, mm, yyyy] = wrongFormatDate.split('/');
+            const currentDate = new Date();
+
+            dd = !dd ? twoDigits(currentDate.getDate()) : twoDigits(dd);
+            mm = !mm ? twoDigits(currentDate.getMonth() + 1) : twoDigits(mm);
+            yyyy = !yyyy ? currentDate.getFullYear() : yyyy;
+
+            return `${mm}/${dd}/${yyyy}`;
+        }
+
+        const db_setting = { outfmt: 'json', dbgroup: '_postgres' };
+        function ps_partija_select_in_period(from, to) {
+            return new Promise(resolve => {
+                runSql('partija_select_in_period', { from, to }, db_setting, function (results) {
+                    if (results.statusCode !== 200) { console.warn(`Nesanāca`); resolve(false); }
+                    resolve(results.responseJson);
+                });
+            });
+        };
+        function ps_report_partijas(partija_id) {
+            return new Promise(resolve => {
+                runSql('report_partijas', { partija_id }, db_setting, function (results) {
+                    if (results.statusCode !== 200) { console.warn(`Nesanāca: statusCode ${results.statusCode}`); resolve(false); }
+                    resolve(results.responseJson);
+                });
+            });
+        };
+        // ================================ DATEPICKERS, DROPDOWN ================================
+        async function fillDropdown() {
+            let from = document.getElementById("from").value;
+            let to = document.getElementById("to").value;
+            if (!from || !to) return document.getElementById("searchDropdown").innerHTML = `<option value="" disabled selected>Nav ierakstu šajā periodā.</option>`;
+
+            // from = sqlDateStringFormatter(from);
+            // to = sqlDateStringFormatter(to);
+            if (from > to) [from, to] = [to, from];
+
+
+            const allMeasurementsList = await ps_partija_select_in_period(from, to);
+            if (!allMeasurementsList) return document.getElementById("searchDropdown").innerHTML = `<option value="" disabled selected>Nav ierakstu šajā periodā.</option>`;
+
+            // fill dropdown
+            document.getElementById("searchDropdown").innerHTML = `<option value="" disabled selected>Izvēlieties partiju</option>` + allMeasurementsList.map(ier => `<option value="${ier.partija_id}">${ier.partija_id}</option>`).join("");
+        }
+
+        $("#from").datepicker({
+            dateFormat: 'dd/mm/yy',
+            onClose(date, datepicker) {
+                fillDropdown();
+                redrawReviewTable();
+            }
+        });
+        $("#from").datepicker('setDate', new Date());
+        $("#to").datepicker({
+            dateFormat: 'dd/mm/yy',
+            onClose(date, datepicker) {
+                fillDropdown();
+                redrawReviewTable();
+            }
+        });
+        $("#to").datepicker('setDate', new Date());
+
+        $(document).ready(function () {
+            $('#searchDropdown').select2(); // initializing the dropdown
+        });
+        fillDropdown();
+        // ================================== DATATABLES, ACTION ==================================
+        function redrawReviewTable() {
+            if ($.fn.DataTable.isDataTable('#reviewTable')) $('#reviewTable').DataTable().destroy();
+            $("#tableCont").empty();
+            $("#tableCont").append(`
+                <table id="reviewTable">
+                    <thead>
+                        <tr>
+                            <th>Produkts</th>
+                            <th>Partijas Nr</th>
+                            <th>Svars (kg)</th>
+                            <th>Svars pēc lobītāja (kg)</th>
+                            <th>Svars atkritumi (kg)</th>
+                            <th>Zudumi (kg)</th>
+                            <th>Paraugu daudzums</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            `);
+        }
+
+        document.getElementById("getReview").addEventListener('click', async () => {
+            redrawReviewTable();
+            // getting db data depending on picker dates
+            const searchDropdown = document.getElementById("searchDropdown");
+            const partija_id = searchDropdown.value;
+            if (!partija_id) return alert("Pirms saņemt atskaiti, izvēlieties partiju!");
+
+            console.log({ partija_id });
+            const dbAnswer = await ps_report_partijas(partija_id);
+            if (!dbAnswer) return alert("Izskatās, ka datubāzē nepietiek informācijas, lai izveidotu šo atskaiti. Pamēģiniet vēlāk, kad pabeigsiet darbības ar partiju.");
+
+            const { product_name, in_weight, svars_pec_lob, svars_atkritumi, zudumi, paraugu_daudzums } = dbAnswer[0];
+            const data = [[product_name, partija_id, in_weight, svars_pec_lob, svars_atkritumi, zudumi, paraugu_daudzums]];
+            const from = document.getElementById("from").value;
+            const to = document.getElementById("to").value;
+            const filename = `Atskaite_Partija_${partija_id}__${from}-${to}`;
+            $('#reviewTable').DataTable({
+                data,
+                "lengthChange": false,
+                "paging": false,
+                "searching": false,
+                "ordering": false,
+                "info": false,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        filename,
+                        title: null
+                    },
+                    { extend: 'pdfHtml5', orientation: 'landscape', filename },
+                    { extend: 'csvHtml5', filename },
+                    { extend: 'copyHtml5', filename }
+                ],
+            });
+        });
+    </script>
+</body>
+
+</html>

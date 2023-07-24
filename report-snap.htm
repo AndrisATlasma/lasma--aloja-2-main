@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Report</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" type="text/css" href="system/styles/igrX.css" />
+    </head>
+    <body>
+        <div id="idButtons" class="paragraph"></div>
+        <h1>Production Log</h1>
+        <div id="idTimestamp" class="paragraph"></div>
+        <table width="60%">
+            <tr>
+                <td>Description</td>
+                <th>Part A</th>
+                <th>Part B</th>
+                <th>Part C</th>
+                <th>Part D</th>
+            </tr>
+            <tr>
+                <td>Time/Unit</td>
+                <td>(kg/m3)</td>
+                <td>(kg/m3)</td>
+                <td>(m3/hr)</td>
+                <td>(m3/hr)</td>
+            </tr>
+            <tr>
+                <td data-igrx='{"attr":"get","tag":"app.currentTime"}'>Time</td>
+                <td data-igrx='{"attr":"get","tag":"part_a"}'>#0.###0</td>
+                <td data-igrx='{"attr":"get","tag":"part_b"}'>#0.###0</td>
+                <td data-igrx='{"attr":"get","tag":"part_c"}'>#0.###0</td>
+                <td data-igrx='{"attr":"get","tag":"part_d"}'>#0.###0</td>
+            </tr>
+        </table>
+    </body>
+
+    <script type='text/javascript'src='system/scripts/igrX2.js'></script>
+    <script type="text/javascript">
+
+    var rpt = igrx.report();
+    
+    </script>
+</html>

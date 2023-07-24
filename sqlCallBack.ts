@@ -1,0 +1,1 @@
+export declare function setSqlCallBack(sql: string, options: any, callback: (err: Error | null, result?: any) => void): void;

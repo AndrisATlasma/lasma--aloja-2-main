@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+    <link rel='stylesheet' type='text/css' href='system/styles/igrX.css' />
+    <script type='text/javascript' src='system/scripts/igrX2.js'></script>
+    <style>
+        /* MARKUP */
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            /* --bar1height: 20%; */
+            font-size: 20px;
+            background-color: #A4A4A4;
+        }
+
+        input,
+        select {
+            height: 30px;
+            font-size: 18px;
+            box-sizing: border-box;
+        }
+
+        #m_wrap {
+            display: grid;
+            grid-template-columns: 2fr 2fr;
+        }
+
+
+        .section {
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        .mc_page_row {
+            display: flex;
+        }
+
+        /* BAR GRAPHS */
+        #bar_T1,
+        #bar_T2 {
+            max-height: 800px;
+            position: relative;
+        }
+
+        #bar_T1::before,
+        #bar_T2::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: -2;
+            background: #525252;
+        }
+
+        #bar_T1::after {
+            content: '';
+            background: var(--t1_bg);
+            height: var(--bar1height);
+            transition: 0.7s;
+            display: block;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+
+        #bar_T2::after {
+            content: '';
+            background: var(--t2_bg);
+            height: var(--bar2height);
+            transition: 0.7s;
+            display: block;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+
+        /* ELEMENTS */
+        label {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            border: 1px solid black;
+            border-radius: 2px;
+        }
+
+        input[type="number"] {
+            max-width: 80px;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        select {
+            text-align: center;
+            max-width: 220px;
+        }
+
+        .inputDiv {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5px 10px;
+        }
+
+
+        #pienemsanasParametri {
+            margin: auto;
+            margin-bottom: 20px;
+            display: flex;
+            margin-top: 12px;
+            justify-content: space-around;
+        }
+
+        /* BUTTONS */
+        .btnDiv {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .btnbtnDiv {
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 2px;
+            text-align: center;
+            background-color: #ffffff;
+            border: 1px solid grey;
+            margin-bottom: 3px;
+
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .btnbtnDiv:hover {
+            background-color: #bfbfbf;
+        }
+
+        .btnbtnDiv:active {
+            background-color: #999999;
+        }
+
+
+        /* #saglabatSvaru1,
+        #saglabatSvaru2, */
+        #atlautPienemsanu,
+        #startPriekstirisana,
+        #startLobisana {
+            background-color: #1d9650;
+        }
+
+        /* #saglabatSvaru1:hover,
+        #saglabatSvaru2:hover, */
+        #atlautPienemsanu:hover,
+        #startPriekstirisana:hover,
+        #startLobisana:hover {
+            background-color: #1d964fe2;
+        }
+
+        /* #saglabatSvaru1:active,
+        #saglabatSvaru2:active, */
+        #atlautPienemsanu:active,
+        #startPriekstirisana:active,
+        #startLobisana:active {
+            background-color: #146d39e2;
+        }
+
+
+
+        #atceltPienemsanu,
+        #stopPriekstirisana,
+        #stopLobisana {
+            background-color: rgb(142, 22, 22);
+        }
+
+        #atceltPienemsanu:hover,
+        #stopPriekstirisana:hover,
+        #stopLobisana:hover {
+            background-color: rgba(209, 13, 13, 0.823);
+        }
+
+        #atceltPienemsanu:active,
+        #stopPriekstirisana:active,
+        #stopLobisana:active {
+            background-color: rgba(165, 15, 15, 0.823);
+        }
+
+        .wbtn {
+            background-color: white;
+        }
+
+        input[data-group] {
+            text-align: center;
+            margin-right: 5px;
+        }
+
+        /* reset errors button */
+        #resetErr {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        /* TABLE */
+        #prieksLobTable {
+            text-align: center;
+        }
+
+        #prieksLobTable td {
+            text-align: center;
+            padding: 5px 10px;
+        }
+
+        #prieksLobTable td:nth-child(1) {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <button data-tagbeingread="resetErr" data-animation="settag" data-settag="0:1" data-tagbeingwritten="ResetErr"
+        class="btnbtnDiv" id="resetErr">nomest kļūdas</button>
+
+    <div id="m_wrap">
+        <div style="display:flex; justify-content: center;
+        align-items: center;" class="section">
+            <div style="display:flex; flex-direction: column;">
+                <div style="text-align: center; font-weight: 600;">Produkta pieņemšana</div>
+                <div id="pienemsanasParametri">
+                    <div class="inputDiv">
+                        <label for="partijas_id">Partijas NR</label>
+                        <input type="text" name="partijas_id" id="partijas_id" style="text-align: center;">
+                    </div>
+                    <div class="inputDiv">
+                        <label for="product_choice">Produkts</label>
+                        <select name="product_choice" id="product_choice"> </select>
+                    </div>
+                    <div class="inputDiv">
+                        <label for="svars">Svars, kg</label>
+                        <input type="number" step="0.1" name="svars" id="svars" value="0" style="text-align: center;">
+                    </div>
+                    <div class="inputDiv">
+                        <label for="tvertne_nr">Tvertnes NR</label>
+                        <select name="tvertne_nr" id="tvertne_nr">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top:10px; text-align: center;">Pieņemšanas statuss:
+                    <span data-tagbeingread="vPienemsanasRouteState" data-animation="text"
+                        data-text="0:nenotiek,1:tiek palaista,2:strādā,3:tiek apstādināta,4:pauzē,5:KĻŪDA"
+                        id="pienemsanaStatuss"></span>
+                </div>
+            </div>
+            <div style="display:flex; flex-direction: column; justify-content: center; padding:8px;">
+                <div data-tagbeingread="vPienemsanasRouteState" data-animation="customopacity"
+                    data-customopacity="1:0,0:1" id="atlautPienemsanu" class="btnDiv">Atļaut</div>
+                <div data-tagbeingread="vPienemsanasRouteState" data-animation="customopacity"
+                    data-customopacity="1:1,0:0" id="atceltPienemsanu" class="btnDiv">Apstādināt</div>
+                <button id="turpinatPienemsanu"> turpināt pieņemšanu</button>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: space-between;" class="section">
+            <div style="text-align: center; font-weight: 600;">Lobišanas posma vadība</div>
+            <div style="margin:15px;">
+                <table id="prieksLobTable">
+                    <tbody>
+                        <tr>
+                            <td>Tvertne:</td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Partijas NR:</td>
+                            <td id="T1_partija"></td>
+                            <td id="T2_partija"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button id="T1_control_in_use"></button>
+                            </td>
+                            <td>
+                                <button id="T2_control_in_use"></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div style="display:flex; justify-content:center;">
+
+                <div style="display: flex; align-items:center;">
+                    <div data-tagbeingread="vLobisanasRouteState" data-animation="customopacity"
+                        data-customopacity="1:0,0:1" id="startPriekstirisana" class="btnDiv">START priekštīrīšanu</div>
+                    <div data-tagbeingread="vLobisanasRouteState" data-animation="customopacity"
+                        data-customopacity="1:1,0:0" id="stopPriekstirisana" class="btnDiv">STOP priekštīrīšanu</div>
+                </div>
+                <div style="display: flex; align-items:center; margin-left:30px;">
+                    <div data-tagbeingread="ControlLobRoute" data-animation="customopacity" data-customopacity="1:0,0:1"
+                        id="startLobisana" class="btnDiv">
+                        START lobīšanu
+                    </div>
+                    <div data-tagbeingread="ControlLobRoute" data-animation="customopacity" data-customopacity="1:1,0:0"
+                        id="stopLobisana" class="btnDiv">
+                        STOP lobīšanu
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                Lobīšanas posma statuss:
+                <span data-tagbeingread="vLobisanasRouteState" data-animation="text"
+                    data-text="0:apstādināts,1:strādā,true:strādā"></span>
+            </div>
+        </div>
+        <div class="section"
+            style="display: flex; flex-direction: row; justify-content: space-evenly; height:calc(100vh - 285px);">
+            <div style="display: flex; flex-direction: column; width:40%; max-width:300px;">
+                <div style="text-align: center; margin:10px;">Tvertne 1</div>
+                <div style="flex:1;" class="bar" id="bar_T1">
+                    <div
+                        style="border:2px solid black; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
+
+                        <div
+                            style="margin:10px; display: flex; flex-direction: column; align-items: center; background-color: white; padding:5px 12px; border-radius: 6px;">
+                            <div>Partijas NR: <span id="T1_PartijasNumurs" style="font-weight: 600;"></span></div>
+                            <div>Produkts: <span id="T1_Produkts" style="font-weight: 600;"></span></div>
+                            <div>Līmenis: <span data-animation="value" data-tagbeingread="BU1_LVL"
+                                    style="font-weight:600;"></span><b>%</b></div>
+                        </div>
+                        <div
+                            style="margin:10px; display: flex; flex-direction: column; align-items: center; background-color: #525252; padding:4px 4px 1px 4px; border-radius: 5px;">
+                            <div id="BU1_is_empty" class="btnbtnDiv">Tvertne T1 ir tukša?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; width:40%; max-width:300px;">
+                <div style="text-align: center; margin:10px;">Tvertne 2</div>
+                <div style="flex:1;" class="bar" id="bar_T2">
+                    <div
+                        style="border:2px solid black; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
+
+                        <div
+                            style="margin:10px; display: flex; flex-direction: column; align-items: center; background-color: white; padding:5px 12px; border-radius: 6px;">
+                            <div>Partijas NR: <span id="T2_PartijasNumurs" style="font-weight: 600;"></span></div>
+                            <div>Produkts: <span id="T2_Produkts" style="font-weight: 600;"></span></div>
+                            <div>Līmenis: <span data-animation="value" data-tagbeingread="BU2_LVL"
+                                    style="font-weight:600;"></span><b>%</b></div>
+                        </div>
+                        <div
+                            style="margin:10px; display: flex; flex-direction: column; align-items: center; background-color: #525252; padding:4px 4px 1px 4px; border-radius: 5px;">
+                            <div id="BU2_is_empty" class="btnbtnDiv">Tvertne T2 ir tukša?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <div style="text-align: center; margin:10px;">Pārkraut:</div>
+                <div data-tagbeingread="enableRoute_BU1toBU2" data-animation="bgcolor"
+                    data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" data-en_tagname="enableRoute_BU1toBU2"
+                    style="font-weight: 600;">No T1 uz T2</div>
+                <div data-tagbeingread="enableRoute_BU2toBU1" data-animation="bgcolor"
+                    data-bgcolor="0:#FFFFFF,1:#00FF0A" class="btnbtnDiv" data-en_tagname="enableRoute_BU2toBU1"
+                    style="font-weight: 600;">No T2 uz T1</div>
+                <div data-tagbeingread="enableRoute_izlade_no_BU1" data-animation="bgcolor"
+                    data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" data-en_tagname="enableRoute_izlade_no_BU1"
+                    style="font-weight: 600;">No T1 uz Auto</div>
+                <div data-tagbeingread="enableRoute_izlade_no_BU2" data-animation="bgcolor"
+                    data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" data-en_tagname="enableRoute_izlade_no_BU2"
+                    style="font-weight: 600;">No T2 uz Auto</div>
+            </div>
+        </div>
+        <div class="section" style="display:flex; flex-direction:column; ">
+            <div
+                style="height:50%; margin-bottom: 5px; display: flex; align-items: center; justify-content: space-evenly; border-bottom: 2px solid black;">
+                <div style="display: flex; justify-content: space-evenly; width: 100%;">
+                    <div
+                        style="display:flex; gap:5px; flex-direction: column; justify-content: center; align-items: center; ">
+                        <div style="font-weight: 800;">Svari 1</div>
+                        <div style="text-align:right;">Svars:
+                            <span data-tagbeingread="SV1_FiltredWeight" data-animation="value"
+                                style="font-weight: 800; font-size:2.5em;"></span>
+                            kg
+                        </div>
+                        <div style="text-align: center;">
+                            Stāvoklis:
+                            <span data-tagbeingread="state_ID33" data-animation="text"
+                                data-text="0:Izslēgts,1:Ieslēgts,2:Kļūda"></span>
+                        </div>
+                        <div>
+                            <div id="saglabatSvaru1" class="btnbtnDiv">saglabāt svaru 1</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <img data-animation="image" data-tagbeingread="state_ID33"
+                            data-image="0:./media/bigBag_notused.png,1:./media/bigBag_running.png,2:./media/bigBag_error.png,3:./media/bigBag_paused.png"
+                            class="bagImg" id="bigBag1" src="" alt="">
+                    </div>
+                    <div style="display:flex; flex-direction: column; gap:7px; width:37%;">
+                        <div
+                            style="display:grid; grid-template-columns: 3fr 1fr; gap:5px; flex-direction: column; justify-content: center; align-items: center; ">
+                            <div>Svara iestatījums :</div>
+                            <div id="infoDiv" style="display: flex;">
+                                <input data-tagbeingwritten="SV1_SetWeight" data-modified="false" data-group="1"
+                                    type="number" min="0" step="0.1">
+                                <div class="mervienibas">kg</div>
+                            </div>
+                            <div>Svars speed down :</div>
+                            <div id="infoDiv" style="display: flex;">
+                                <input data-tagbeingwritten="SV1_SpeedDownWeight" data-modified="false" data-group="1"
+                                    type="number" min="0" step="0.1">
+                                <div class="mervienibas">kg</div>
+                            </div>
+                            <div>Ātrums 1:</div>
+                            <div id="infoDiv" style="display: flex;">
+                                <input data-tagbeingwritten="DZ6033_setFr" data-modified="false" data-group="1"
+                                    type="number" min="0" step="0.1">
+                                <div class="mervienibas">%</div>
+                            </div>
+                            <div>Ātrums 2 :</div>
+                            <div id="infoDiv" style="display: flex;">
+                                <input data-tagbeingwritten="DZ6033_setFr_2" data-modified="false" data-group="1"
+                                    type="number" min="0" step="0.1">
+                                <div class="mervienibas">%</div>
+                            </div>
+                        </div>
+                        <div id="saveSvari1Params" class="btnbtnDiv">saglabāt iestatījumus</div>
+                    </div>
+
+                </div>
+            </div>
+            <div style="flex:1; margin-bottom: 5px; display: flex; align-items: center; justify-content: space-evenly;">
+                <div style="display: flex; justify-content: space-evenly; width: 100%;">
+                    <div
+                        style="display:flex; gap:5px; flex-direction: column; justify-content: center; align-items: center; ">
+                        <div style="font-weight: 800;">Svari 2</div>
+                        <div style="text-align:right;">Svars:
+                            <span data-animation="value" data-tagbeingread="SV2_FiltredWeight"
+                                style="font-weight: 800; font-size:2.5em;"></span>
+                            kg
+                        </div>
+                        <div style="text-align: center;">
+                            Stāvoklis:
+                            <span data-animation="text" data-tagbeingread="state_ID36"
+                                data-text="0:Izslēgts,1:Ieslēgts,2:Kļūda"></span>
+                        </div>
+                        <br>
+                        <div>
+                            <div id="saglabatSvaru2" class="btnbtnDiv">saglabāt svaru 2</div>
+                        </div>
+                    </div>
+                    <div>
+                        <img data-animation="image" data-tagbeingread="state_ID36"
+                            data-image="0:./media/bigBag_notused.png,1:./media/bigBag_running.png,2:./media/bigBag_error.png,3:./media/bigBag_paused.png"
+                            class="bagImg" id="bigBag2" src="" alt="">
+                    </div>
+                    <div style="display:flex; flex-direction: column; gap:7px; width:37%;">
+                        <div
+                            style="display:grid; grid-template-columns: 3fr 1fr; gap:5px; flex-direction: column; justify-content: center; align-items: center; ">
+                            <div>Svara iestatījums :</div>
+                            <div id="infoDiv" style="display: flex;">
+                                <input data-tagbeingwritten="SV2_SetWeight" data-modified="false" data-group="2"
+                                    type="number" min="0" step="0.1">
+                                <div class="mervienibas">kg</div>
+                            </div>
+                        </div>
+                        <div id="saveSvari2Params" class="btnbtnDiv">saglabāt iestatījumus</div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script src="./scripts/outerScripts/prepared_statements.js"></script>
+    <script src="./scripts/outerScripts/returnTagObject.js"></script>
+    <script defer>
+        // ============================ GLOBALS ============================
+        const allDynamicElements = Array.from(document.querySelectorAll('[data-tagbeingread]'));
+        const allInputAndButtonElements = Array.from(document.querySelectorAll('[data-tagbeingwritten]'));
+
+        // =================== DYNAMIC ELEMENT HANDLING ===================
+        // INITIALIZE BUTTONS AND INPUTS
+        function initializeDynamicElements() {
+            if (!allInputAndButtonElements.length) return console.info(`seems like the document has no elements with data-tagbeingwritten attribute!`);
+
+            allInputAndButtonElements.forEach(el => {
+                if (el.tagName === "INPUT") {
+                    console.info("do not forget to create an event to save the input value");
+                } else if (el.tagName === "BUTTON" || el.tagName === "DIV") {
+                    const tagbeingread = el.dataset.tagbeingread;
+                    if (typeof tagbeingread === 'undefined' || tagbeingread === "") {
+                        console.error(el);
+                        return console.error(`↑ this element has no 'data-tagbeingread' value or property`);
+                    }
+
+                    const settagData = el.dataset.settag;
+                    if (typeof settagData === 'undefined' || settagData === "") {
+                        console.error(el);
+                        return console.error(`↑ this element has no 'data-settag' value or property`);
+                    }
+
+                    let valueWritten, handledTagValues = [], possibleValuesWritten = [];
+                    settagData.split(",").forEach(data => {
+                        const [value, text] = data.split(':');
+                        handledTagValues.push(value);
+                        possibleValuesWritten.push(text);
+                    });
+
+                    el.addEventListener("click", function () {
+                        const value = getTag(tagbeingread);
+                        const prettyValue = `${Number(value)}`;
+
+                        if (handledTagValues.includes(prettyValue)) {
+                            valueWritten = possibleValuesWritten[handledTagValues.indexOf(prettyValue)];
+                        } else {
+                            // using the first text value by default (if unhandled tag value)
+                            valueWritten = possibleValuesWritten[0];
+                        }
+
+                        valueWritten = parseInt(valueWritten);
+
+                        setTag(el.dataset.tagbeingwritten, valueWritten);
+                        console.warn(`wrote ${valueWritten} into tag "${el.dataset.tagbeingwritten}", ${typeof valueWritten}`);
+                    });
+                } else {
+                    console.error(el);
+                    console.error(`↑ Seems like you added data-tagbeingwritten attribute to the element which is neither input, div or a button. Either way, this is unhandled in this code version. Might not be in the next one. :)`);
+                };
+            });
+        };
+
+
+
+        // ============================ PAGE LOAD ============================
+        // loading product options into the select element
+        ; (async function loadProductsIntoSelect() {
+            const productSelect = document.getElementById("product_choice");
+            const dbAnswer_products = await ps_products_select_all_not_deleted();
+            if (!dbAnswer_products) return alert("Datubāzē nav produktu.");
+            // → received products ←
+            productSelect.innerHTML = dbAnswer_products.map(obj => `<option value="${obj.product_id}">${obj.label}</option>`).join("");
+        })();
+
+        // loading input values corresponding to the active pieņemšana
+        ; (async function loadThePage() {
+            // showing actual tank values in Lobitajs part (buttons will update by themselves)
+            // if (getTag(`enableRoute_darbs_no_BU1`)) document.getElementById("lobTvertne_nr").value = "1";
+            // if (getTag(`enableRoute_darbs_no_BU2`)) document.getElementById("lobTvertne_nr").value = "2";
+
+            const dbAnswer_pienemsanas = await ps_partija_check_if_are_active();
+            if (!dbAnswer_pienemsanas) return;
+
+            // → ir aktīvas pieņemšanas ←
+            const { product_id, tank, in_weight, partija_id } = dbAnswer_pienemsanas[0];
+
+            document.getElementById("partijas_id").value = partija_id;
+            document.getElementById("product_choice").value = product_id;
+            document.getElementById("svars").value = in_weight;
+            document.getElementById("tvertne_nr").value = tank;
+        })();
+
+
+        function fillNumberInputsFromTags() {
+            [...document.querySelectorAll("[data-group]")].forEach(input => {
+                let tagvalue = getTag(input.dataset.tagbeingwritten);
+                if (!tagvalue || tagvalue === null || tagvalue === '') tagvalue = 0;
+                tagvalue = `${tagvalue}`;
+                input.value = tagvalue;
+            });
+        };
+
+        // ============================ EVENT LISTENERS ============================
+        const routeEnableTagNames = ['enableRoute_BU1toBU2', 'enableRoute_BU2toBU1', 'enableRoute_ielade_BU1', 'enableRoute_ielade_BU2', 'enableRoute_izlade_no_BU1', 'enableRoute_izlade_no_BU2', 'enableRoute_darbs_no_BU1', 'enableRoute_darbs_no_BU2'];
+
+        document.getElementById("atlautPienemsanu").addEventListener("click", async () => {
+            // check if there are any active routes. if there are, restrict route start.
+            for (let i = 0; i < routeEnableTagNames.length; i++) {
+                if (getTag(routeEnableTagNames[i])) return alert("Nav iespējams sākt pieņemšanu, jo ir cits aktīvs maršruts");
+            }
+            for (let i = 1; i <= 8; i++) {
+                const routeState = getTag(`State_R${i}`);
+                if (routeState !== 0 && routeState) return alert("Nav iespējams sākt pieņemšanu, jo ir cits aktīvs maršruts");
+            }
+
+            const partija_id = document.getElementById("partijas_id").value;
+            if (!partija_id.length) return alert("Ievadiet partijas numuru!");
+
+            const in_weight = Number(document.getElementById("svars").value);
+            if (isNaN(in_weight) || !in_weight) return alert("Ievadiet svaru!");
+
+            const product_id = Number(document.getElementById("product_choice").value);
+            const user_name = sessionStorage.getItem('username');
+            const tank = document.getElementById("tvertne_nr").value;
+
+            const isTankNotEmpty = await ps_partija_check_if_tank_is_not_empty(tank);
+            if (!isTankNotEmpty) return;
+
+            const notempty = isTankNotEmpty[0].notempty;
+            if (notempty === 1) return alert(`Nav iespējams sākt pieņemšanu bunkerā ${tank}, jo viņš nav tukšs`);
+
+            // → all entered data is proper ←
+            await ps_partija_start_pienemsana({ product_id, user_name, partija_id, in_weight, tank }); // record in partijas table
+            if (tank === "1") var routeEnableTagName = "enableRoute_ielade_BU1";
+            if (tank === "2") var routeEnableTagName = "enableRoute_ielade_BU2";
+
+            setTag(routeEnableTagName, true);
+            console.warn(`set tag "${routeEnableTagName}" to ${true}, ${typeof true}`);
+        });
+
+        document.getElementById("turpinatPienemsanu").addEventListener("click", async () => {
+            const tank = document.getElementById("tvertne_nr").value;
+            const lastPartijaInThisTank = await ps_partija_select_last_by_tank(tank);
+            if (!lastPartijaInThisTank) return alert("ERROR:");
+
+            const id = lastPartijaInThisTank[0].id;
+            console.log({ id })
+            const res = await ps_partija_continue_pienemsana({ id, tank });
+            console.log({ res })
+
+            if (tank === "1") var routeEnableTagName = "enableRoute_ielade_BU1";
+            if (tank === "2") var routeEnableTagName = "enableRoute_ielade_BU2";
+            setTag(routeEnableTagName, true);
+            console.warn(`set tag "${routeEnableTagName}" to ${true}, ${typeof true}`);
+        });
+
+        document.getElementById("atceltPienemsanu").addEventListener("click", async () => {
+            // check if there are any active routes. if there none, then nothing can be stopped.
+            let pienemsanasRoutesEnableTagNames = ['enableRoute_ielade_BU1', 'enableRoute_ielade_BU2'], activeRouteEnableTagName = false;
+            for (let i = 0; i < pienemsanasRoutesEnableTagNames.length; i++) {
+                const routeEnableTagName = pienemsanasRoutesEnableTagNames[i];
+                if (getTag(routeEnableTagName)) activeRouteEnableTagName = routeEnableTagName;
+            }
+            if (!activeRouteEnableTagName) return alert("Nav aktīvo maršrutu uz pieņemšanu.");
+
+            // → Ir aktīvs pieņemšanas maršruts ←
+            const hasPienemsanaBeenStopped = await ps_partija_stop_pienemsana();
+            setTag(activeRouteEnableTagName, false);
+            console.warn(`set tag "${activeRouteEnableTagName}" to ${false}, ${typeof false}`);
+
+            // clear inputs
+            document.getElementById("partijas_id").value = "";
+            document.getElementById("svars").value = 0;
+        });
+
+        // Tvertne ir tukša?
+        ['1', '2'].forEach(bunkerId => {
+            document.getElementById(`BU${bunkerId}_is_empty`).addEventListener('click', async () => {
+                if (window.confirm(`Vai tvertne ${bunkerId} ir tukša?`)) await ps_partija_update_is_not_empty(bunkerId);
+            });
+        });
+
+        // Pārkraut
+        [...document.querySelectorAll("[data-en_tagname]")].forEach(el => {
+            el.addEventListener('click', function () {
+                const en_tagname = this.dataset.en_tagname;
+                if (typeof en_tagname === 'undefined' || !en_tagname) return alert(`check data-en_tagname (${en_tagname})`);
+
+                // check if there are any active routes. 
+                // if the active route is not connected with the button, restrict control.
+                // if the active route is connected with the button, change its control tag value.
+                let enableTagValueOfThisRoute = false;
+                for (let i = 0; i < routeEnableTagNames.length; i++) {
+                    const routeEnableTagName = routeEnableTagNames[i];
+                    if (getTag(routeEnableTagName)) {
+                        // do nothing if another route is active
+                        if (routeEnableTagName !== en_tagname) return alert("Nav iespējams palaist maršrutu, jo ir cits aktīvs maršruts");
+
+                        enableTagValueOfThisRoute = true;
+                    }
+                }
+
+                // → there are no started routes or the only started route is the one being clicked ←
+                if (enableTagValueOfThisRoute) { // this route is active
+                    if (window.confirm(`Vai Jūs gribat apstādināt maršrutu?`)) {
+                        setTag(en_tagname, false);
+                        console.warn(`set tag "${en_tagname}" to ${false}, ${typeof false}`);
+                    }
+                } else { // this route is not active
+                    for (let i = 1; i <= 8; i++) {
+                        const routeState = getTag(`State_R${i}`);
+                        if (routeState !== 0 && routeState) return alert("Nav iespējams palaist maršrutu, jo ir cits aktīvs maršruts");
+                    }
+
+                    if (window.confirm(`Vai Jūs gribat palaist maršrutu?`)) {
+                        setTag(en_tagname, true);
+                        console.warn(`set tag "${en_tagname}" to ${true}, ${typeof true}`);
+                    }
+                }
+            });
+        });
+
+        document.getElementById("saglabatSvaru1").addEventListener("click", () => setTag("SV1_SaveDataNow", true));
+        document.getElementById("saglabatSvaru2").addEventListener("click", () => setTag("SV2_SaveDataNow", true));
+
+
+        function saveInputValues(dataGroupId) {
+            [...document.querySelectorAll(`[data-group='${dataGroupId}']`)].forEach(input => {
+                const { tagbeingwritten } = input.dataset;
+                const value = Number(input.value);
+                if (!input.value || isNaN(value)) return alert("pārbaudiet ievadīto vērtību");
+
+                setTag(tagbeingwritten, value);
+                console.warn(`set ${tagbeingwritten} to ${value}, ${typeof value}`);
+            });
+        };
+
+        document.getElementById("saveSvari1Params").addEventListener('click', () => { saveInputValues(1) });
+        document.getElementById("saveSvari2Params").addEventListener('click', () => { saveInputValues(2) });
+
+        // ============================ PAGE UPDATE ============================
+        // HANDLING THE UPDATE OF DYNAMIC ELEMENTS 
+        function updateDynamicElements() {
+            // value will be received separately by every element
+            if (!allDynamicElements.length) return console.info(`seems like the document has no elements with data-tagbeingread attribute!`);
+
+            allDynamicElements.forEach(el => {
+                // getting all data needed from the dataset of the element
+                const {
+                    animation: animationData,
+                    tagbeingread,
+                    text: textData,
+                    settag: settagData,
+                    image: imageData,
+                    customopacity: customOpacityData,
+                    bgcolor: bgcolorData
+                } = el.dataset;
+
+                if (typeof animationData === 'undefined' || animationData === "") { console.error(el); return console.error(`↑ this element has no 'data-animation' value or property`); };
+
+                // getting actual tag value from the object, which dynamically updates based on database data
+                let value = TAGS[tagbeingread];
+
+                animationData.split(',').forEach(animation => {
+                    switch (animation) {
+                        case 'value':
+                            if (value === null) value = 'null';
+                            if (!isNaN(Number(value))) value = (Number(value)).toFixed(1);
+
+                            if (el.textContent !== value) el.textContent = value;
+                            break;
+                        case 'text':
+                            {
+                                if (typeof textData === 'undefined' || textData === "") { console.error(el); return console.error(`↑ this element has no 'data-text' value or property`); }
+
+                                let text = "", handledTagValues = [], possibleTextValues = [];
+                                textData.split(",").forEach(data => {
+                                    const [value, text] = data.split(':');
+                                    handledTagValues.push(value);
+                                    possibleTextValues.push(text);
+                                });
+                                // handling null,'',0,false
+                                if (value === 'null') value = 0;
+                                if (value === 'true') value = true;
+                                if (value === 'false') value = false;
+
+                                const prettyValue = `${Number(value)}`;
+                                if (handledTagValues.includes(prettyValue)) {
+                                    text = possibleTextValues[handledTagValues.indexOf(prettyValue)];
+                                } else {
+                                    text = possibleTextValues[0]; // using the first text value by default (if unhandled tag value)
+                                }
+                                if (el.textContent !== text) el.textContent = text;
+                                break;
+                            }
+                        case 'opacity':
+                            {
+                                const prettyValue = `${Number(value)}`;
+                                prettyValue === '1' ? $(el).show() : $(el).hide();
+                                break;
+                            }
+                        case 'bgcolor':
+                            {
+                                if (typeof bgcolorData === 'undefined' || bgcolorData === "") { console.error(el); return console.error(`↑ this element has no 'data-bgcolor' value or property`); }
+                                if (value === "true") value = true;
+                                const prettyValue = `${Number(value)}`; // handling null,'',0,false
+
+                                let usedData = "", handledTagValues = [], possibleDataValues = [];
+                                bgcolorData.split(",").forEach(data => {
+                                    const [value, pData] = data.split(':');
+                                    handledTagValues.push(value);
+                                    possibleDataValues.push(pData);
+                                });
+                                // handling null,'',0,false
+                                if (handledTagValues.includes(prettyValue)) {
+                                    usedData = possibleDataValues[handledTagValues.indexOf(prettyValue)];
+                                } else {
+                                    usedData = possibleDataValues[0]; // using the first text value by default (if unhandled tag value)
+                                }
+
+                                // console.warn(el)
+                                // console.log({ usedData, value, prettyValue });
+
+                                el.style.backgroundColor = usedData;
+
+                                break;
+                            }
+                        case 'customopacity':
+                            {
+                                if (typeof customOpacityData === 'undefined' || customOpacityData === "") { console.error(el); return console.error(`↑ this element has no 'data-customopacity' value or property`); }
+                                const prettyValue = `${Number(value)}`;
+
+                                let finalOpacity = 1, handledTagValues = [], possibleOpacityValues = [];
+                                customOpacityData.split(",").forEach(data => {
+                                    const [value, cOpacity] = data.split(':');
+                                    handledTagValues.push(value);
+                                    possibleOpacityValues.push(cOpacity);
+                                });
+                                // handling null,'',0,false
+                                if (handledTagValues.includes(prettyValue)) {
+                                    finalOpacity = possibleOpacityValues[handledTagValues.indexOf(prettyValue)];
+                                } else {
+                                    finalOpacity = possibleOpacityValues[0]; // using the first text value by default (if unhandled tag value)
+                                }
+
+
+                                if (finalOpacity !== '0' && finalOpacity !== '1') { console.error(el); return alert(`Wrong customopacity value (${finalOpacity}) ! Check the console!`); }
+
+                                if (finalOpacity === '0') $(el).hide();
+                                if (finalOpacity === '1') $(el).show();
+
+                                break;
+                            }
+                        case 'settag':
+                            {
+                                if (typeof settagData === 'undefined' || settagData === "") { console.error(el); return console.error(`↑ this element has no 'data-settag' value or property`); }
+                                break;
+                            }
+                        case 'image':
+                            {
+                                if (el.tagName !== "IMG") {
+                                    console.error(el);
+                                    return console.error(`↑ you have assigned 'data-image' property to a (${el.tagName}) element`);
+                                } else if (typeof imageData === 'undefined' || imageData === "") { console.error(el); return console.error(`↑ this element has no 'data-image' value or property`); }
+
+                                let image_src = "", handledTagValues = [], possibleImageSources = [];
+                                imageData.split(",").forEach(data => {
+                                    const [value, text] = data.split(':');
+                                    handledTagValues.push(value);
+                                    possibleImageSources.push(text);
+                                });
+                                const prettyValue = `${Number(value)}`;
+                                if (handledTagValues.includes(prettyValue)) {
+                                    image_src = possibleImageSources[handledTagValues.indexOf(prettyValue)];
+                                } else {
+                                    // using the first text value by default (if unhandled tag value)
+                                    image_src = possibleImageSources[0];
+                                }
+                                if (el.src !== image_src) el.src = image_src;
+                                break;
+                            }
+                        default:
+                            console.error(el)
+                            console.error(`↑ unhandled animation: (${animation})`);
+                            break;
+                    };
+                });
+            });
+        };
+
+        async function updateTankPart() {
+            let { tank1_state, tank2_state, BU1_LVL, BU2_LVL } = TAGS;
+            if (BU1_LVL !== null) BU1_LVL = (Number(BU1_LVL)).toFixed(0);
+            if (BU2_LVL !== null) BU2_LVL = (Number(BU2_LVL)).toFixed(0);
+
+            if (tank1_state === 3) {
+                document.documentElement.style.setProperty('--t1_bg', "#FF0000");
+            } else if (tank1_state === 2) {
+                document.documentElement.style.setProperty('--t1_bg', "#FF7E28");
+            } else {
+                document.documentElement.style.setProperty('--t1_bg', "#88AA00");
+            }
+            if (tank2_state === 3) {
+                document.documentElement.style.setProperty('--t2_bg', "#FF0000");
+            } else if (tank2_state === 2) {
+                document.documentElement.style.setProperty('--t2_bg', "#FF7E28");
+            } else {
+                document.documentElement.style.setProperty('--t2_bg', "#88AA00");
+            }
+            document.documentElement.style.setProperty('--bar1height', BU1_LVL + "%");
+            document.documentElement.style.setProperty('--bar2height', BU2_LVL + "%");
+
+            let tankDataObj = { T1_PartijasNumurs: '', T1_Produkts: '', T2_PartijasNumurs: '', T2_Produkts: '' };
+
+            const partijasWhereTankIsNotEmpty = await ps_partija_select_tank_is_not_empty();
+            if (partijasWhereTankIsNotEmpty) {
+                partijasWhereTankIsNotEmpty.forEach(notEmptyTankData => {
+                    const { tank, partija_id, label } = notEmptyTankData;
+                    tankDataObj[`T${tank}_PartijasNumurs`] = partija_id;
+                    tankDataObj[`T${tank}_Produkts`] = label;
+                });
+            }
+
+            for (id in tankDataObj) document.getElementById(id).textContent = tankDataObj[id];
+        }
+
+        async function updateInUseTable() {
+            const notEmptyTanksData = await ps_partija_select_tank_is_not_empty();
+            if (!notEmptyTanksData || !notEmptyTanksData.length) {
+                document.getElementById("T1_partija").textContent = "";
+                document.getElementById("T2_partija").textContent = "";
+                return;
+            }
+
+            // → we have at least some data ←
+            let tankTablePartijasTexts = { 1: '', 2: '' }; // { tank: partijasNR, ... }
+            for (const { tank, partija_id } of notEmptyTanksData) tankTablePartijasTexts[tank] = partija_id;
+            for (const [tank, partija_id] of Object.entries(tankTablePartijasTexts)) {
+                document.getElementById(`T${tank}_partija`).textContent = partija_id;
+            }
+
+            if (notEmptyTanksData.length > 2) return alert(`KĻŪDA: netukšo bunkuru skaits (${notEmptyTanksData.length}) (tabula 'al_partija')`);
+        }
+
+        async function updateUseButtons() {
+            const inUsePartijasData = await ps_partija_select_in_use();
+            if (!inUsePartijasData || !inUsePartijasData.length) {
+                document.getElementById("T1_control_in_use").textContent = "sākt partijas izmantošanu";
+                document.getElementById("T1_control_in_use").dataset.inuse = 'false';
+                document.getElementById("T1_partija").style.backgroundColor = '#A4A4A4';
+                document.getElementById("T2_control_in_use").textContent = "sākt partijas izmantošanu";
+                document.getElementById("T2_control_in_use").dataset.inuse = 'false';
+                document.getElementById("T2_partija").style.backgroundColor = '#A4A4A4';
+                return;
+            }
+
+            /* by default we assume all tanks are empty */
+            let allTanks = { 1: false, 2: false }; // { tank: inUse, ...} 
+            /* if we receive the tank record from the query of used tanks... well... it is in use */
+            for (const { tank } of inUsePartijasData) allTanks[tank] = true; // tank: inuse => tank: true
+            for (const [tank, value] of Object.entries(allTanks)) {
+                const controlBtnName = `T${tank}_control_in_use`;
+                const inUseControlButton = document.getElementById(controlBtnName);
+                inUseControlButton.textContent = value ? "beigt partijas izmantošanu" : "sākt partijas izmantošanu";
+                inUseControlButton.dataset.inuse = `${value}`;
+
+                document.getElementById(`T${tank}_partija`).style.backgroundColor = value ? 'rgb(189, 227, 105)' : '#A4A4A4';
+            }
+
+            if (inUsePartijasData.length > 1) return alert("KĻŪDA: vairākas aktīvas partijas (tabula 'al_partija').");
+        }
+
+
+        ["T1_control_in_use", "T2_control_in_use"].forEach(name => {
+            document.getElementById(name).addEventListener('click', async function () {
+                const isInUse = this.dataset.inuse === "true";
+                const tank = name.slice(1, 2);
+
+                const tankData = await ps_partija_check_if_tank_is_not_empty(tank);
+                if (!tankData) {
+                    alert(`Nav iespējams veikt šo darbību, jo tvertne ir tukša.`)
+                    return location.reload();
+                }
+
+                const notempty = tankData[0].notempty;
+                if (notempty === 0) return alert(`Nav iespējams sākt izmantot partiju, jo bāzē nav datu par tvertnes ${tank} saturu.`); // do nothing if tank is empty
+
+                const currentlyUsedPartijas = await ps_partija_select_in_use();
+                if (!isInUse && currentlyUsedPartijas.length > 0) return alert(`Nav iespējams sākt izmantot šo partiju, kamēr tiek izmantota cita partija.`);
+
+                console.log(isInUse, currentlyUsedPartijas)
+
+                if (isInUse) {
+                    const priekstirisanaControl = getTag(`enableRoute_darbs_no_BU${tank}`);
+                    const lobisanaControl = getTag(`ControlLobRoute`);
+                    if (priekstirisanaControl || lobisanaControl) return alert(`Nav iespējams beigt partijas izmantošanu, kamēr tā tiek izmantota. Vispirms jāapstādina priekštīrīšana un/vai lobīšana. To var izdarīt, nospiežot pogas "STOP priekštīrīšana" un/vai "STOP lobīšana".`);
+                }
+
+                await ps_partija_update_in_use(tank, !isInUse);
+                if (isInUse && window.confirm(`Vai tvertne ${tank} ir tukša?`)) await ps_partija_update_is_not_empty(tank);
+            });
+        });
+
+        document.getElementById("startPriekstirisana").addEventListener("click", async function () {
+            const currentlyUsedPartijas = await ps_partija_select_in_use();
+            if (!currentlyUsedPartijas || !currentlyUsedPartijas.length) return alert(`Nav iespējams sākt priekštīrīšanu, jo netika izvēlēta partija. To var izdarīt, sākumā nospiežot pogu "sākt partijas izmantošanu."`);
+
+            const { tank } = currentlyUsedPartijas[0];
+            const tankData = await ps_partija_check_if_tank_is_not_empty(tank);
+            if (!tankData) return location.reload();
+
+            const notempty = tankData[0].notempty;
+            if (notempty === 0) return alert(`Nav iespējams palaist priekštīrīšanu, jo bāzē nav datu par tvertnes ${tank} saturu.`); // do nothing if tank is empty
+
+            for (let routeEnableTagName of routeEnableTagNames) {
+                // do nothing if another route is active
+                if (getTag(routeEnableTagName)) return alert("Nav iespējams palaist maršrutu, jo ir cits aktīvs maršruts");
+            }
+
+            for (let i = 1; i <= 8; i++) {
+                const routeState = getTag(`State_R${i}`);
+                if (routeState && routeState !== 0) return alert("Nav iespējams palaist maršrutu, jo ir cits aktīvs maršruts");
+            }
+
+            if (!window.confirm(`Vai Jūs gribat palaist priekštīrīšanu?`)) return;
+
+            // → route start is allowed, because no other routes are active ←
+            setTag(`enableRoute_darbs_no_BU${tank}`, true);
+            console.warn(`set tag "enableRoute_darbs_no_BU${tank}" to ${true}, ${typeof true}`);
+        });
+
+        document.getElementById("stopPriekstirisana").addEventListener("click", async () => {
+            const currentlyUsedPartijas = await ps_partija_select_in_use();
+            const { tank } = currentlyUsedPartijas[0];
+            if (!getTag(`enableRoute_darbs_no_BU${tank}`)) return location.reload();
+
+            setTag(`enableRoute_darbs_no_BU${tank}`, false);
+            console.warn(`set tag "enableRoute_darbs_no_BU${tank}" to ${false}, ${typeof false}`);
+        });
+
+        document.getElementById("startLobisana").addEventListener("click", async () => {
+            if (getTag("ControlLobRoute")) return location.reload(); // visualisation has shown the wrong button
+
+            const currentlyUsedPartijas = await ps_partija_select_in_use();
+            if (!currentlyUsedPartijas || !currentlyUsedPartijas.length) return alert(`Nav iespējams sākt lobīšanu, jo netika izvēlēta partija. To var izdarīt, sākumā nospiežot pogu "sākt partijas izmantošanu."`);
+
+            if (!window.confirm(`Vai Jūs gribat palaist lobīšanu?`)) return;
+
+            setTag("ControlLobRoute", true);
+            console.warn(`set tag "ControlLobRoute" to ${true}, ${typeof true}`);
+        });
+
+        document.getElementById("stopLobisana").addEventListener("click", async () => {
+            if (!getTag("ControlLobRoute")) return location.reload(); // visualisation has shown the wrong button
+
+            const currentlyUsedPartijas = await ps_partija_select_in_use();
+            // if (!currentlyUsedPartijas || !currentlyUsedPartijas.length) return location.reload();
+
+            setTag("ControlLobRoute", false);
+            console.warn(`set tag "ControlLobRoute" to ${false}, ${typeof false}`);
+        });
+
+
+        async function updatePageValues() {
+            updateTagsObject(); // saving tag values from the database into the object
+            updateDynamicElements();
+
+            updateTankPart(); // TANKS
+            updateInUseTable(); // "IN USE" PART
+            updateUseButtons();
+        }
+
+        // ============================ FUNCTIONS ============================
+        function cycleUpdate() {
+            
+            updatePageValues();
+
+            setTimeout(() => isPageIntervalRunning && cycleUpdate(), 1500);
+        }
+
+        // ============================== ACTION ==============================
+        // fix: otherwise both will appear for a couple seconds at the page load.
+        $("#startPriekstirisana").hide();
+        $("#stopPriekstirisana").hide();
+        $("#startLobisana").hide();
+        $("#stopLobisana").hide();
+        $("#atlautPienemsanu").hide();
+        $("#atceltPienemsanu").hide();
+
+        initializeDynamicElements();
+        fillNumberInputsFromTags();
+        // updatePageValues();
+        // cycleUpdate();
+
+        // ==================== CONTROL OF PAGE INTERVALS ====================
+        // if we are on this page and update is not launched, launch the update.
+        // if we are no longer on this page, stop the update.
+        let isPageIntervalRunning = false;
+        const THIS_PAGE = "al_main.html";
+        setInterval(async () => {
+            const OPENED_PAGE = sessionStorage.getItem('currentPage');
+            if (OPENED_PAGE === THIS_PAGE && !isPageIntervalRunning) {
+                console.log("Kaut kas notiek šeti");
+                console.info(`starting: ${THIS_PAGE}`);
+                await updateTagsObject(); // saving tag values from the database into the object
+                isPageIntervalRunning = true;
+                cycleUpdate();
+            } else if (OPENED_PAGE !== THIS_PAGE && isPageIntervalRunning) {
+                console.info(`stopping: ${THIS_PAGE}`);
+                isPageIntervalRunning = false;
+            }
+        }, 3000);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="system/styles/igrX.css" />
+    <link rel="stylesheet" type="text/css" href="styles/sakumlapa.css" />
+    <link rel="stylesheet" type="text/css" href="styles/modal.css" />
+    <script type="text/javascript" src="system/scripts/igrX2.js"></script>
+    <style>
+      body {
+        background-color: #eeeeee;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="modal__container">
+      <header class="modal__header">
+        <h2 id="modal-cntrl-title" class="modal__title">Elements: {{name}}</h2>
+      </header>
+      <div id="modal-cntrl-content" class="modal__content">
+        
+        {{#if serviceMode}}
+        
+        <ul id="service-mode-tabs">
+          {{#each parts}}
+          <li><button data-id="{{id}}" class="{{class}}">{{name}}</button></li>
+          {{/each}}
+        </ul>
+        {{/if}} {{#if settings}}
+        <section class="settings--section">
+          <h3>Iestatījumi:</h3>
+          <form id="settings--form">
+            {{#each settings}}
+            <label for="settings--{{id}}">{{label}}</label>
+            <input type="number" id="settings--{{id}}" name="{{tag}}" value="{{value}}" min="0" />
+            {{/each}}
+          </form>
+        </section>
+        {{/if}}
+        <section class="settings--section">
+          <h3>Stāvoklis:</h3>
+          <div>
+            {{#each stateFields}}
+            <h4>{{label}}</h4>
+            <p class="{{class}}">{{{value}}}</p>
+            {{/each}}
+          </div>
+        </section>
+        {{#if commands}}
+        <section class="settings--section elements-{{commands.length}}">
+          <h3>Komandas:</h3>
+          <div id="settings__commands">
+            {{#each commands}}
+            <button class="{{class}}" data-value="{{value}}">{{label}}</button>
+            {{/each}}
+          </div>
+        </section>
+        {{/if}}
+        
+      </div>
+    </main>
+
+    <script src="scripts/npm/handlebars.min.js"></script>
+    <script src="scripts/frontend/functions.js"></script>
+    <script type="module" src="scripts/sakumlapa/modal/index-al3.js"></script>
+  </body>
+</html>
