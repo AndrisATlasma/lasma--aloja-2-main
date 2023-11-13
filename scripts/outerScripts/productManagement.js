@@ -6,7 +6,7 @@ async function loadTable() {
     if (!productsArray) return alert("Izskatās, ka bāzē nav produktu.");
 
     // generating table HTML content and appending it to the page
-    const productsTableHtml = productsArray.map(product => `<tr data-productid="${product.product_id}"><td><input type="text" value="${product.label}" autocomplete="off" data-specific='long'></td><td><button data-action="saglabat">Saglabāt</button></td><td><button data-action="dzest">Dzēst</button></td></tr>`).join("");
+    const productsTableHtml = productsArray.map(product => `<tr data-productid="${product.u_id}"><td><input type="text" value="${product.label}" autocomplete="off" data-specific='long'></td><td><button data-action="saglabat">Saglabāt</button></td><td><button data-action="dzest">Dzēst</button></td></tr>`).join("");
     $("#saraksts tbody").append(productsTableHtml);
 }
 

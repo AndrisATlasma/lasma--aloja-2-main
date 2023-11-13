@@ -8,7 +8,7 @@ export function getFlowDividerText(id, state, template) {
 export function getStatusText({ el_id, el_type, el_state }) {
   const state = parseInt(el_state || 0);
   const makeText = (off, on, x) => [
-    '?',
+    'Nav zināms stāvoklis',
     off,
     on,
     x,

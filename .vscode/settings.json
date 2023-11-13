@@ -30,5 +30,6 @@
       "username": "postgres",
       "password": "lasma"
     }
-  ]
+  ],
+  "editor.lineHeight": 2
 }

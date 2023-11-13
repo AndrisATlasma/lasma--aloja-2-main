@@ -39,7 +39,7 @@ export const updateElements = (el_id, el_type, el_state, el_attrs) => {
       element.style.color = silosStateColors[state];
       const indicator = document.getElementById(`ID${el_id}_full`); 
       //console.log(state);
-      indicator.style.display = state === 2 ? 'inline' : 'none';
+      indicator.style.display = state === 4 ? 'inline' : 'none';
     } else {
       element.style.color = stateColors[state];
     }
@@ -74,7 +74,7 @@ export const updateElements = (el_id, el_type, el_state, el_attrs) => {
           ? parseFloat(attrs[attr] || 0).toFixed(1)
           : attrs[attr];
         if (attr === 'LVL') {
-          value = (parseInt(attrs[attr] || 0) / 1000).toFixed(1);
+          value = (parseInt(attrs[attr] || 0) / 1000).toFixed(2);
           
         }
         if (attr === 'PRO') {
@@ -127,11 +127,14 @@ export default async function updateSVG(id = null, value = null) {
     } else {
       const sqlData = getSqlData();
       
+      
       const index = sqlData.findIndex((el) => el.el_id === parseInt(id));
       if (index !== -1) {
         sqlData[index].el_state = value;
       }
+      
     }
+    
     data.forEach(({ el_id, el_type, el_state, el_attrs }) => {
       updateElements(el_id, el_type, el_state, el_attrs);
     });

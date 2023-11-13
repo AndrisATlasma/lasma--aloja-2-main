@@ -115,3 +115,52 @@
 .routOffbtn.show {
   display: flex;
 }
+
+
+
+
+#customPromptContainer {
+  display: none;
+  grid-template-rows: 1fr 2fr 2fr; /* Šeit ir jādefinē grid rindas */
+  height: 200px;
+  width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #00d1ec;
+  z-index: 9999;
+}
+
+.smalGridxx {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center; /* Elementi tiks centrināti vertikāli */
+  justify-items: center; /* Elementi tiks centrināti horizontāli */
+  gap: 5px; /* Izveido mazo atstarpi starp elementiem */
+}
+
+#numberInput {
+  width: 30%;
+  height: 80%;
+  border-radius: 8px;
+  font-size: 25px;
+  text-align: center; /* Centrē tekstu horizontāli */
+  line-height: 100%; /* Centrē tekstu vertikāli (100% no ievades lauka augstuma) */
+}
+
+.inputClass{
+  display: grid;
+  grid-template-columns: 1fr ;
+  align-items: center; /* Elementi tiks centrināti vertikāli */
+  justify-items: center; /* Elementi tiks centrināti horizontāli */
+}
+.koeficent_text{
+  display: grid;
+  grid-template-columns: 1fr ;
+  align-items: center; /* Elementi tiks centrināti vertikāli */
+  justify-items: center; /* Elementi tiks centrināti horizontāli */
+}

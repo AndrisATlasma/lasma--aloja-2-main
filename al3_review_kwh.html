@@ -183,7 +183,7 @@
 
         const db_setting = { outfmt: 'json', dbgroup: 'postgres' };
         function ps_kwh_select_delta_in_period(from, to) {
-
+           // console.log(from, to);
             return new Promise(resolve => {
                 // SELECT max(kwh) - min(kwh) as delta from al_kwh where date_trunc('day', log_st) between '@from' and '@to';
                 runSql('al3_kwh_period', { from, to }, db_setting, function (results) {

@@ -6,17 +6,21 @@
    var attributesTable = 'al1_element_attrs';
 
    // Update elements
-   var allElements = JSON.parse(getSql('select * from ' + elementsTable + ' ;', pgJson));
+   var allElements = JSON.parse(getSql('select * from ' + elementsTable + ' order by el_id ASC ;', pgJson));
    if (allElements === null) return debugString('ERROR: NO ELEMENTS IN ELEMENTS TABLE');
 
-   var  VM6009_state = 0, VM6010_state = 0;
+var  VM6009_state; 
+  var VM6010_state;
 
    allElements.forEach(function (elData) {
       var el_id = elData.el_id;
+      //debugString(el_id);
       if(el_id === 2 ) VM6009_state = getTag('state_ID' + el_id);
       if(el_id === 3 ) VM6010_state = getTag('state_ID' + el_id);
 
       if(el_id === 46){
+         //debugString(VM6009_state);
+         //debugString(VM6010_state);
 
          if(VM6009_state === 1 && VM6010_state === 1 ){
             var stateID = 1;
@@ -48,7 +52,7 @@
       var stateID = getTag('state_ID' + el_id);
       //var stateID = 3;
       //debugString(getTag('state_ID201'));
-      debugString(stateID);
+      //debugString(stateID);
       var sqlText = 'update ' + elementsTable + ' set el_state = ' + stateID + ' where el_id = ' + el_id;
       setSql(sqlText, pg);
       }

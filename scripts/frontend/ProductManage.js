@@ -26,87 +26,67 @@ function getAllProducts() {
 function saveGarbage(param) {
     return new Promise(resolve => {
         runSql('save_to_garbage', param, db_setting, function (result) {
-        if(result.statusCode !== 200){
-            console.log("Netika saglabāts");
-        }
-        alert("Ieraksts saglabāts!");
-        resolve(result.statusCode === 200);
+            if (result.statusCode !== 200) {
+                console.log("Netika saglabāts");
+            }
+            alert("Ieraksts saglabāts!");
+            resolve(result.statusCode === 200);
         });
     });
 }
 // ############################ darbības ar eventlisteneriem#########################//
 
-const garbageButton = document.getElementById("addGarageWeight");
-
-garbageButton.addEventListener("click", async function () {
-
-    var suppliers = await getAllSuppliers();
-    var products = await getAllProducts();
-
-    const closeButton = document.getElementById("product-close-button");   
+function JustTest() {
+    console.log('Tests Veiksmīgs');
+}
+async function open_gabage_input() {
+    var open_acceptande_data = await getAcceptenceData();
+    const closeButton = document.getElementById("product-close-button");
     const garbageModule = document.querySelector("#garbage-module");
-    const supplie = document.querySelector("#supplier");
-    const prod = document.querySelector("#product");
+    var supplier = document.getElementById("supplier");
+    supplier.innerHTML = open_acceptande_data[0].suppliers_label;
+    supplier.setAttribute('suppliers_id', open_acceptande_data[0].suppliers_id)
+    var product = document.getElementById("product");
+    product.innerHTML = open_acceptande_data[0].product_label;
+    product.setAttribute('product_id', open_acceptande_data[0].product_id);
+    product.setAttribute('income_series', open_acceptande_data[0].income_series);
     const weight = document.querySelector("#weight");
-
-    supplie.innerHTML = "";
-    prod.innerHTML = "";   
-    weight.value = ""; 
-    
-    const emptyOption = document.createElement("option");
-    emptyOption.value = "0";
-    emptyOption.text = "Izvēlieties";
-    emptyOption.selected = true;
-    supplie.add(emptyOption);
-   
-    const emptyOption2 = document.createElement("option");
-    emptyOption2.value = "0";
-    emptyOption2.text = "Izvēlieties";
-    emptyOption2.selected = true;
-    prod.add(emptyOption2); 
-
-    suppliers.forEach(suppliers => {
-      const option = document.createElement("option");
-      option.value = suppliers.u_id;
-      option.text = suppliers.label;
-      supplie.add(option);
-    });
-    
-    products.forEach(product => {
-      const option = document.createElement("option");
-      option.value = product.u_id;
-      option.text = product.label;
-      prod.add(option);
-    });
+    weight.value = "0";
     garbageModule.style.display = "flex";
     closeButton.addEventListener("click", function () {
         garbageModule.style.display = "none";
     });
-});
+}
 
 const saveButton = document.getElementById("saveGarbage");
-saveButton.addEventListener("click", function () {
-    var supplier = parseInt(document.getElementById("supplier").value);
-    var weight = parseFloat(document.getElementById("weight").value);
-    var product = parseInt(document.getElementById("product").value);
-
-    var param = {
-        supp: supplier,
-        weight: weight,
-        prod: product
-    }
-    if(param.supp == 0 || param.weight =="" || param.prod == 0){
-        alert("Nevar tikt saglabāts, aizpildiet laukus");
-        return;
-    }
-    saveGarbage(param);
-    setTimeout(function() {        
-        const garbageModule = document.querySelector("#garbage-module");
-        closeAcceptance(garbageModule);
-      }, 1500); 
-});
-
-
-  
-
-
+function waitForButtonClick() {
+    return new Promise((resolve) => {
+        const handleClick = () => {
+            var weight = parseFloat(document.getElementById("weight").value);
+            var param = {
+                weight: weight,
+                income_series: document.getElementById("product").getAttribute('income_series')
+            };
+            if (param.weight === 0) {
+                alert("Ražošanas atbiras nevar būt 0 ");
+                reject(new Error("Lauki nav aizpildīti"));
+                return;
+            }
+            console.log(param);
+            saveGarbage(param);
+            setTimeout(function () {
+                const garbageModule = document.querySelector("#garbage-module");
+                closeAcceptance(garbageModule);
+                resolve(true); // Resolve, kad darbība veikta veiksmīgi
+            }, 1500);
+            resolve();
+            saveButton.removeEventListener('click', handleClick); // Noņemam notikuma klausītāju pēc izpildes.
+        };
+        const closeButton = document.getElementById("product-close-button");
+        closeButton.addEventListener("click", function () {
+            saveButton.removeEventListener('click', handleClick);
+            //garbageModule.style.display = "none";
+        });
+        saveButton.addEventListener('click', handleClick);
+    });
+}

@@ -112,7 +112,7 @@ export const elementConfig = [
   { id: 'switch', settings: [1, 2, 5], commands: [4, 3, 8] },
   { id: 'flow_divider', settings: [1, 2, 5], commands: [5, 6, 8] },
   { id: 'silos', settings: [1, 2, 3], commands: [13] },
-  { id: 'virtual_silos', settings: [1, 2, 3], commands: [] },
+  { id: 'virtual_silos', settings: [1, 2, 3], commands: [13] },
   { id: 'multi', settings: [1, 2, 5], commands: [2, 1, 7, 8] },
   { id: 'scales', settings: [8,6,7], commands: [] },
   { id: 'motor2', settings: [1, 2, 4, 5], commands: [2, 1, 7, 8] },

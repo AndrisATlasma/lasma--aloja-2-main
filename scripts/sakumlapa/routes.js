@@ -10,7 +10,7 @@ import {
 } from './data.js';
 import { developerMode } from './developer-mode.js';
 import { getRouteStatusText } from './text-functions.js';
-import { getRouteStatusColor} from './text-functions.js';
+import { getRouteStatusColor } from './text-functions.js';
 
 const selectBox = document.querySelector('#route-select');
 const startButton = document.querySelector('#startRoute');
@@ -43,16 +43,16 @@ const updateButtonStates = (id) => {
 
   const route = getRoutesData().find(({ r_id }) => (id ? r_id === parseInt(id) : r_id === getSelectedRoute()));
   //console.log(route);
-  if(route){
-    if(route.r_name.startsWith("CC63")){
+  if (route) {
+   // if (route.r_name.startsWith("CC63")) {
 
-      disabled.start = !([0, 4].includes(route.r_state) && route.r_can_be_started === null);
-      disabled.stop = false;
-    }  else if (route) {
+     // disabled.start = !([0, 4].includes(route.r_state) && route.r_can_be_started === null);
+    //  disabled.stop = false;
+  //  } else if (route) {
 
       disabled.start = !([0, 4].includes(route.r_state) && route.r_can_be_started === '1');
       disabled.stop = false;
-    }
+   // }
   }
 
   startButton['disabled'] = disabled.start;
@@ -65,14 +65,14 @@ const startRoute = (id) => {
       console.log('Starting route', id);
       setTag(`routeState_${id}`, 2);
 
-    } else {      
-        if (window.parent.location.href.indexOf('page-sakums.html') !== -1){
-          setTag(`routeComand_${id}`, 1);
-        }else if(window.parent.location.href.indexOf('al3-sakums.html') !== -1){
-          setTag(`P3_routeComand_${id}`, 1)
-        }else if(window.parent.location.href.indexOf('al-sakums.html') !== -1){
-          // šeit būs Kirila lapas pārveidots uz vienotu standartu
-        }
+    } else {
+      if (window.parent.location.href.indexOf('page-sakums.html') !== -1) {
+        setTag(`routeComand_${id}`, 1);
+      } else if (window.parent.location.href.indexOf('al3-sakums.html') !== -1) {
+        setTag(`P3_routeComand_${id}`, 1)
+      } else if (window.parent.location.href.indexOf('al-sakums.html') !== -1) {
+        // šeit būs Kirila lapas pārveidots uz vienotu standartu
+      }
     }
   } catch (e) {
     console.error('Error setting tag:', e);
@@ -83,16 +83,18 @@ const endRoute = (id) => {
   try {
     if (developerMode) {
       console.log('Ending route', id);
-      setTag(`routeState_${id}`, 0);
-    } else {      
-      if (window.parent.location.href.indexOf('page-sakums.html') !== -1){
+      setTag(`routeState_${id}`, 2);
+    } else {
+      if (window.parent.location.href.indexOf('page-sakums.html') !== -1) {
         setTag(`routeComand_${id}`, 2);
-      }else if(window.parent.location.href.indexOf('al3-sakums.html') !== -1){
-        setTag(`P3_routeComand_${id}`, 2)
-      }else if(window.parent.location.href.indexOf('al-sakums.html') !== -1){
+      } else if (window.parent.location.href.indexOf('al3-sakums.html') !== -1) {
+        console.log('BBBBBBBBBBB');
+        setTag(`P3_routeComand_0`, 2);
+
+      } else if (window.parent.location.href.indexOf('al-sakums.html') !== -1) {
         // šeit būs Kirila lapas pārveidots uz vienotu standartu
       }
-  }
+    }
   } catch (e) {
     console.error('Error setting tag:', e);
   }
@@ -108,15 +110,20 @@ startButton.addEventListener('click', () => {
   const route = getSelectedRoute();
   if (route !== -1) {
     startRoute(route);
-    
+
   }
   setTimeout(() => {
     updateButtonStates();
   }, 3000);
 });
 
-stopButton.addEventListener('click', () => {
+stopButton.addEventListener('click', async () => {
   enableButtons(false);
+    var is_open_acceptence = await getAcceptenceData();
+  if(is_open_acceptence){ 
+  open_gabage_input();
+  await waitForButtonClick();
+  }  
   const route = getSelectedRoute();
   if (route !== -1) {
     endRoute(route);
@@ -159,39 +166,39 @@ export default async function routes() {
 
 
           //console.log(r_name);
-          if (r_name.startsWith("CC63")){
-            const stateText = getRouteStatusText(r_state, true);
-            const stateColor = getRouteStatusColor(r_state, true);
-            return {            
+          // if (r_name.startsWith("CC63")) {
+          //   const stateText = getRouteStatusText(r_state, r_can_be_started);
+          //   const stateColor = getRouteStatusColor(r_state, r_can_be_started);
+          //   return {
+          //     id: r_id,
+          //     name: r_name + (stateText !== '' ? ` (${stateText})` : ''),
+          //     color: stateColor,
+          //   };
+          // } else {
+            const stateText = getRouteStatusText(r_state, r_can_be_started);
+            const stateColor = getRouteStatusColor(r_state, r_can_be_started);
+            return {
               id: r_id,
               name: r_name + (stateText !== '' ? ` (${stateText})` : ''),
               color: stateColor,
             };
-          }else{
-            const stateText = getRouteStatusText(r_state, r_can_be_started);
-            const stateColor = getRouteStatusColor(r_state, r_can_be_started);
-          return {            
-            id: r_id,
-            name: r_name + (stateText !== '' ? ` (${stateText})` : ''),
-            color: stateColor,
-          };
-        }
+          //}
         }),
       });
-      
+
       const allArrows = document.querySelectorAll('[id^="arrow__"]');
-      
+
       allArrows.forEach((arrow) => {
         if (arrow.getAttribute('fill')) {
           arrow['style'].fill = colors.darkGray;
         } else {
-          arrow['style'].stroke = colors.darkGray; 
+          arrow['style'].stroke = colors.darkGray;
         }
       });
     }
 
     const selectedRoute = getSelectedRoute();
-    
+
     if (selectedRoute !== null) {
       selectBox['value'] = selectedRoute;
     } else {
@@ -218,10 +225,10 @@ export default async function routes() {
           }
         });
       });
-  } else if(window.parent.location.href.indexOf('al3-sakums.html') !== -1) {
+  } else if (window.parent.location.href.indexOf('al3-sakums.html') !== -1) {
 
     const data = await runSqlSelect('al3_select_all_routes');
-    
+
     if (routesDataDiffers(data)) {
       setRoutesData(data);
       selectBox.innerHTML = selectTemplate({
@@ -235,21 +242,21 @@ export default async function routes() {
           };
         }),
       });
-      
+
       const allArrows = document.querySelectorAll('[id^="Arrow_"]');
-      
+
       allArrows.forEach((arrow) => {
-        
+
         if (arrow.getAttribute('fill')) {
           arrow['style'].fill = colors.darkGray;
         } else {
-          arrow['style'].stroke = colors.darkGray; 
+          arrow['style'].stroke = colors.darkGray;
         }
       });
     }
 
     const selectedRoute = getSelectedRoute();
-    
+
     if (selectedRoute !== null) {
       selectBox['value'] = selectedRoute;
     } else {
@@ -260,9 +267,9 @@ export default async function routes() {
     data
       .filter(({ r_state }) => r_state !== 0)
       .forEach(({ r_state, arrows, r_color }) => {
-        
+
         const arrowIds = arrows.split(',');
-        
+
         arrowIds.forEach((arrowId) => {
           console.log(arrowId);
           const arrows = document.querySelectorAll(`[id^="Arrow_${arrowId}"]`);
@@ -278,11 +285,11 @@ export default async function routes() {
           }
         });
       });
-/////////////////////////////////////////////////////  al1   ///////////// apstrāde
-  }else if(window.parent.location.href.indexOf('al1-sakums.html') !== -1) {
+    /////////////////////////////////////////////////////  al1   ///////////// apstrāde
+  } else if (window.parent.location.href.indexOf('al1-sakums.html') !== -1) {
 
     const data = await runSqlSelect('al1_select_all_routes');
-//console.log(data);
+    //console.log(data);
     if (routesDataDiffers(data)) {
       setRoutesData(data);
       selectBox.innerHTML = selectTemplate({
@@ -296,21 +303,21 @@ export default async function routes() {
           };
         }),
       });
-      
+
       const allArrows = document.querySelectorAll('[id^="Arrow_"]');
-      
+
       allArrows.forEach((arrow) => {
-      
+
         if (arrow.getAttribute('fill')) {
           arrow['style'].fill = colors.darkGray;
         } else {
-          arrow['style'].stroke = colors.darkGray; 
+          arrow['style'].stroke = colors.darkGray;
         }
       });
     }
 
     const selectedRoute = getSelectedRoute();
-    
+
     if (selectedRoute !== null) {
       selectBox['value'] = selectedRoute;
     } else {
@@ -321,9 +328,9 @@ export default async function routes() {
     data
       .filter(({ r_state }) => r_state !== 0)
       .forEach(({ r_state, arrows, r_color }) => {
-        
+
         const arrowIds = arrows.split(',');
-        
+
         arrowIds.forEach((arrowId) => {
           //console.log(arrowId);
           const arrows = document.querySelectorAll(`[id^="Arrow_${arrowId}"]`);

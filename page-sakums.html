@@ -11,6 +11,19 @@
   <link rel="stylesheet" type="text/css" href="styles/acceptance.css" />
   <link rel="stylesheet" type="text/css" href="styles/modal.css" />
   <script type="text/javascript" src="system/scripts/igrX2.js"></script>
+
+  <style>
+    .custom-popup-class {
+
+
+      /* Jūsu izvēlētā fonta izmērs */
+    }
+
+    .custom-popup-class {
+      font-size: 16px !important;
+      /* Jūsu izvēlētā virsraksta fonta izmērs */
+    }
+  </style>
 </head>
 
 <body>
@@ -45,9 +58,11 @@
         </ul>
       </nav>
       <nav>
+
+        <button id="ActiveAcceptence">Ir atvērta pieņemšana</button>
         <button id="acceptance">Pieņemšana</button>
-        <button id="addGarageWeight">Atbiras</button>
-        <button id="createOrder">Izveidot uzdevumu</button>        
+        <button id="createOrder">Izveidot partiju</button>
+
       </nav>
     </header>
     <div class="kn-main-container">
@@ -1394,11 +1409,14 @@
                   d="M1783.26 504V491.931H1785.72V501.95H1791.83V504H1783.26ZM1792.96 500.041L1795.35 499.808C1795.5 500.611 1795.79 501.2 1796.23 501.576C1796.67 501.952 1797.26 502.141 1798.01 502.141C1798.8 502.141 1799.4 501.975 1799.79 501.643C1800.2 501.305 1800.4 500.912 1800.4 500.464C1800.4 500.176 1800.31 499.933 1800.14 499.733C1799.98 499.529 1799.68 499.352 1799.26 499.202C1798.98 499.103 1798.32 498.925 1797.3 498.671C1795.98 498.344 1795.05 497.943 1794.52 497.467C1793.78 496.798 1793.4 495.981 1793.4 495.019C1793.4 494.399 1793.58 493.82 1793.93 493.284C1794.28 492.741 1794.79 492.329 1795.44 492.047C1796.11 491.765 1796.91 491.624 1797.84 491.624C1799.37 491.624 1800.52 491.958 1801.29 492.628C1802.06 493.298 1802.47 494.191 1802.51 495.309L1800.05 495.417C1799.95 494.792 1799.72 494.343 1799.37 494.072C1799.03 493.796 1798.51 493.657 1797.82 493.657C1797.11 493.657 1796.55 493.804 1796.14 494.097C1795.88 494.285 1795.75 494.537 1795.75 494.853C1795.75 495.14 1795.87 495.387 1796.12 495.591C1796.43 495.851 1797.18 496.123 1798.38 496.405C1799.57 496.687 1800.45 496.98 1801.02 497.285C1801.6 497.583 1802.05 497.996 1802.37 498.521C1802.69 499.042 1802.86 499.686 1802.86 500.456C1802.86 501.153 1802.66 501.806 1802.28 502.415C1801.89 503.023 1801.34 503.477 1800.63 503.776C1799.92 504.069 1799.04 504.216 1797.98 504.216C1796.45 504.216 1795.27 503.862 1794.44 503.153C1793.62 502.439 1793.12 501.402 1792.96 500.041Z"
                   fill="white" />
               </g>
-              <text id="ID149_LVL" font-size="31" x="1769" y="477" text-anchor="middle">
+              <text id="ID149_PRO" font-size="31" x="1769" y="477" text-anchor="middle">
                 #####
               </text>
-              <path id="T_10" d="M1823.24 476V464.105H1818.99V461.684H1830.37V464.105H1826.13V476H1823.24Z"
-                fill="white" />
+              <text id="149" font-size="24" x="1820" y="477" text-anchor="middle">
+                %
+              </text>
+              <!-- <path id="T_10" d="M1823.24 476V464.105H1818.99V461.684H1830.37V464.105H1826.13V476H1823.24Z"
+                fill="white" /> -->
             </g>
             <text id="product_id149" fill="black" style="white-space: pre" font-family="Arial" font-size="14"
               font-weight="bold" letter-spacing="0em" text-anchor="middle" x="1780.66" y="591.16">BU2</text>
@@ -1421,11 +1439,17 @@
                   d="M1642.22 500V487.931H1644.67V497.95H1650.78V500H1642.22ZM1651.97 496.041L1654.36 495.808C1654.62 497.363 1655.5 498.141 1657.02 498.141C1657.76 498.141 1658.34 497.983 1658.77 497.667C1659.2 497.352 1659.41 496.954 1659.41 496.472C1659.41 496.024 1659.23 495.697 1658.88 495.493C1658.53 495.282 1657.67 495.008 1656.3 494.671C1654.69 494.272 1653.63 493.741 1653.14 493.077C1652.65 492.408 1652.41 491.724 1652.41 491.027C1652.41 490.003 1652.8 489.181 1653.57 488.562C1654.35 487.936 1655.45 487.624 1656.86 487.624C1658.28 487.624 1659.4 487.939 1660.22 488.57C1661.05 489.201 1661.48 490.114 1661.52 491.309L1659.06 491.417C1658.92 490.244 1658.18 489.657 1656.85 489.657C1656.22 489.657 1655.71 489.765 1655.32 489.981C1654.95 490.197 1654.76 490.487 1654.76 490.853C1654.76 491.157 1654.9 491.423 1655.19 491.649C1655.48 491.876 1656.25 492.136 1657.49 492.43C1658.62 492.701 1659.48 492.989 1660.06 493.293C1660.64 493.597 1661.08 494.021 1661.39 494.563C1661.71 495.1 1661.87 495.733 1661.87 496.464C1661.87 497.493 1661.48 498.376 1660.7 499.112C1659.92 499.848 1658.68 500.216 1656.99 500.216C1653.97 500.216 1652.3 498.824 1651.97 496.041Z"
                   fill="white" />
               </g>
-              <text id="ID148_LVL" font-size="31" x="1628" y="477" text-anchor="middle">
+              <!-- <text id="ID148_LVL" font-size="31" x="1628" y="477" text-anchor="middle">
+                #####
+              </text> -->
+              <text id="ID148_PRO" font-size="31" x="1628" y="477" text-anchor="middle">
                 #####
               </text>
-              <path id="T_11" d="M1682.2 473V461.105H1677.96V458.684H1689.33V461.105H1685.09V473H1682.2Z"
-                fill="white" />
+              <text id="148" font-size="24" x="1680" y="477" text-anchor="middle">
+                %
+              </text>
+              <!-- <path id="T_11" d="M1682.2 473V461.105H1677.96V458.684H1689.33V461.105H1685.09V473H1682.2Z"
+                fill="white" />-->
             </g>
             <text id="product_id148" fill="black" style="white-space: pre" font-family="Arial" font-size="14"
               font-weight="bold" letter-spacing="0em" text-anchor="middle" x="1640.66" y="592.16">BU1</text>
@@ -1862,35 +1886,24 @@
         <p id="message-text"></p>
         <button class="tag-button" id="DropErr" data-confirm="Vai vēlaties nomest elementu kļūdas?">Nomest Elementa
           Kļūdas</button>
-
         <button id="close-button"> Aizvērt </button>
-
-
-
       </div>
     </div>
-
-
-
 
     <!--  Seit Atbiru ievades lauks-->
     <div id="garbage-module">
       <div id="garbage-box">
         <button id="product-close-button">X</button>
         <div>
-          <h3>Atbiras</h3>
+          <h3>Pieņemšanas atbiras</h3>
         </div>
         <div class="garbage_container">
           <label for="supplier"> Piegādātāji:</label>
-          <select id="supplier">
-
-          </select>
-          <label for="weight">Svars [kg]:</label>
-          <input type="number" id="weight" step="0.01">
+          <label id="supplier" style="text-align: center;"></label>
           <label for="product">Produkts:</label>
-          <select id="product">
-
-          </select>
+          <label id="product" style="text-align: center;"></label>
+          <label for="weight">Svars [kg]:</label>
+          <input type="number" id="weight" step="0.01" value="0">
         </div>
         <div>
           <button id="saveGarbage">Saglabāt</button>
@@ -1902,26 +1915,40 @@
       <div id="order-box">
         <button id="order-close-button">X</button>
         <div>
-          <h3>Uzdevumu izveide</h3>
+          <h3>Partijas izveide</h3>
         </div>
         <div class="order_container_manage" id="order_container_manage">
           <label>Darbs no:</label>
           <button class="orderBtn active" id="silosBtn">Silos</button>
-          <button class="orderBtn" id="ielade">Ielādes</button>
+          <button class="orderBtn" id="ielade">Auto Ielādes</button>
+          <button class="orderBtn" id="big_bag">Big Bag</button>
         </div>
         <div class="order_container">
-          <label for="order">Uzdevums Nr.:</label>
-          <input type="text" id="order" required>
+          <label for="order">Partijas Nr.:</label>
+          <input type="text" id="order" autocomplete="off" required>
+        </div>
+        <div class="order_container2" id="order_container_5">
+          <label for="order">Pavadzīmes Nr.:</label>
+          <input type="text" id="invoice" autocomplete="off" required>
         </div>
         <div class="order_container" id="order_container_1">
           <label for="silos">Silos Nr.:</label>
           <select id="silos">
           </select>
         </div>
+        <div class="order_container2" id="order_container_3">
+          <label for="suppliers">Piegādātājs:</label>
+          <select id="suppliers">
+          </select>
+        </div>
         <div class="order_container2" id="order_container_2">
           <label for="orderProduct">Produkts:</label>
           <select id="orderProduct">
           </select>
+        </div>
+        <div class="order_container2" id="order_container_4">
+          <label for="fullWeight">Ielādes kopējasi svars:</label>
+          <input type="number" id="fullWeight">
         </div>
         <div class="order_container">
           <label for="bunker">Bunkurs Nr.:</label>
@@ -1933,6 +1960,13 @@
         </div>
       </div>
     </div>
+
+
+
+
+
+
+
     <!--   Šeit kravas pieņemšana     -->
     <div id="acceptance-module">
       <div id="acceptance-box">
@@ -1942,19 +1976,18 @@
         <div><label>Pieņemšana</label> <button class="acception_active" id="firstWeight">Pirmā svēršana</button><button
             class="acception_inactive" id="secondWeight">Otrā svēršana</button></div>
         <div class="acceptance_container_1" id="acceptance_container_1">
-          <label for="acceptence_supplier">Piegādātājs:</label>
-          <select id="acceptence_supplier">
-          </select>
+          <label>Piegādātājs:</label>
+          <label id="selected_supplier" style="text-align: center;"></label>
+
+          <label>Produkts:</label>
+          <label id="selected_product" style="text-align: center;"></label>
+
+          <label>Silos Nr.</label>
+          <label id="selected_silo" style="text-align: center;"></label>
           <label for="pvz">Pavadzīmes Nr.</label>
-          <input class="inputs_1" type="text" id="pvz">
-          <label for="acceptence_product">Produkts:</label>
-          <select id="acceptence_product">
-          </select>
+          <input class="inputs_1" type="text" id="pvz" autocomplete="off">
           <label for="acceptence_weight">Svars</label>
           <input class="inputs_1" type="number" id="acceptance_weight">
-          <label for="acceptence_silos">Silos Nr.</label>
-          <select id="acceptence_silos">
-          </select>
           <div></div>
           <div style="text-align: left;">
 
@@ -1979,6 +2012,33 @@
         </div>
       </div>
     </div>
+    <!--//////////////////////  Pieņemšanas atvēršana ///////////////////////////-->
+    <div id="open_acception-module">
+      <div id="open_acception-box">
+        <button id="opening-close-button">X</button>
+        <div>
+          <h3>Atvērt pieņemšanu</h3>
+        </div>
+        <div class="garbage_container">
+          <label for="acceptence_supplier"> Piegādātāji:</label>
+          <select id="acceptence_supplier">
+
+          </select>
+          <label for="acceptence_product">Produkts:</label>
+          <select id="acceptence_product">
+
+          </select>
+          <label for="acceptence_silos">Silos Nr.</label>
+          <select id="acceptence_silos">
+          </select>
+
+        </div>
+        <div>
+          <button id="saveOpening">Saglabāt</button>
+        </div>
+      </div>
+    </div>
+
 
   </main>
 
@@ -1989,7 +2049,24 @@
   <script src="scripts/frontend/OrderManage.js"></script>
   <script src="scripts/frontend/acceptance.js"></script>
   <script type="module" src="scripts/sakumlapa/index.js"></script>
+  <script type="text/javascript" src="MODULES/sweetalert2@9.js"></script>
+
   <script>
+
+
+    let loadingInfo = Swal.mixin({
+      customClass: {
+        container: 'custom-container-class',
+        popup: 'custom-popup-class',
+      },
+    });
+
+    function BanerMessage() {
+      loadingInfo.fire({
+        title: 'Ir atvērta produkta pieņemšana!',
+        text: 'Lai pabeigtu produkta pieņemšanu ir jāaptur pieņemšanas maršruts -poga- [STOP]', showConfirmButton: true
+      })
+    }
 
     function productsForSilo() {
       return new Promise(resolve => {
@@ -2016,23 +2093,30 @@
     };
 
 
+    var isAcriveAcceptenceBaner = document.getElementById("ActiveAcceptence");
 
+    let timeout; // definējam timeout mainīgo ārpus funkcijas
 
-    var interval;
     const observer = new IntersectionObserver(async function (entries) {
       const isVisible = entries[0].isIntersecting;
 
       if (isVisible) {
         console.log('Esmu redzams');
-        interval = setInterval(manageProductsInSilo, 2000)
 
+        // Pārtraucam esošo timeout, ja tāds eksistē
+        if (timeout) {
+          clearTimeout(timeout);
+        }
 
-      }else{
-        clearInterval(interval);
+        // Iestatām jaunu timeout ar nepieciešamo atkārtošanos
+        timeout = setTimeout(function repeat() {
+          manageProductsInSilo();
+          timeout = setTimeout(repeat, 2000);
+        }, 2000);
+      } else {
+        // Notīram timeout, ja elements kļuvis neredzams
+        clearTimeout(timeout);
       }
-
-
-
     });
 
     const targetElement = document.querySelector('#debugModeButton');
@@ -2040,7 +2124,7 @@
 
     async function manageProductsInSilo() {
 
-      
+      console.log("Ir timeouts?");
 
       var productsInSilos = await productsForSilo();
 
@@ -2056,9 +2140,23 @@
 
       });
 
+      var is_active_incoms_now = await check_active_income();
+
+      if (!is_active_incoms_now) {
+        isAcriveAcceptenceBaner.setAttribute('style', 'display:none');
+        isAcriveAcceptenceBaner.addEventListener('click', BanerMessage);
+      } else {
+        isAcriveAcceptenceBaner.setAttribute('style', 'display:inline');
+        isAcriveAcceptenceBaner.addEventListener('click', BanerMessage);
+      }
+
     }
 
+
+
   </script>
+  <script src="scripts/frontend/acceptance.js"></script>
+
 </body>
 
 </html>

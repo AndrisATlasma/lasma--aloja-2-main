@@ -22,10 +22,30 @@ function ps_products_select_all_not_deleted() {
         });
     });
 };
+function ps_suppliers_select_all_not_deleted() {
+    return new Promise(resolve => {
+        runSql('suppliers_select_all_not_deleted', {}, db_setting, function (results) {
+            if (results.statusCode !== 200) {
+                console.info(`Nesanāca`);
+                resolve(false);
+            }
+            resolve(results.responseJson);
+        });
+    });
+};
 function ps_products_update_product(label, product_id) {
     return new Promise(resolve => {
         // update products set label='@label' where product_id=@product_id;
+        console.log(label, product_id);
         runSql('products_update_product', { label, product_id }, db_setting, function (results) {
+            resolve(results.statusCode === 200);
+        });
+    });
+};
+function ps_supplier_update_(label, suplier_id) {
+    return new Promise(resolve => {
+        // update products set label='@label' where product_id=@product_id;
+        runSql('supplier_update', { label, suplier_id }, db_setting, function (results) {
             resolve(results.statusCode === 200);
         });
     });
@@ -38,10 +58,26 @@ function ps_products_insert_product(label) {
         });
     });
 };
+function ps_supplier_insert_(label) {
+    return new Promise(resolve => {
+        // insert into products (label) values ('@label');
+        runSql('supplier_inserts', { label }, db_setting, function (results) {
+            resolve(results.statusCode === 200);
+        });
+    });
+};
 function ps_products_delete_product(product_id) {
     return new Promise(resolve => {
         // update products set deleted=true where product_id=@product_id;
         runSql('products_delete_product', { product_id }, db_setting, function (results) {
+            resolve(results.statusCode === 200);
+        });
+    });
+};
+function ps_supplier_delete(product_id) {
+    return new Promise(resolve => {
+        // update products set deleted=true where product_id=@product_id;
+        runSql('suppliers_delete', { product_id }, db_setting, function (results) {
             resolve(results.statusCode === 200);
         });
     });

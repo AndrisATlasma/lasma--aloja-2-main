@@ -1,4 +1,4 @@
-for (var id = 0; id <= 44; id++) {
+for (var id = 0; id <= 50; id++) {
    if (id === 4 || id === 7 || id >= 40) continue; // no motors in these elements
 
    (function () {

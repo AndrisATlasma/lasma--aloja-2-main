@@ -1,4 +1,5 @@
 
+
 (function () {
    var pgJson = { dbgroup: '_postgres', outfmt: 'json' };
    var pg = { dbgroup: '_postgres' };
@@ -29,21 +30,32 @@
       if (attrData.tag_sets_attr === '1') {
          attr_value = tag_vaule;
       }
-      
+
       var sqlText = 'update ' + attributesTable + ' set attr_value = ' + attr_value + '# where uid = ' + attr_id;
-      
+
       setSql(sqlText.replace('#', attrData.tag_name ? ', tag_value = ' + tag_vaule : ''), pg);
    });
-// update silos date 
+   // update silos date 
 
-   var silos_weight = JSON.parse(getSql('select * from silos',pgJson));
-   if(silos_weight === null) return debugString('ERROR:NO SILOS IN SILOS TABLE');
+   var silos_weight = JSON.parse(getSql('select * from silos', pgJson));
+   if (silos_weight === null) return debugString('ERROR:NO SILOS IN SILOS TABLE');
 
    silos_weight.forEach(function (silo) {
       var silo_weight = silo.act_weight;
       var silo_id = silo.el_id;
+      //debugString(silo.max_tons);
+      //setTag('ID'+silo_id+'_LVL', silo_weight);
 
-      setTag('ID'+silo_id+'_LVL', silo_weight);
+      var sqlText = 'UPDATE ' + attributesTable + ' SET attr_value = \'' + silo_weight + '\' WHERE el_id = ' + silo_id + ' AND attr_name = \'LVL\'';
+      //debugString(sqlText);
+      if (silo.act_weight >= silo.max_tons) {
+         //debugString("vLimit_ID"+silo_id);
+         setTag("vLimit_ID" + silo_id, true);
+      } else {
+         // debugString("mazaks"); 
+         setTag("vLimit_ID" + silo_id, false);
+      }
+      setSql(sqlText, pg);
    });
 
 
@@ -117,26 +129,33 @@
       }
    }
 
-   var activeIs="";
+   var activeIs = "";
    var activeRoute = JSON.parse(getSql('select * from ' + routesTable + ' where r_state != 0;', pgJson));
-   if(activeRoute){
-    activeRoute.forEach(function (RoteIsActive) {
-   activeIs = RoteIsActive.r_name;
-   });
-   }  
+   if (activeRoute) {
+      activeRoute.forEach(function (RoteIsActive) {
+         activeIs = RoteIsActive.r_name;
+      });
+   }
    //debugString(activeIs);
-   if(!activeIs){
+   if (!activeIs) {
 
-   allRoutes.forEach(function (routeData) {
-      var route_id = routeData.r_id;
-      var route_state = getTag('routeState_' + route_id) || 0;
-      var route_name = routeData.r_name;
-      //   if (route_state==0) {
-      var can_start = "true";
-      var prepeared_orders = JSON.parse(getSql('select * from orders where route_name  = \'' + route_name + '\' and order_state IN (1, 2, 3) ;', pgJson));
-      
-      
-         if (prepeared_orders && !activeRoute && activeIs =="" ) {
+      allRoutes.forEach(function (routeData) {
+         var route_id = routeData.r_id;
+         var route_state = getTag('routeState_' + route_id) || 0;
+         var route_name = routeData.r_name;
+         //   if (route_state==0) {
+         var can_start = "true";
+         var prepeared_orders = JSON.parse(getSql('select * from orders where route_name  = \'' + route_name + '\' and order_state IN (1, 2, 3) ;', pgJson));
+
+         var active_incomings = JSON.parse(getSql('select * from silos where active_income = true;',pgJson));
+         
+         // if("CC6301_CLNR_S"+active_incomings[0].u_id ==routeData.r_name){
+         // debugString(route_id);
+         // }
+         
+
+
+         if (prepeared_orders && !activeRoute && activeIs == "") {
             var sqlText =
                'update ' +
                routesTable +
@@ -158,7 +177,7 @@
                ' where r_id = ' +
                route_id;
             setSql(sqlText, pg);
-         } else if (activeIs!="") {
+         } else if (activeIs != "") {
 
             var sqlText =
                'update ' +
@@ -170,8 +189,35 @@
                ' where r_name != ' +
                activeIs;
             setSql(sqlText, pg);
+         }else if(active_incomings){
+            if("CC6301_CLNR_S"+active_incomings[0].u_id ==routeData.r_name){
+               debugString(routeData.r_name);
+               var sqlText =
+                  'update ' +
+                  routesTable +
+                  ' set r_state = ' +
+                  route_state +
+                  ', r_can_be_started =  ' +can_start
+                   +
+                  ' where r_id = ' +
+                  route_id;
+               setSql(sqlText, pg);
+         } else{
+            debugString(routeData.r_name);
+               var sqlText =
+                  'update ' +
+                  routesTable +
+                  ' set r_state = ' +
+                  route_state +
+                  ', r_can_be_started =  ' +route_can_be_started(route_id)
+                   +
+                  ' where r_id = ' +
+                  route_id;
+               setSql(sqlText, pg);
+         }
+
          }else {
-            
+
             var sqlText =
                'update ' +
                routesTable +
@@ -183,22 +229,23 @@
                route_id;
             setSql(sqlText, pg);
          }
-      
-   });}else{
+
+      });
+   } else  {
       allRoutes.forEach(function (routeData) {
          var route_id = routeData.r_id;
          var route_state = getTag('routeState_' + route_id) || 0;
 
          var sqlText =
-       'update ' +
-       routesTable +
-       ' set r_state = ' +
-       route_state +
-       ', r_can_be_started = ' +
-       route_can_be_started(route_id) +
-       ' where r_id = ' +
-       route_id;
-     setSql(sqlText, pg);
+            'update ' +
+            routesTable +
+            ' set r_state = ' +
+            route_state +
+            ', r_can_be_started = ' +
+            route_can_be_started(route_id) +
+            ' where r_id = ' +
+            route_id;
+         setSql(sqlText, pg);
       });
    }
    // Update other tags

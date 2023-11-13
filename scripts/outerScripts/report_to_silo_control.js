@@ -1,8 +1,8 @@
 const db_setting = { outfmt: 'json', dbgroup: '_postgres' };
 
-var th = ["<tr><th>Svēršanas laiks</th><th>Pavadzīmes Nr.</th><th>Piegādātājs</th><th>Produkts</th><th>Pilns svars [kg]</th><th>Auto svars [kg]</th><th>Kravas svars [kg]</th></tr>"];
+var th = ["<tr><th>Svēršanas laiks</th><th>Pavadzīmes Nr.</th><th>Piegādātājs</th><th>Produkts</th><th>Pilns svars [kg]</th><th>Auto svars [kg]</th><th>Kravas svars [kg]</th><th>Pieņemšanas atbiras [kg]</th></tr>"];
 
-var export_th = ["Svēršanas laiks", "Pavadzīmes Nr.", "Piegādātājs", "Produkt", "Pilns svars [kg]", "Auto svars [kg]", "Kravas svars [kg]"];
+var export_th = ["Svēršanas laiks", "Pavadzīmes Nr.", "Piegādātājs", "Produkt", "Pilns svars [kg]", "Auto svars [kg]", "Kravas svars [kg]","Pieņemšanas atbiras [kg]"];
 var export_arry = [];
 var export_arry_full = [];
 
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var temp_arry = [];
         var ValueArray = "";
         export_arry_full.push(promt_arry, empty_arry, export_th);
-
+        var rowspan = 0
         for (key in silo_report_data) {
             var tableValue = Object.values(silo_report_data[key]);
             export_arry = [];
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 export_arry.push(tableValue[i]);
             }
             export_arry_full.push(export_arry);
-            ValueArray += "<tr><td>" + silo_report_data[key].laiks + "</td><td>" + silo_report_data[key].invoice + "</td><td>" + silo_report_data[key].supplier + "</td><td>" + silo_report_data[key].label + "</td><td>" + silo_report_data[key].full_weight + "</td><td>" + silo_report_data[key].truck_weight + "</td><td>" + silo_report_data[key].load_weight + "</td></tr>";
+            ValueArray += "<tr><td>" + silo_report_data[key].laiks + "</td><td>" + silo_report_data[key].invoice + "</td><td>" + silo_report_data[key].supplier + "</td><td>" + silo_report_data[key].label + "</td><td>" + silo_report_data[key].full_weight + "</td><td>" + silo_report_data[key].truck_weight + "</td><td>" + silo_report_data[key].load_weight + "</td><td>" + silo_report_data[key].garbage + "</td></tr>";
         }
         temp_arry += ValueArray;
         document.getElementsByTagName("thead")[0].innerHTML = th;

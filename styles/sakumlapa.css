@@ -141,6 +141,7 @@
 
 #IMG > g[id^="path_id"]:hover,
 #IMG > g[id^="group_id"]:hover,
+#IMG > g[id^="sw_bg"]:hover,
 #weightReset:hover {
   opacity: 0.75;
   transform: translateY(-5px);
@@ -152,6 +153,7 @@
 
 #VM > g[id^="group_id"]:hover {
   opacity: 0.75;
+  transform: translateY(-5px);
 }
 
 #IMG text {

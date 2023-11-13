@@ -1,8 +1,8 @@
 const db_setting = { outfmt: 'json', dbgroup: '_postgres' };
 
-var th = ["<tr><th>Sākuma laiks</th><th>Beigu laiks</th><th>Produkts</th><th>Uzdevums</th><th>Ieejas svars [kg]</th><th>Ražošanas atbiras [kg]</th><th>Mizas [kg]</th><th>Ciete [kg]</th><th>Proteīns [kg]</th><th>Filtra proteīns [kg]</th><th>Zudumi [%]</th><th>Weifang [kw/h]</th><th>Weifang [h]</th><th>Lobīšana [kw/h]</th><th>Lobīšana [h]</th></tr>"];
+var th = ["<tr><th>Sākuma laiks</th><th>Beigu laiks</th><th>Produkts</th><th>Uzdevums</th><th>Ieejas svars [kg]</th><th>Ražošanas atbiras [kg]</th><th>Lobīšanas atbiras [kg]</th><th>Ciete [kg]</th><th>Proteīns [kg]</th><th>Filtra proteīns [kg]</th><th>Zudumi [%]</th><th>Weifang [kw/h]</th><th>Weifang [h]</th><th>Lobīšana [kw/h]</th><th>Lobīšana [h]</th></tr>"];
 
-var export_th = ["Sākuma laiks", "Beigu laiks", "Produkts","Uzdevums","Ieejas svars [kg]","Ražošanas atbiras [kg]","Mizas [kg]","Ciete [kg]","Proteīns [kg]","Filtra proteīns [kg]","Zudumi [%]","Weifang [kw/h]","Weifang [h]","Lobīšana [kw/h]","Lobīšana [h]"];
+var export_th = ["Sākuma laiks", "Beigu laiks", "Produkts","Uzdevums","Ieejas svars [kg]","Ražošanas atbiras [kg]","Lobīšanas atbiras [kg]","Ciete [kg]","Proteīns [kg]","Filtra proteīns [kg]","Zudumi [%]","Weifang [kw/h]","Weifang [h]","Lobīšana [kw/h]","Lobīšana [h]"];
 var export_arry = [];
 var export_arry_full = [];
 
@@ -75,9 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 order_id: order_data_1[key].order_id
             }
             var total = 0;
-
+            console.time("Report");
             var scales_order_data = await order_report_2(params);
-
+            console.timeEnd("Report");
             var tableValue = Object.values(order_data_1[key]);
             for (i = 0; i < tableValue.length; i++) {
                 export_arry.push(tableValue[i]);

@@ -7,6 +7,8 @@
     <link rel='stylesheet' type='text/css' href='system/styles/igrX.css' />
     <script type='text/javascript' src='system/scripts/igrX2.js'></script>
     <link rel="stylesheet" type="text/css" href="styles/al_control.css" />
+
+
     <style>
         /* MARKUP */
         body {
@@ -274,6 +276,7 @@
             grid-template-columns: 2fr 2fr 2fr 1fr;
             gap: 5px;
         }
+
         .smalGrid3 {
             height: 50px;
             margin: 0px;
@@ -386,17 +389,19 @@
             width: 80%;
             height: 80%;
             border-radius: 7px;
-           /* -webkit-transition-duration: 0.4s; */
+            /* -webkit-transition-duration: 0.4s; */
             /* Safari */
-           /* transition-duration: 0.4s; */
-           /* text-decoration: none;*/
-           /* overflow: hidden;*/
+            /* transition-duration: 0.4s; */
+            /* text-decoration: none;*/
+            /* overflow: hidden;*/
             cursor: pointer;
         }
-        .lobisana_work{
+
+        .lobisana_work {
             background-color: #25da01;
         }
-/*
+
+        /*
         .control-btn-on-job {
             position: relative;
             background-color: #8de7b3;
@@ -513,67 +518,68 @@
 
         /* Apstiprinājuma css *******************************/
         .confirm-dialog {
-  display: none; /* Pievienots, lai noklusējuma stāvoklī dialogs nebūtu redzams */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-}
+            display: none;
+            /* Pievienots, lai noklusējuma stāvoklī dialogs nebūtu redzams */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
 
-.confirm-dialog.show {
-  display: flex; /* Pievienots, lai rādītu dialogu, kad tam ir klase .show */
-}
+        .confirm-dialog.show {
+            display: flex;
+            /* Pievienots, lai rādītu dialogu, kad tam ir klase .show */
+        }
 
-.confirm-dialog-content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  text-align: center;
-}
+        .confirm-dialog-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
 
 
-.confirm-dialog-content h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
+        .confirm-dialog-content h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
 
-.confirm-dialog-content p {
-  font-size: 16px;
-  margin-bottom: 20px;
-}
+        .confirm-dialog-content p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
 
-.confirm-dialog-buttons {
-  display: flex;
-  justify-content: center;
-}
+        .confirm-dialog-buttons {
+            display: flex;
+            justify-content: center;
+        }
 
-.confirm-dialog-btn {
-  margin: 0 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-}
+        .confirm-dialog-btn {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-.confirm-dialog-btn.confirm {
-  background-color: #3cc13b;
-  color: #fff;
-}
+        .confirm-dialog-btn.confirm {
+            background-color: #3cc13b;
+            color: #fff;
+        }
 
-.confirm-dialog-btn.cancel {
-  background-color: #d11a2a;
-  color: #fff;
-}
-
+        .confirm-dialog-btn.cancel {
+            background-color: #d11a2a;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -590,7 +596,7 @@
                 </div>
                 <div class="control-btn-elements"><button id="bu1_on" class="control-btn-on">ON</button></div>
                 <div class="control-btn-elements"><button id="bu1_off" class="control-btn-off">OFF</button></div>
-                <div class="control-btn-elements"><text id="bu1_text" class ="adaptivs-svars"></text>
+                <div class="control-btn-elements"><text id="bu1_text" class="adaptivs-svars"></text>
                 </div>
             </div>
             <div class="control-btn" id="bu2_btn">
@@ -599,7 +605,7 @@
                 </div>
                 <div class="control-btn-elements"><button id="bu2_on" class="control-btn-on">ON</button></div>
                 <div class="control-btn-elements"><button id="bu2_off" class="control-btn-off">OFF</button></div>
-                <div class="control-btn-elements"><text id="bu2_text" class ="adaptivs-svars"></text>
+                <div class="control-btn-elements"><text id="bu2_text" class="adaptivs-svars"></text>
                 </div>
             </div>
             <div class="control-btn" id="poguKopa2">
@@ -610,7 +616,7 @@
                 </div>
                 <div class="control-btn-elements"><button id="stopPriekstirisana" class="control-btn-off">OFF</button>
                 </div>
-                <div class="control-btn-elements"><text id="lobisana_text" class ="adaptivs-svars"></text>
+                <div class="control-btn-elements"><text id="lobisana_text" class="adaptivs-svars"></text>
                 </div>
             </div>
             <div class="control-btn">
@@ -619,7 +625,7 @@
                 </div>
                 <div class="control-btn-elements"><button id="weifang_on" class="control-btn-on">ON</button></div>
                 <div class="control-btn-elements"><button id="weifang_off" class="control-btn-off">OFF</button></div>
-                <div class="control-btn-elements"><text id="weifan_text" class ="adaptivs-svars"></text>
+                <div class="control-btn-elements"><text id="weifan_text" class="adaptivs-svars"></text>
                 </div>
             </div>
 
@@ -631,19 +637,19 @@
                 <table id="prieksLobTable">
                     <tbody>
                         <tr>
-                            <td>Tvertne:</td>
+                            <td>Bunkurs:</td>
                             <td>1</td>
                             <td>2</td>
                         </tr>
                         <tr>
                             <td>Partijas NR:</td>
                             <td id="T1_partija"></td>
-                            <td id="T2_partija"></td>                            
+                            <td id="T2_partija"></td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
-                                <button id="T1_control_in_use">Sākt izmantot partiju</button>                                
+                                <button id="T1_control_in_use">Sākt izmantot partiju</button>
                             </td>
                             <td>
                                 <button id="T2_control_in_use">Sākt izmantot partiju</button>
@@ -661,7 +667,7 @@
         <div class="section"
             style="display: flex; flex-direction: row; justify-content: space-evenly; height:calc(100vh - 285px);">
             <div style="display: flex; flex-direction: column; width:40%; max-width:300px;">
-                <div style="text-align: center; margin:10px;">Tvertne 1</div>
+                <div style="text-align: center; margin:10px;">Bunkurs 1</div>
                 <div style="flex:1;" class="bar" id="bar_T1">
                     <div
                         style="border:2px solid black; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
@@ -683,7 +689,7 @@
                 </div>
             </div>
             <div style="display: flex; flex-direction: column; width:40%; max-width:300px;">
-                <div style="text-align: center; margin:10px;">Tvertne 2</div>
+                <div style="text-align: center; margin:10px;">Bunkurs 2</div>
                 <div style="flex:1; position:relative;" class="bar" id="bar_T2">
                     <div
                         style="border:2px solid black; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-around; position:relative;">
@@ -708,21 +714,27 @@
             <div style="display: flex; flex-direction: column;">
                 <div id="bunkerBtn">
                     <div style="text-align: center; margin:10px;">Pārkraut:</div>
-                    
+
                     <div data-tagbeingread="enableRoute_BU1toBU2" data-animation="bgcolor"
-                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="T1uzT2Btn">No T1 uz T2</div>
+                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="T1uzT2Btn">No
+                        BU1 uz BU2</div>
                     <div data-tagbeingread="enableRoute_BU2toBU1" data-animation="bgcolor"
-                        data-bgcolor="0:#FFFFFF,1:#00FF0A" class="btnbtnDiv" style="font-weight: 600;" id="T2uzT1Btn">No T2 uz T1</div>
+                        data-bgcolor="0:#FFFFFF,1:#00FF0A" class="btnbtnDiv" style="font-weight: 600;" id="T2uzT1Btn">No
+                        BU2 uz BU1</div>
                     <div data-tagbeingread="enableRoute_izlade_no_BU1" data-animation="bgcolor"
-                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="T1uzCar">No T1 uz Auto</div>
+                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="T1uzCar">No
+                        BU1 uz Auto</div>
                     <div data-tagbeingread="enableRoute_izlade_no_BU2" data-animation="bgcolor"
-                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="T2uzCar">No T2 uz Auto</div>
+                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="T2uzCar">No
+                        BU2 uz Auto</div>
 
 
                     <div data-tagbeingread="enableRoute_izlade_no_BU2" data-animation="bgcolor"
-                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="toT1">Ielāde T1</div>
+                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="toT1">Ielāde
+                        BU1</div>
                     <div data-tagbeingread="enableRoute_izlade_no_BU2" data-animation="bgcolor"
-                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="toT2">Ielāde T2</div>
+                        data-bgcolor="0:#FFFFFF,1:#88AA00" class="btnbtnDiv" style="font-weight: 600;" id="toT2">Ielāde
+                        BU2</div>
                 </div>
                 <div class="btnbtnDiv" data-en_tagname="enableRoute_izlade_no_BU2"
                     style="font-weight: 600; display:none; background-color: #f32323; " id="hidde_STOP">STOP: <text
@@ -739,7 +751,7 @@
                 <div class="smalGrid scalesText1"><text id="ID43_weight" class="scalesMesure">####</text><text
                         class="scalesMesureLabel">kg</text></div>
                 <div class="smalGrid scalesText2"><text id="ID43_weight_min" class="scalesMesure">####</text>
-                    <text class="scalesMesureLabel">kg/min</text>
+                    <text class="scalesMesureLabel">kg/h</text>
                 </div>
                 <div class="smalGrid buttonDiv"><button class="scalesButton saveButton"
                         id="ID43_ScaleSaveBtn">Saglabāt</button><button class="scalesButton"
@@ -753,7 +765,7 @@
                     <text class="scalesMesureLabel">kg</text>
                 </div>
                 <div class="smalGrid scalesText2"><text id="ID44_weight_min" class="scalesMesure">####</text><text
-                        class="scalesMesureLabel">kg/min</text></div>
+                        class="scalesMesureLabel">kg/h</text></div>
                 <div class="smalGrid buttonDiv"><button class="scalesButton saveButton"
                         id="ID44_ScaleSaveBtn">Saglabāt</button><button class="scalesButton"
                         id="ID44_ZeroSaveBtn">Nonullēt</button></div>
@@ -766,7 +778,7 @@
                     <text class="scalesMesureLabel">kg</text>
                 </div>
                 <div class="smalGrid scalesText2"><text id="ID45_weight_min" class="scalesMesure">####</text><text
-                        class="scalesMesureLabel">kg/min</text></div>
+                        class="scalesMesureLabel">kg/h</text></div>
                 <div class="smalGrid buttonDiv"><button class="scalesButton saveButton"
                         id="ID45_ScaleSaveBtn">Saglabāt</button><button class="scalesButton"
                         id="ID45_ZeroSaveBtn">Nonullēt</button></div>
@@ -779,7 +791,7 @@
                     <text class="scalesMesureLabel">kg</text>
                 </div>
                 <div class="smalGrid scalesText2"><text id="ID215_weight_min" class="scalesMesure">####</text><text
-                        class="scalesMesureLabel">kg/min</text></div>
+                        class="scalesMesureLabel">kg/h</text></div>
                 <div class="smalGrid buttonDiv"><button class="scalesButton saveButton"
                         id="ID215_ScaleSaveBtn">Saglabāt</button><button class="scalesButton"
                         id="ID215_ZeroSaveBtn">Nonullēt</button></div>
@@ -792,7 +804,7 @@
                     <text class="scalesMesureLabel">kg</text>
                 </div>
                 <div class="smalGrid scalesText2"><text id="ID216_weight_min" class="scalesMesure">####</text><text
-                        class="scalesMesureLabel">kg/min</text></div>
+                        class="scalesMesureLabel">kg/h</text></div>
                 <div class="smalGrid buttonDiv"><button class="scalesButton saveButton"
                         id="ID216_ScaleSaveBtn">Saglabāt</button><button class="scalesButton"
                         id="ID216_ZeroSaveBtn">Nonullēt</button></div>
@@ -836,35 +848,72 @@
         </div>
     </div>
 
-    
-        <div class="confirm-dialog">
-            <div class="confirm-dialog-overlay"></div>
-            <div class="confirm-dialog-content">
-                <h2>Vai nonullēt svarus?</h2>
-                
-                <div class="confirm-dialog-buttons">
-                    <button class="confirm-dialog-btn confirm">Jā</button>
-                    <button class="confirm-dialog-btn cancel">Nē</button>
-                </div>
+
+    <div class="confirm-dialog">
+        <div class="confirm-dialog-overlay"></div>
+        <div class="confirm-dialog-content">
+            <h2>Vai nonullēt svarus?</h2>
+
+            <div class="confirm-dialog-buttons">
+                <button class="confirm-dialog-btn confirm">Jā</button>
+                <button class="confirm-dialog-btn cancel">Nē</button>
             </div>
         </div>
+    </div>
+
+
+
+    <div id="customPromptContainer">
+        <div class="koeficent_text" >
+            <label for="customInput">Ievadiet ražošanas zuduma koeficentu!</label>
+            
+        </div>
+        <div class="inputClass">
+            <input type="number" id="numberInput" step="0.01" min="0" max="100" oninput="validateInput(this)">
+        </div>
+        <div class="smalGridxx" >
+            <button class="control-btn-on" id="customOkBtn">OK</button>
+            <button class="control-btn-off" id="customCancelBtn">Atcelt</button>
+        </div>
+    </div>
+
+
+
+
 
 
 
     <script src="./scripts/outerScripts/prepared_statements.js"></script>
     <script src="./scripts/outerScripts/returnTagObject.js"></script>
+    <!-- <script src="http://192.168.0.7:7131/scripts/outerScripts/worker.js"></script> -->
+    <script type="text/javascript" src="MODULES/sweetalert2@9.js"></script>
     <script src="./scripts/outerScripts/al_control.js"></script>
 
-    <script defer>
-
-
-
-    </script>
-
     
-
-
-
+    <script>
+        function validateInput(input) {
+           
+            const value = parseFloat(input.value);
+            var simbolLenght = input.value.length;
+            // Pārbaudam, vai ievadītais skaitlis ir robežās no 0 līdz 100 ar soli 0.01
+            //console.log(simbolLenght);
+            //console.log(typeof(simbolLenght));
+            if ( value > 100 ) {
+                document.getElementById('numberInput').value = 100;               
+            }else if(value < 100 && value > 10 && simbolLenght >5 ){
+                document.getElementById('numberInput').value = value.toFixed(2);
+            }
+            else if(value < 10 && simbolLenght > 4 ){ 
+                console.log(value.toFixed(2));
+                document.getElementById('numberInput').value = value.toFixed(2);
+            }else if(value < 0  ) {
+                document.getElementById('numberInput').value = 0.01;
+                if( simbolLenght > 4)
+                document.getElementById('numberInput').value = value.toFixed(2);
+            }
+        }
+    </script>
+    <script defer>
+    </script>
 </body>
-
 </html>
