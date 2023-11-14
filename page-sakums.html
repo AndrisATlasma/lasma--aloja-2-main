@@ -1947,7 +1947,7 @@
           </select>
         </div>
         <div class="order_container2" id="order_container_4">
-          <label for="fullWeight">Ielādes kopējasi svars:</label>
+          <label for="fullWeight">Ielādes kopējasi svars [kg]:</label>
           <input type="number" id="fullWeight">
         </div>
         <div class="order_container">
@@ -1986,7 +1986,7 @@
           <label id="selected_silo" style="text-align: center;"></label>
           <label for="pvz">Pavadzīmes Nr.</label>
           <input class="inputs_1" type="text" id="pvz" autocomplete="off">
-          <label for="acceptence_weight">Svars</label>
+          <label for="acceptence_weight">Svars [kg]:</label>
           <input class="inputs_1" type="number" id="acceptance_weight">
           <div></div>
           <div style="text-align: left;">
@@ -1999,7 +1999,7 @@
           <select id="invoice2">
 
           </select>
-          <label for="acceptence_weight_2">Svars</label>
+          <label for="acceptence_weight_2">Svars [kg]:</label>
           <input class="inputs_2" type="number" id="acceptance_weight_2">
           <div></div>
           <div style="text-align: left;">
@@ -2031,7 +2031,6 @@
           <label for="acceptence_silos">Silos Nr.</label>
           <select id="acceptence_silos">
           </select>
-
         </div>
         <div>
           <button id="saveOpening">Saglabāt</button>
@@ -2092,7 +2091,7 @@
       });
     };
 
-
+    var acceptanceBtn = document.getElementById("acceptance");
     var isAcriveAcceptenceBaner = document.getElementById("ActiveAcceptence");
 
     let timeout; // definējam timeout mainīgo ārpus funkcijas
@@ -2111,8 +2110,8 @@
         // Iestatām jaunu timeout ar nepieciešamo atkārtošanos
         timeout = setTimeout(function repeat() {
           manageProductsInSilo();
-          timeout = setTimeout(repeat, 2000);
-        }, 2000);
+          timeout = setTimeout(repeat, 1000);
+        }, 1000);
       } else {
         // Notīram timeout, ja elements kļuvis neredzams
         clearTimeout(timeout);
@@ -2127,12 +2126,13 @@
       console.log("Ir timeouts?");
 
       var productsInSilos = await productsForSilo();
+      //console.log(productsInSilos);
 
       productsInSilos.forEach(element => {
         document.getElementById('product_id' + element.el_id).textContent = element.label;
-
-
+        //
       });
+
       var productsInBunker = await productsForBunker();
       productsInBunker.forEach(element => {
         document.getElementById('product_id' + element.el_id).textContent = element.label;
@@ -2143,9 +2143,12 @@
       var is_active_incoms_now = await check_active_income();
 
       if (!is_active_incoms_now) {
+        acceptanceBtn.innerHTML= "Pieņemšana";
+        
         isAcriveAcceptenceBaner.setAttribute('style', 'display:none');
         isAcriveAcceptenceBaner.addEventListener('click', BanerMessage);
       } else {
+        acceptanceBtn.innerHTML= "Svēršana";
         isAcriveAcceptenceBaner.setAttribute('style', 'display:inline');
         isAcriveAcceptenceBaner.addEventListener('click', BanerMessage);
       }
