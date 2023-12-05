@@ -12,40 +12,37 @@ function BanerMessage() {
         allowOutsideClick: false,
         title: 'Notiek datu saglabāšana',
         text: 'Paziņojums aizvēsrsies automātiski',
-        showConfirmButton: false
+        showConfirmButton: false,
+        timer: 2000
     })
 }
-
-
-
-
 let timeout; // definējam timeout mainīgo ārpus funkcijas
 
-    const observer = new IntersectionObserver(async function (entries) {
-      const isVisible = entries[0].isIntersecting;
+const observer = new IntersectionObserver(async function (entries) {
+    const isVisible = entries[0].isIntersecting;
 
-      if (isVisible) {
+    if (isVisible) {
         console.log('Esmu redzams');
 
         // Pārtraucam esošo timeout, ja tāds eksistē
         if (timeout) {
-          clearTimeout(timeout);
+            clearTimeout(timeout);
         }
 
         // Iestatām jaunu timeout ar nepieciešamo atkārtošanos
         timeout = setTimeout(function repeat() {
-          scaleWork();
-          doSomething();
-          timeout = setTimeout(repeat, 500);
+            scaleWork();
+            //doSomething();
+            timeout = setTimeout(repeat, 500);
         }, 500);
-      } else {
+    } else {
         // Notīram timeout, ja elements kļuvis neredzams
         clearTimeout(timeout);
-      }
-    });
+    }
+});
 
-    const targetElement = document.querySelector('#prieksLobTable');
-    observer.observe(targetElement);
+const targetElement = document.querySelector('#prieksLobTable');
+observer.observe(targetElement);
 
 ////////////////////////////////////////////////////////////////////
 // order states 1- New, 2 - Active, 3 - Paused, 4 - Finished, 5 - Canceled
@@ -75,7 +72,6 @@ const COUENTER_COMAND = {
     reset: 2
 };
 
-
 const ORDER_TEXT = ['', 'Jauns', 'Notiek darbs', 'Pauzēts', 'Pabeigts', 'Atcelts'];
 const ORDER_TEXT_color = ['', '', '#58f4ff', '#f1ff2b'];
 
@@ -91,7 +87,6 @@ function routeBtnState() {
         });
     });
 }
-
 
 function getkWhLogTable(Part_kWh) {
     return new Promise(resolve => {
@@ -115,7 +110,6 @@ function getUsedKwh(orderStartTime, orderEndTime) {
         });
     });
 }
-
 
 function clearBunker(order_id) {
 
@@ -337,6 +331,7 @@ var bu1_route_ctrl = document.getElementById('bu1_btn');
 var bu2_route_ctrl = document.getElementById('bu2_btn');
 
 async function scaleWork() {
+    console.time("CIKLA_DARBS");
     //************************SVARU DARBĪBA ************** */
 
     ScalesData.forEach(function (scales) {
@@ -370,11 +365,13 @@ async function scaleWork() {
                 targetWeight.innerHTML = getTag('SetWeight_ID' + scales.tag_id) ? getTag('SetWeight_ID' + scales.tag_id) : '0';
             }
         }
-    });
+    });    
+    
+    // SVARU DARBĪBAS APSTRĀDE AIZŅEM AP 600ms .......
     //****************************************************** */
-
+    //console.time("BBB");
     orders_to_bunkers = await getOrders();
-
+    //console.timeEnd("BBB");
 
     var bunkurs_1 = document.getElementById("T1_partija");
     var bu1_Part_Nr = document.getElementById("T1_PartijasNumurs");
@@ -409,8 +406,9 @@ async function scaleWork() {
 
     bu1_level.textContent = bu1_levels.toFixed(0);
     bu2_level.textContent = bu2_levels.toFixed(0);
-
+    //console.time("AAA");
     var route_btn_status = await routeBtnState();
+    //console.timeEnd("AAA");
     route_btn_status.forEach(function (element) {
         if (element.r_name == 'darbs no Bunkura1') {
             if (element.r_state != 0) {
@@ -478,26 +476,32 @@ async function scaleWork() {
             bu_1_btn.setAttribute("data-order_id", bu_1[0].u_id);
 
             if (bu_1[0].order_state == 2) {
+
                 bu_1_btn.textContent = "Notiek darbs";
                 bu_1_btn.classList.add('active');
                 bu_1_btn.style.backgroundColor = "red";
                 bu_2_btn.disabled = true;
-                document.getElementById("startPriekstirisana").setAttribute('data-routeToStart', bu_1[0].u_id);
-                document.getElementById("stopPriekstirisana").setAttribute('data-routeToStart', bu_1[0].u_id);
+                document.getElementById("startPriekstirisana").setAttribute('data-routetostart', bu_1[0].u_id);
+                document.getElementById("stopPriekstirisana").setAttribute('data-routetostart', bu_1[0].u_id);
 
                 order_state_text.textContent = ORDER_TEXT[bu_1[0].order_state];
                 order_state_text.style.color = ORDER_TEXT_color[bu_1[0].order_state];
             } else if (bu_1[0].order_state == 3 && bu_1_btn.textContent != "Tiks izmantota šī partija") {
-
+                
                 bu_1_btn.textContent = "Pauzēts";
                 bu_1_btn.classList.remove('active')
                 bu_1_btn.style.backgroundColor = "yellow";
                 bu_2_btn.disabled = false;
                 order_state_text.textContent = ORDER_TEXT[bu_1[0].order_state];
                 order_state_text.style.color = ORDER_TEXT_color[bu_1[0].order_state];
+                document.getElementById("startPriekstirisana").removeAttribute('data-routetostart');
+                document.getElementById("stopPriekstirisana").removeAttribute('data-routetostart');
             } else {
 
                 if (!bu_1_btn.classList.contains("active") && bu_1_btn.textContent != "Pauzēts") {
+                    document.getElementById("startPriekstirisana").removeAttribute('data-routeToStart');
+                    document.getElementById("stopPriekstirisana").removeAttribute('data-routeToStart');       
+
 
                     bu_2_btn.disabled = false;
                     bu_1_btn.textContent = btn_textContent;
@@ -510,7 +514,6 @@ async function scaleWork() {
                 }
             }
         } else {
-
             T_no_BU1.forEach(function (element) {
                 element.classList.add("btn-disabled");
             });
@@ -525,13 +528,13 @@ async function scaleWork() {
             bu1_Part_Nr.textContent = "";
             bu1_product.textContent = "";
             bu_1_btn.classList.remove('active');
+                 
         }
         //**************************************************************************** */
         if (bu_2.length > 0) {
             T_no_BU2.forEach(function (element) {
                 element.classList.remove("btn-disabled");
             });
-
             bunkurs_2.textContent = bu_2[0].order_lable;
             bu2_Part_Nr.textContent = bu_2[0].order_lable;
             bu2_product.textContent = bu_2[0].label;
@@ -543,8 +546,8 @@ async function scaleWork() {
                 bu_2_btn.style.backgroundColor = "red";
                 bu_2_btn.classList.add('active');
                 bu_1_btn.disabled = true;
-                document.getElementById("startPriekstirisana").setAttribute('data-routeToStart', bu_2[0].u_id);
-                document.getElementById("stopPriekstirisana").setAttribute('data-routeToStart', bu_2[0].u_id);
+                document.getElementById("startPriekstirisana").setAttribute('data-routetostart', bu_2[0].u_id);
+                document.getElementById("stopPriekstirisana").setAttribute('data-routetostart', bu_2[0].u_id);
                 order_state_text.textContent = ORDER_TEXT[bu_2[0].order_state];
                 order_state_text.style.color = ORDER_TEXT_color[bu_2[0].order_state];
             } else if (bu_2[0].order_state == 3 && bu_2_btn.textContent != "Tiks izmantota šī partija") {
@@ -552,7 +555,9 @@ async function scaleWork() {
                 bu_2_btn.textContent = "Pauzēts";
                 bu_2_btn.style.backgroundColor = "yellow";
                 bu_1_btn.disabled = false;
-                bu_2_btn.classList.remove('active')
+                bu_2_btn.classList.remove('active');
+                document.getElementById("startPriekstirisana").removeAttribute('data-routetostart');
+                document.getElementById("stopPriekstirisana").removeAttribute('data-routetostart');
                 if (bu_1.lenght > 0) {
                     if (bu_1[0].order_state == 2) {
                         order_state_text.textContent = ORDER_TEXT[bu_1[0].order_state];
@@ -564,6 +569,7 @@ async function scaleWork() {
                 }
             } else {
                 if (!bu_2_btn.classList.contains("active") && bu_2_btn.textContent != "Pauzēts") {
+
                     bu_1_btn.disabled = false;
                     bu_2_btn.textContent = btn_textContent;
                     bu_2_btn.style.backgroundColor = btn_backgroundColor;
@@ -574,6 +580,7 @@ async function scaleWork() {
                     order_state_text.textContent = "";
                 }
             }
+
         } else {
             T_no_BU2.forEach(function (element) {
                 element.classList.add("btn-disabled");
@@ -587,6 +594,7 @@ async function scaleWork() {
             bu2_Part_Nr.textContent = "";
             bu2_product.textContent = "";
             bu_2_btn.classList.remove('active');
+
         }
     } else {
         bunkurs_1.textContent = "";
@@ -621,7 +629,10 @@ async function scaleWork() {
         bu2_Part_Nr.textContent = "";
         bu2_product.textContent = "";
     }
-
+    if(!bu_2_btn.classList.contains("active") && !bu_1_btn.classList.contains("active") ){
+        document.getElementById("startPriekstirisana").removeAttribute('data-routetostart');
+        document.getElementById("stopPriekstirisana").removeAttribute('data-routetostart');
+    }
     function toggleButtonClass(elementId, condition) {
         var element = document.getElementById(elementId);
         if (element) {
@@ -629,9 +640,7 @@ async function scaleWork() {
             element.classList.add(condition ? "control-btn-on" : "control-btn-on");
         }
     }
-
     if (getTag('P3_routeState_0') == 2) {
-
         toggleButtonClass("weifang_on", true);
     } else {
         toggleButtonClass("weifang_on", false);
@@ -642,8 +651,11 @@ async function scaleWork() {
     fillElement2.style.height = full_bu_2 + "%";
     var fillElement = document.getElementById("T1_fill");
     fillElement.style.height = full_bu_1 + "%";
+    
     console.log("Vai ir cikls?");
-    //setTimeout(scaleWork, 500);
+    //setTimeout(scaleWork, 500);    
+    await doSomething();
+    console.timeEnd("CIKLA_DARBS");
 }
 
 var bunkerBatons = document.getElementById("bunkerBtn");
@@ -671,7 +683,8 @@ async function addScaleSaveBtnListeners() {
                 SaveToBagInfo(bag_data);
                 alert("Dati saglabāti");
             } else {
-                alert("Nav izvēlēts uzdevums");
+                alert("Nav izvēlēts uzdevums")
+                return;
             };
         });
     });
@@ -698,9 +711,6 @@ async function addScaleBackToZeroBtnListeners() {
         });
     });
 }
-
-
-///////////////////////////////////////
 async function addFilterProteinBtnEvent() {
     var saveFilterProtein = document.getElementById('saveProtein');
     saveFilterProtein.addEventListener('click', async function () {
@@ -717,15 +727,14 @@ async function addFilterProteinBtnEvent() {
                 order: order_id,
                 weight: proteinWeight
             }
-
             SaveToBagInfo(bag_data);
             document.getElementById("proteinData").value = "";
             alert("Dati saglabāti");
 
         } else {
-            alert("Nav izvēlēts uzdevums");
+            alert("Nav izvēlēts uzdevums")
+            return;
         }
-
     });
 }
 document.addEventListener('DOMContentLoaded', async function () {
@@ -738,7 +747,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     await scaleWork();
     doSomething();
 });
-
 var pogas = document.querySelectorAll("[id$='_control_in_use']");
 var confirm = document.getElementById("confirm-module");
 
@@ -792,16 +800,18 @@ for (var i = 0; i < pogas.length; i++) {
 }
 var parentElement = document.getElementById("poguKopa2");
 parentElement.addEventListener("click", async function (event) {
+
     var clickedButton = event.target;
-    if (clickedButton.id === "startPriekstirisana") {
+    if (clickedButton.id === "startPriekstirisana") {    
+       
         console.log("Nospiesta START priekštīrīšanas poga");
-        route = clickedButton.getAttribute("data-routetostart");
-        console.log(route);
+        route = clickedButton.getAttribute("data-routetostart");        
 
         if (!route || route == 'undefined') {
             alert("Nav izvēlēta partija");
             return;
         }
+        BanerMessage();
         var order = await orderStatus(route);
         try {
 
@@ -827,17 +837,18 @@ parentElement.addEventListener("click", async function (event) {
         console.log("Nospiesta STOP priekštīrīšanas poga");
         route = clickedButton.getAttribute("data-routetostart");
         //console.time("Off pogas nospiešanas");
-        showConfirm();
+        
         var order = await orderStatus(route);
-       // console.timeEnd("Off pogas nospiešanas");
+        // console.timeEnd("Off pogas nospiešanas");
         if (!route) {
             alert("Nav iesāktu uzdevumu");
             return;
         }
+        showConfirm();
         document.getElementById("doneOrder").setAttribute('data-route-name', route);
         document.getElementById("pauseOrder").setAttribute('data-route-name', route);
         document.getElementById("cancleOrder").setAttribute('data-route-name', route);
-        
+
     }
 });
 var confirmOrderClose = document.getElementById("confirm-close-button");
@@ -908,32 +919,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 customOkBtn.removeEventListener("click", handleCustomOkBtnClick);
 
                 customPromptContainer.style.display = "none";
-               // console.log("Funkcija pabeigta var turpināt");
-                document.getElementById("startPriekstirisana").removeAttribute('data-routeToStart');
-                document.getElementById("stopPriekstirisana").removeAttribute('data-routeToStart');
+                // console.log("Funkcija pabeigta var turpināt");
+                document.getElementById("startPriekstirisana").removeAttribute('data-routetostart');
+                document.getElementById("stopPriekstirisana").removeAttribute('data-routetostart');
 
                 var canSaveElements = document.getElementsByClassName('active')[0];
                 //console.log(canSaveElements);
                 canSaveElements.classList.remove('active');
                 var canSaveElements2 = document.getElementsByClassName('active')[0];
-                //console.log(canSaveElements2);
 
                 setTag("P1_routeComand_9", ROUTE_COMAND.stop);
                 setTag("BU1_count_comand", COUENTER_COMAND.stop);
                 setTag("WF_count_comand", COUENTER_COMAND.stop);
-
-                // var kwh = {
-                //     part1_kwh: getTag("BU1_count_kwh") ? getTag("BU1_count_kwh") : 0,
-                //     part2_kwh: getTag("Part2_kWh") ? getTag("Part2_kWh") : 0,
-                //     part3_kwh: getTag("WF_count_kwh") ? getTag("WF_count_kwh") : 0
-                // }
                 var moto_h = {
                     part1_mh: getTag("BU1_count_Motoh") ? getTag("BU1_count_Motoh") : 0,
                     part2_mh: getTag("motoTime_ID108") ? getTag("motoTime_ID108") : 0,
                     part3_mh: getTag("WF_count_Motoh") ? getTag("WF_count_Motoh") : 0
                 }
                 //*************************************************Pārtaisam, lai iegūtu kWh datus no datubāzes ********************/
-
+                
                 BanerMessage();
                 closeConfirm();
                 var Par1_used_kWh = await getUsedKwh(orderStartTime, getNow());
@@ -948,12 +952,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     part2_work_h: moto_h.part2_mh,
                     part3_work_h: moto_h.part3_mh,
                 };
-               // console.log(params);
+                // console.log(params);
 
                 finish_route(params);
                 clearBunker(order_id);
+                document.getElementById("startPriekstirisana").removeAttribute('data-routeToStart');
+                document.getElementById("stopPriekstirisana").removeAttribute('data-routeToStart');
                 //closeConfirm();
-                Swal.close();
+                //Swal.close();
                 setTag("BU1_count_comand", COUENTER_COMAND.reset);
                 setTag("WF_count_comand", COUENTER_COMAND.reset);
             } catch (error) {
@@ -972,8 +978,8 @@ document.addEventListener("DOMContentLoaded", function () {
         setTag("P1_routeComand_9", ROUTE_COMAND.stop);
         setTag("BU1_count_comand", COUENTER_COMAND.stop);
         setTag("WF_count_comand", COUENTER_COMAND.stop);
-        document.getElementById("startPriekstirisana").removeAttribute('data-routeToStart');
-        document.getElementById("stopPriekstirisana").removeAttribute('data-routeToStart');
+        document.getElementById("startPriekstirisana").removeAttribute('data-routetostart');
+        document.getElementById("stopPriekstirisana").removeAttribute('data-routetostart');
         // var kwh = {
         //     part1_kwh: getTag("BU1_count_kwh") ? getTag("BU1_count_kwh") : 0,
         //     part2_kwh: getTag("Part2_kWh") ? getTag("Part2_kWh") : 0,
@@ -984,6 +990,7 @@ document.addEventListener("DOMContentLoaded", function () {
             part2_mh: getTag("motoTime_ID108") ? getTag("motoTime_ID108") : 0,
             part3_mh: getTag("WF_count_Motoh") ? getTag("WF_count_Motoh") : 0
         }
+   
         BanerMessage();
         closeConfirm();
         var Par1_used_kWh = await getUsedKwh(orderStartTime, getNow());
@@ -998,12 +1005,14 @@ document.addEventListener("DOMContentLoaded", function () {
             part2_work_h: moto_h.part2_mh,
             part3_work_h: moto_h.part3_mh,
         };
-       // console.log(params);
+        // console.log(params);
 
         finish_route(params);
-        clearBunker(order_id);
+        document.getElementById("startPriekstirisana").removeAttribute('data-routeToStart');
+        document.getElementById("stopPriekstirisana").removeAttribute('data-routeToStart');
+        //clearBunker(order_id);
         //closeConfirm();
-        Swal.close();
+        //Swal.close();
         setTag("BU1_count_comand", COUENTER_COMAND.reset);
         setTag("WF_count_comand", COUENTER_COMAND.reset);
     });
@@ -1060,7 +1069,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch((error) => {
                     console.error(error);
                 });
-           // console.timeEnd("myCode");
+            // console.timeEnd("myCode");
         }
         async function handleCustomOkBtnClick() {
             try {
@@ -1068,8 +1077,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 customOkBtn.removeEventListener("click", handleCustomOkBtnClick);
                 customPromptContainer.style.display = "none";
                 console.log("Funkcija pabeigta var turpināt");
-                document.getElementById("startPriekstirisana").removeAttribute('data-routeToStart');
-                document.getElementById("stopPriekstirisana").removeAttribute('data-routeToStart');
+                document.getElementById("startPriekstirisana").removeAttribute('data-routetostart');
+                document.getElementById("stopPriekstirisana").removeAttribute('data-routetostart');
                 var canSaveElements = document.getElementsByClassName('active')[0];
                 console.log(canSaveElements);
                 canSaveElements.classList.remove('active');
@@ -1078,16 +1087,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 setTag("P1_routeComand_9", ROUTE_COMAND.stop);
                 setTag("BU1_count_comand", COUENTER_COMAND.stop);
                 setTag("WF_count_comand", COUENTER_COMAND.stop);
-                // var kwh = {
-                //     part1_kwh: getTag("BU1_count_kwh") ? getTag("BU1_count_kwh") : 0,
-                //     part2_kwh: getTag("Part2_kWh") ? getTag("Part2_kWh") : 0,
-                //     part3_kwh: getTag("WF_count_kwh") ? getTag("WF_count_kwh") : 0
-                // }
+
                 var moto_h = {
                     part1_mh: getTag("BU1_count_Motoh") ? getTag("BU1_count_Motoh") : 0,
                     part2_mh: getTag("motoTime_ID108") ? getTag("motoTime_ID108") : 0,
                     part3_mh: getTag("WF_count_Motoh") ? getTag("WF_count_Motoh") : 0
-                }
+                }               
                 BanerMessage();
                 closeConfirm();
                 var Par1_used_kWh = await getUsedKwh(orderStartTime, getNow());
@@ -1102,12 +1107,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     part2_work_h: moto_h.part2_mh,
                     part3_work_h: moto_h.part3_mh,
                 };
-               // console.log(params);
-        
+                // console.log(params);
+
                 finish_route(params);
                 clearBunker(order_id);
+                document.getElementById("startPriekstirisana").removeAttribute('data-routeToStart');
+                document.getElementById("stopPriekstirisana").removeAttribute('data-routeToStart');
                 //closeConfirm();
-                Swal.close();
+                //Swal.close();
                 setTag("BU1_count_comand", COUENTER_COMAND.reset);
                 setTag("WF_count_comand", COUENTER_COMAND.reset);
             } catch (error) {
@@ -1161,15 +1168,14 @@ hidden_stop.addEventListener("click", function () {
 function showHiddenBtn(text, route_id) {
     hidden_stop = document.getElementById("hidde_STOP");
     document.getElementById("hidden_text").textContent = text;
-    hidden_stop.setAttribute("data-workingRoute", route_id);
+    hidden_stop.setAttribute("data-workingroute", route_id);
 }
 bunkerBtns.addEventListener("click", async function (event) {
     //can_start = await routeCanBeStarted();
     if (event.target.textContent == 'No BU1 uz BU2') {
-        
+
         setTag("P1_routeComand_1", ROUTE_COMAND.start);
-        // alert('HEISSSS');
-        
+
         showHiddenBtn(event.target.textContent, 1);
         changeRouteBtnState();
     }
@@ -1210,18 +1216,15 @@ var T1uzCar = document.getElementById("T1uzCar");
 var T2uzCar = document.getElementById("T2uzCar");
 
 async function doSomething() {
-    console.log("DoSomthing")
-    can_start = await routeCanBeStarted();
-    //console.timeEnd("TESTEEEJAM")
-    var is_active_route = false;
+    console.log("DoSomthing");    
+    can_start = await routeCanBeStarted();    
+    var is_active_route = false;    
     can_start.forEach(function (element) {
-
         if (getTag('P1_routeComand_' + element.r_id) > 0 || getTag('P1_routeState_' + element.r_id) > 0) {
             showHiddenBtn(element.r_name, element.r_id);
             is_active_route = true;
         }
-    });
-
+    });    
     if (is_active_route == false) {
         bunkerBatons.classList.remove('btn-disabled');
         hidden_stop.style.display = "none";
@@ -1229,11 +1232,7 @@ async function doSomething() {
     } else {
         bunkerBatons.classList.add('btn-disabled');
         hidden_stop.style.display = "flex";
-    }
-
-
-    //console.log('Funkcija tiek izpildīta cikliski katras  sekundes');
-    //setTimeout(doSomething, 300);
+    }    
 }
 var dropErrors = document.getElementById('resetErr');
 
@@ -1242,10 +1241,3 @@ dropErrors.addEventListener('click', function () {
     setTag('Part3_RESET_EL', 1);
     setTag('Part1_ErrReset', 1);
 });
-
-
-// myWorker.addEventListener('message', function (e) {
-//     const resultFromWorker = e.data;
-//     // Darbības ar rezultātiem no Web Worker
-//     console.log(resultFromWorker);
-//   });
