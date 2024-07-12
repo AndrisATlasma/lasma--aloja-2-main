@@ -226,7 +226,7 @@ export default async function routes() {
         });
       });
   } else if (window.parent.location.href.indexOf('al3-sakums.html') !== -1) {
-
+    console.log("<- Notiek cikls?");
     const data = await runSqlSelect('al3_select_all_routes');
 
     if (routesDataDiffers(data)) {
@@ -271,7 +271,7 @@ export default async function routes() {
         const arrowIds = arrows.split(',');
 
         arrowIds.forEach((arrowId) => {
-          console.log(arrowId);
+          //console.log(arrowId);
           const arrows = document.querySelectorAll(`[id^="Arrow_${arrowId}"]`);
           if (arrows.length > 0) {
             arrows.forEach((arrow) => {
@@ -290,6 +290,7 @@ export default async function routes() {
 
     const data = await runSqlSelect('al1_select_all_routes');
     //console.log(data);
+    
     if (routesDataDiffers(data)) {
       setRoutesData(data);
       selectBox.innerHTML = selectTemplate({

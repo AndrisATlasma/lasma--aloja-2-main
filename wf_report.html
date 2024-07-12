@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='stylesheet' type='text/css' href='system/styles/igrX.css' />
+    <script type='text/javascript' src='system/scripts/igrX2.js'></script>
+
+    <script src="./MODULES/excelExport/FileSaver.min.js"></script>
+    <script src="./MODULES/excelExport/xlsx.mini.js"></script>
+    <script src="./MODULES/excelExport/xlsx.full.min.js"></script>
+    <script src="./MODULES/ult_dataTables/jquery-3.3.1.js"></script>
+    <script src="./MODULES/package/dist/chart.umd.js"></script>
+    <script src="./MODULES/sweetalert2@9.js"></script>
+    <link rel="stylesheet" type="text/css" href="./MODULES/jqueryMultiselect/jquery.dropdown.css">
+    <script src="./MODULES/jqueryMultiselect/jquery.dropdown.min.js"></script>
+    <link rel="stylesheet" href="./MODULES/jquery-ui-1.13.2/jquery-ui.min.css">
+
+    <style>
+        .main_container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            margin: auto;
+        }
+
+        .item {
+
+            display: grid;
+            grid-template-columns: 5fr 5fr 5fr 5fr 5fr;
+            gap: 15px;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .item2 {
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+
+            .item,
+            .item2 {
+                width: 40%;
+                margin-bottom: 0;
+            }
+        }
+
+
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        th {
+            background-color: #727272;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e9e9e9;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        caption {
+            padding: 10px;
+            caption-side: bottom;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #cdcdcd;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            text-align: center;
+            display: block;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            height: 58px;
+            border: 1px solid gray;
+        }
+
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            display: flex;
+
+            align-items: center;
+            margin: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            background-color: #cdcdcd;
+            height: 58px;
+        }
+
+        label {
+            margin-right: 10px;
+            font-size: larger;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 150px;
+            margin-left: 10px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            font-size: larger;
+        }
+
+        select {
+            padding: 5px;
+            width: 100%;
+            margin-left: 10px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            font-size: larger;
+        }
+
+        .my_class {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: #727272 1px solid;
+        }
+
+        .my_class2 {
+            margin: auto;
+            width: 1200px;
+            height: 600px;
+        }
+
+        #message-module {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #message-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #message-text {
+            font-size: larger;
+            margin-bottom: 10px;
+        }
+
+        #close-button {
+            padding: 10px 20px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            background-color: lightgray;
+            cursor: pointer;
+        }
+
+        .captions {
+            align-items: center;
+            text-align: center;
+        }
+
+        .printBtn {
+         padding: 0 0 20px 30px; 
+
+            
+        }
+
+        #print_chart {
+            display: none;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('#datepicker_from').datetimepicker();
+        });
+        $(function () {
+            $('#datepicker_to').datetimepicker();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="main_container">
+        <div>
+            <div class="captions">
+                <h2>Weifang grafiskā atskaite</h2>
+            </div>
+            <div class="item">
+                <div class="input-group">
+                    <label for="ordersBy">Atlasīt Partijas:</label>
+                    <select id="ordersBy">
+                        <option value="0">Visas</option>
+                        <option value="1">Pēc datuma</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="datepicker_from">Sākuma datums: </label>
+                    <input type="text" id="datepicker_from" autocomplete="off" disabled>
+                </div>
+                <div class="input-group">
+                    <label for="datepicker_to">Beigu datums: </label>
+                    <input type="text" id="datepicker_to" autocomplete="off" disabled>
+                </div>
+                <div class="input-group">
+                    <label for="ordersList">Partija:</label>
+                    <select id="ordersList">
+
+                    </select>
+                </div>
+                <div style="display: flex; justify-content: right; width: 100%; ">
+                    <button id="run_request">Pieprasīt datus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="my_class2">
+        <canvas id="multiAxisChart"></canvas>
+    </div>
+    <div class="printBtn">
+        <button id="print_chart">Printēt</button>
+    </div>
+    </div>
+    <script>
+        // page global variables/////////////////////////////////
+        const db_setting = { outfmt: 'json', dbgroup: '_postgres' };
+        const run_request = document.getElementById('run_request');
+        const print_chart = document.getElementById('print_chart');
+        let multiAxisChart;
+        var order_from;
+        var order_to;
+
+        const ordersListHolder = document.getElementById('ordersList'); // partiju selectors
+
+        ////////////////////////////////////////////////////////////////
+        ///////////////////////// SQL Functions ////////////////////////
+        function getAllOrders() {
+            return new Promise(resolve => {
+                runSql('getAllDoneOrder', {}, db_setting, function (results) {
+                    if (results.statusCode !== 200) {
+                        console.info(`Nesanāca`);
+                        resolve(false);
+                    }
+                    resolve(results.responseJson);
+                });
+            });
+        };
+        function dateFiltredOrders(order_from, order_to) {
+            return new Promise(resolve => {
+                runSql('dateFiltredOrders', { order_from, order_to }, db_setting, function (results) {
+                    if (results.statusCode !== 200) {
+                        console.info(`Nesanāca`);
+                        resolve(false);
+                    }
+                    resolve(results.responseJson);
+                });
+            });
+        };
+
+        function getScaleData(dataFromTime, graphTimeNow) {
+            return new Promise(resolve => {
+                runSql('getScaleData', { dataFromTime, graphTimeNow }, db_setting, function (results) {
+                    if (results.statusCode !== 200) {
+                        console.info(`Nesanāca`);
+                        resolve(false);
+                    }
+                    resolve(results.responseJson);
+                });
+            });
+        };
+
+        ////////////////////////////////////////////////////////////////
+        ////////////////////// Veido grafiku funkcija /////////////////
+        function movingAverage(data, windowSize) {
+            let result = [];
+            for (let i = 0; i < data.length; i++) {
+                if (i < windowSize - 1) {
+                    result.push(data[i]);
+                } else {
+                    let sum = 0;
+                    for (let j = 0; j < windowSize; j++) {
+                        sum += data[i - j];
+                    }
+                    result.push(sum / windowSize);
+                }
+            }
+            return result;
+        }
+
+        function createChart(data) {
+            if (multiAxisChart) {
+                multiAxisChart.destroy();
+            }
+            //console.log(data)
+            // Extract data for all the fields
+            const labels = data.map(d => d.time_stmp);
+            const datasets = [
+                { label: 'DZ6049 A', data: data.map(d => d.id201_a), borderColor: 'red', yAxisID: 'y' },
+                { label: 'DZ6049 FR', data: data.map(d => d.id201_fr), borderColor: 'blue', yAxisID: 'y1' },
+                { label: 'IM6050 A', data: data.map(d => d.id202_a), borderColor: 'green', yAxisID: 'y' },
+                { label: 'IM6050 FR', data: data.map(d => d.id202_fr), borderColor: 'orange', yAxisID: 'y1' },
+                { label: 'IM6051 A', data: data.map(d => d.id203_a), borderColor: 'purple', yAxisID: 'y' },
+                { label: 'IM6051 FR', data: data.map(d => d.id203_fr), borderColor: 'cyan', yAxisID: 'y1' },
+                { label: 'CF6052 A', data: data.map(d => d.id204_a), borderColor: 'magenta', yAxisID: 'y' },
+                { label: 'CF6052 FR', data: data.map(d => d.id204_fr), borderColor: 'yellow', yAxisID: 'y1' },
+                { label: 'CF6053 A', data: data.map(d => d.id205_a), borderColor: 'black', yAxisID: 'y' },
+                { label: 'CF6053 FR', data: data.map(d => d.id205_fr), borderColor: 'brown', yAxisID: 'y1' },
+                { label: 'CF6054 A', data: data.map(d => d.id206_a), borderColor: 'lime', yAxisID: 'y' },
+                { label: 'CF6054 FR', data: data.map(d => d.id206_fr), borderColor: 'teal', yAxisID: 'y1' },
+                { label: 'FN6060 A', data: data.map(d => d.id211_a), borderColor: 'navy', yAxisID: 'y' },
+                { label: 'FN6060 FR', data: data.map(d => d.id211_fr), borderColor: 'pink', yAxisID: 'y1' },
+                { label: 'IM6051 Pressure', data: data.map(d => d.id203_presure), borderColor: 'silver', yAxisID: 'y2' },
+                { label: 'CF6054 Pressure', data: data.map(d => d.id206_presure), borderColor: 'gold', yAxisID: 'y2' },
+                { label: 'CISE1 Pressure', data: data.map(d => d.id219_presure), borderColor: 'coral', yAxisID: 'y2' },
+                { label: 'FLTR2 Pressure', data: data.map(d => d.id214_presure), borderColor: 'lavender', yAxisID: 'y2' },
+                { label: 'FN6060 Pressure', data: data.map(d => d.id211_presure), borderColor: 'beige', yAxisID: 'y2' },
+                { label: 'CV6034 Weight', data: data.map(d => d.id215_weight), borderColor: 'khaki', yAxisID: 'y4' },
+                {
+                    label: 'CV6034 Weight H',
+                    data: movingAverage(data.map(d => d.id215_weight_h), 5), // Piemēro movingAverage
+                    borderColor: 'peru',
+                    yAxisID: 'y3'
+                },
+                { label: 'CV6057 Weight', data: data.map(d => d.id216_weight), borderColor: 'crimson', yAxisID: 'y4' },
+                {
+                    label: 'CV6057 Weight H',
+                    data: movingAverage(data.map(d => d.id216_weight_h), 5), // Piemēro movingAverage
+                    borderColor: 'olive',
+                    yAxisID: 'y3'
+                }
+            ];
+
+            const getYAxesConfig = (chart) => ({
+                y: {
+                    type: 'linear',
+                    display: displayYAxis(chart, 'ID201 A'),
+                    position: 'left',
+                    min: 0,
+                    max: 300,
+                    title: {
+                        display: true,
+                        text: 'A'
+                    }
+                },
+                y1: {
+                    type: 'linear',
+                    display: displayYAxis(chart, 'ID201 FR'),
+                    position: 'left',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    min: 0,
+                    max: 70,
+                    title: {
+                        display: true,
+                        text: 'Hz'
+                    }
+                },
+                y2: {
+                    type: 'linear',
+                    display: displayYAxis(chart, 'CISE1 Pressure'),
+                    position: 'left',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    min: 0,
+                    max: 15,
+                    title: {
+                        display: true,
+                        text: 'kPa'
+                    }
+                },
+                y3: {
+                    type: 'linear',
+                    display: displayYAxis(chart, 'CV6034 Weight H'),
+                    position: 'left',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    min: 0,
+                    max: 1000,
+                    title: {
+                        display: true,
+                        text: 'KG/h'
+                    }
+                },
+                y4: {
+                    type: 'linear',
+                    display: displayYAxis(chart, 'CV6034 Weight'),
+                    position: 'left',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    min: 0,
+                    max: 1000,
+                    title: {
+                        display: true,
+                        text: 'KG'
+                    }
+                }
+
+            });
+
+            // Create the chart
+            const ctx = document.getElementById('multiAxisChart').getContext('2d');
+            multiAxisChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    stacked: false,
+                    scales: getYAxesConfig({ data: { datasets: [] } }),
+                    plugins: {
+                        legend: {
+                            onClick: (event, legendItem) => {
+                                const index = legendItem.datasetIndex;
+                                const chart = legendItem.chart;
+                                chart.setDatasetVisibility(index, !chart.isDatasetVisible(index));
+                                chart.options.scales = getYAxesConfig(chart);
+                                chart.update();
+                            }
+                        }
+                    }
+                }
+            });
+
+            multiAxisChart.config.options.plugins.legend.onClick = function (event, legendItem) {
+                const index = legendItem.datasetIndex;
+                const chart = this.chart;
+                chart.setDatasetVisibility(index, !chart.isDatasetVisible(index));
+                // chart.options.scales = getYAxesConfig(chart);//  funkcija atslēdzot grafika līkni pazūd arī Y ass apzīmējums
+                chart.update();
+            };
+            print_chart.style.display = 'inline';
+        }
+        function displayYAxis(chart, dataField) {
+            const datasetIndex = chart.data.datasets.findIndex(dataset => dataset.label === dataField);
+            if (datasetIndex === -1) return true;
+            return chart.isDatasetVisible(datasetIndex);
+        }
+
+        ////////////////////////////////////////////////////////////////
+
+        // Helper funkcijas/////////////////////////
+        function convertDateFormat(inputDate) {
+            if (!inputDate) return;
+            // Sadala ievades datumu atsevišķās daļās
+            const dateParts = inputDate.split(' ');
+            const dateString = dateParts[0];
+            const timeString = dateParts[1];
+
+            // Pārveido datuma daļu uz YYYY-MM-DD formātu
+            const [month, day, year] = dateString.split('/');
+            const formattedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+            // Apvieno datuma un laika daļas
+            const formattedDateTime = `${formattedDate} ${timeString}:00`;
+            return formattedDateTime;
+        }
+
+        async function getOrdersBetweenTime(order_from, order_to) {
+            console.log(`Datums no ${order_from} līdz datums ${order_to}`);
+            var ordersBetweenDate = await dateFiltredOrders(order_from, order_to);
+            console.log(ordersBetweenDate);
+            if (!ordersBetweenDate) {
+                var fakeOrder = [
+                    {
+                        "order_lable": "Nav Partiju!"
+                    }
+                ]
+                addOrdersToSelect(fakeOrder);
+            } else {
+                addOrdersToSelect(ordersBetweenDate);
+            }
+        }
+        //////////////////////////////////////////
+        async function addOrdersToSelect(orders) {
+            ordersListHolder.innerHTML = ''; // Clear existing content (if any)
+            try {
+                if (!orders) {
+                    orders = await getAllOrders();
+                }
+                if (!orders || !orders.length) {                    
+                    console.warn('No orders found to add to the select.');
+                    return; 
+                }
+                const selectElement = document.createElement('select'); // Create a select element                
+                var defaultOption = document.createElement('option');
+                defaultOption.textContent = "Izvēlēties";
+                defaultOption.value = '0';
+                ordersListHolder.appendChild(defaultOption);
+                orders.forEach(order => {
+                    const optionElement = document.createElement('option');
+                    optionElement.textContent = order.order_lable; // Set option text
+                    optionElement.setAttribute('start_tmst', order.start_tmst);
+                    optionElement.setAttribute('end_tmst', order.end_tmst);
+                    ordersListHolder.appendChild(optionElement);
+                });              
+            } catch (error) {
+                console.error('Error fetching orders:', error);                
+            }
+        }
+        addOrdersToSelect();
+        //////////////////////////////////// eventlisteneru funkcijas//////////////////
+        const datepicker_from = document.getElementById('datepicker_from');
+        const datepicker_to = document.getElementById('datepicker_to');
+
+        var selectOrderBy = document.getElementById('ordersBy');
+        selectOrderBy.addEventListener('change', function () {
+            console.log(selectOrderBy.options[selectOrderBy.selectedIndex].value);
+            if (selectOrderBy.options[selectOrderBy.selectedIndex].value == 0) {
+                document.getElementById('datepicker_from').setAttribute('disabled', true);
+                document.getElementById('datepicker_to').setAttribute('disabled', true);
+                datepicker_from.value = '';
+                datepicker_to.value = '';
+                addOrdersToSelect();
+
+            } else if (selectOrderBy.options[selectOrderBy.selectedIndex].value == 1) {
+                //TODO pievienot opciku, aks notīra datapikerus
+                datepicker_from.value = '';
+                datepicker_to.value = '';
+                document.getElementById('datepicker_from').removeAttribute('disabled');
+                document.getElementById('datepicker_to').removeAttribute('disabled');
+                const ordersListHolder = document.getElementById('ordersList');
+                ordersListHolder.innerHTML = ''; // Clear existing content (if any)
+            }
+        })
+
+
+        datepicker_from.addEventListener('blur', function () {           
+            if (this.value == '') return;
+            order_from = convertDateFormat(this.value);
+            console.log(datepicker_to.value)
+            if (datepicker_to.value != '') {
+                order_to = convertDateFormat(datepicker_to.value);
+                // izsaucam funkciju kas veido pieprasījumu datbāzei
+                getOrdersBetweenTime(order_from, order_to);
+            }
+        })
+
+        datepicker_to.addEventListener('blur', function () {
+            console.log('Pikers strādā');
+            console.log(this.value)
+            if (this.value == '') return;
+            order_to = convertDateFormat(this.value);
+
+            console.log(datepicker_to.value)
+            if (datepicker_from.value != '') {
+                order_to = convertDateFormat(datepicker_to.value);
+                // izsaucam funkciju kas veido pieprasījumu datbāzei
+                getOrdersBetweenTime(order_from, order_to);
+            }
+        })
+
+        run_request.addEventListener('click', async function () {
+            let wf_data_from = ordersListHolder.options[ordersListHolder.selectedIndex].getAttribute('start_tmst');
+            let wf_data_to = ordersListHolder.options[ordersListHolder.selectedIndex].getAttribute('end_tmst');
+            let wf_data = await getScaleData(wf_data_from, wf_data_to);
+            //console.log(wf_data);
+            if (!wf_data) {
+                print_chart.style.display = 'none';
+                Swal.fire({
+                    icon: "error",
+                    title: "Netieka saņemti dati izvēlētajai partijai!"
+                });
+            }
+            createChart(wf_data);
+        })
+
+        print_chart.addEventListener('click', function () {
+
+            if (!multiAxisChart) return;   
+            const order_name = ordersListHolder.options[ordersListHolder.selectedIndex].text;
+            const canvas = document.getElementById('multiAxisChart');            
+            const image = canvas.toDataURL('image/png');            
+            const newWindow = window.open('', '_blank');
+            newWindow.document.write('<html><head><title>Print Chart</title></head><body>');
+            newWindow.document.write(`<h2>Partija: ${order_name} </h2>`);
+            newWindow.document.write(`<img src="${image}" style="width:100%;"/>`);
+            newWindow.document.write('</body></html>');
+            newWindow.document.close();
+            
+            newWindow.print();           
+            newWindow.addEventListener('afterprint', function () {
+                newWindow.close();
+            });
+            // Pārlūki, kas neatbalsta 'afterprint' notikumu
+            setTimeout(function () {
+                newWindow.close();
+            }, 1000);
+        })
+
+        //////////////////////////////////////////////////////////////////////////////
+
+    </script>
+</body>
+<script type="text/javascript" src="/scripts/outerScripts/order_report_control.js"></script>
+
+</html>

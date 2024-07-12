@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='stylesheet' type='text/css' href='system/styles/igrX.css' />
+    <script type='text/javascript' src='system/scripts/igrX2.js'></script>
+
+
+    <script src="./MODULES/excelExport/FileSaver.min.js"></script>
+    <script src="./MODULES/excelExport/xlsx.mini.js"></script>
+    <script src="./MODULES/excelExport/xlsx.full.min.js"></script>
+    <script src="./MODULES/ult_dataTables/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="./MODULES/jqueryMultiselect/jquery.dropdown.css">
+    <script src="./MODULES/jqueryMultiselect/jquery.dropdown.min.js"></script>
+    <script src="./MODULES/package/dist/chart.umd.js"></script>
+    <script src="./MODULES/sweetalert2@9.js"></script>
+    <link rel="stylesheet" href="./MODULES/jquery-ui-1.13.2/jquery-ui.min.css">
+
+    <style>
+        .main_container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            margin: auto;
+        }
+
+        .item {
+
+            display: grid;
+            grid-template-columns: 2fr 2fr 2fr;
+            gap: 15px;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .item2 {
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+
+            .item,
+            .item2 {
+                width: 40%;
+                margin-bottom: 0;
+            }
+        }
+
+
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        th {
+            background-color: #727272;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e9e9e9;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        caption {
+            padding: 10px;
+            caption-side: bottom;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #cdcdcd;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            text-align: center;
+            display: block;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            height: 58px;
+            border: 1px solid gray;
+        }
+
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            display: flex;
+
+            align-items: center;
+            margin: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            background-color: #cdcdcd;
+            height: 58px;
+        }
+
+        label {
+            margin-right: 10px;
+            font-size: larger;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            padding: 5px;
+            width: 50px;
+            margin-left: 10px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            font-size: larger;
+        }
+
+        select {
+            padding: 5px;
+            width: auto;
+            margin-left: 10px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            font-size: larger;
+        }
+
+        .my_class {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: #727272 1px solid;
+        }
+
+        .my_class2 {
+            margin: auto;
+            width: 1200px;
+            height: 600px;
+        }
+
+        #message-module {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #message-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #message-text {
+            font-size: larger;
+            margin-bottom: 10px;
+        }
+
+        #close-button {
+            padding: 10px 20px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            background-color: lightgray;
+            cursor: pointer;
+        }
+
+        .captions {
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+    <script>
+    </script>
+</head>
+
+<body>
+    <div class="main_container">
+        <div>
+            <div class="captions">
+                <h2>Reāllaika ražošanas grafiks</h2>
+            </div>
+            <div class="item">
+
+                <div class="input-group">
+                    <label for="lastTime_hours">Dati par pēdējāo laiku [Stundas]</label>
+                    <input type="number" id="lastTime_hours" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label for="updateGraph_minutes">Atjaunot grafiku ik [Minūtes]</label>
+                    <input type="number" id="updateGraph_minutes" autocomplete="off">
+                </div>
+                <div style="display: flex; justify-content: right; width: 100%; ">
+                    <button id="use_request">Pielietot</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="my_class2">
+        <canvas id="multiAxisChart"></canvas>
+    </div>
+    </div>
+    <script>
+        // script global variables
+        var stopInterval = false;
+
+
+
+        function timeNow(offset) {
+            // Pārbauda nobīdes vērtību un iestatī noklusējuma vērtību 0, ja tā nav norādīta
+            offset = offset || 0;
+            // Iegūst pašreizējo datumu un laiku
+            const tagad = new Date();
+            // Izveido datuma komponentus
+            const gads = tagad.getFullYear();
+            const menesis = tagad.getMonth() + 1; // Mēneši sākas no 0, tāpēc pievieno 1
+            var diena = tagad.getDate();
+            // Izveido laika komponentus
+            let stundas = tagad.getHours();
+            let minutes = tagad.getMinutes();
+            let sekundes = tagad.getSeconds();
+            // Pievieno nobīdi stundām
+            stundas -= offset; // timeoffset tiek atņemts no stundas, lai iegūtu pagātnes laiku
+            // Pielāgo dienu un mēnesi, ja nobīde ietekmē diennakts stundas
+            while (stundas < 0) {
+                stundas += 24;
+                diena--;
+                if (diena < 1) {
+                    diena = 31; // Pāriet uz iepriekšējo mēnesi
+                    menesis--;
+                    if (menesis < 1) {
+                        menesis = 12; // Pāriet uz iepriekšējo gadu
+                        gads--;
+                    }
+                }
+            }
+            while (stundas >= 24) {
+                stundas -= 24;
+                diena++;
+                if (diena > 31) {
+                    diena = 1; // Pāriet uz nākamo mēnesi
+                    menesis++;
+                    if (menesis > 12) {
+                        menesis = 1; // Pāriet uz nākamo gadu
+                        gads++;
+                    }
+                }
+            }
+            // Formatē datumu un laiku
+            const formatetsDatums = `${gads}-${menesis < 10 ? `0${menesis}` : menesis}-${diena < 10 ? `0${diena}` : diena}`;
+            const formatetsLaiks = `${stundas < 10 ? `0${stundas}` : stundas}:${minutes < 10 ? `0${minutes}` : minutes}:${sekundes < 10 ? `0${sekundes}` : sekundes}`;
+            return formatetsDatums + " " + formatetsLaiks;
+        }
+        var intervalID;
+        var reloadInterval = 3000;
+        var timeOffset = 2;
+
+        document.getElementById('lastTime_hours').value = timeOffset;
+        document.getElementById('updateGraph_minutes').value = 1;
+
+        var useBtn = document.getElementById('use_request');
+        useBtn.addEventListener('click', function () {
+            stopInterval = false;
+            clearTimeout(intervalID);
+
+            console.log('Klikots')
+            timeOffset = parseInt(document.getElementById('lastTime_hours').value) || 0;
+            var intervarInMunutes = document.getElementById('updateGraph_minutes').value || 1;
+            reloadInterval = parseInt(intervarInMunutes * 60000);
+            console.log(timeOffset)
+            CyclicLoading();
+        })
+
+
+
+        //console.log(dataFromTime);
+
+        /////////////////////////
+        const db_setting = { outfmt: 'json', dbgroup: '_postgres' };
+
+        let multiAxisChart;
+        function getScaleData(dataFromTime) {
+            var graphTimeNow = timeNow();
+
+            //dataFromTime = '2024-07-04 16:30:01';
+            // console.log(dataFromTime);
+            // console.log(graphTimeNow);
+
+            return new Promise(resolve => {
+                runSql('getScaleData', { dataFromTime, graphTimeNow }, db_setting, function (results) {
+                    if (results.statusCode !== 200) {
+                        console.info(`Nesanāca`);
+                        resolve(false);
+                    }
+                    resolve(results.responseJson);
+                });
+            });
+        };
+
+        function movingAverage(data, windowSize) {
+            let result = [];
+            for (let i = 0; i < data.length; i++) {
+                if (i < windowSize - 1) {
+                    result.push(data[i]);
+                } else {
+                    let sum = 0;
+                    for (let j = 0; j < windowSize; j++) {
+                        sum += data[i - j];
+                    }
+                    result.push(sum / windowSize);
+                }
+            }
+            return result;
+        }
+
+
+        function updateChart(data) {
+            if (!multiAxisChart) return;
+
+            // Extract data for all the fields
+            const labels = data.map(d => d.time_stmp);
+            multiAxisChart.data.labels = labels;
+
+            const dataFields = [
+                'id201_a', 'id201_fr', 'id202_a', 'id202_fr', 'id203_a', 'id203_fr', 'id204_a', 'id204_fr',
+                'id205_a', 'id205_fr', 'id206_a', 'id206_fr', 'id211_a', 'id211_fr', 'id203_presure',
+                'id206_presure', 'id219_presure', 'id214_presure', 'id211_presure', 'id215_weight',
+                'id215_weight_h', 'id216_weight', 'id216_weight_h'
+            ];
+
+            dataFields.forEach((field, index) => {
+                if (field === 'id215_weight_h' || field === 'id216_weight_h') {
+                    multiAxisChart.data.datasets[index].data = movingAverage(data.map(d => d[field]), 5);
+                } else {
+                    multiAxisChart.data.datasets[index].data = data.map(d => d[field]);
+                }
+            });
+
+            multiAxisChart.update();
+        }
+
+
+        function createChart(data) {
+            console.log(data)
+            // Extract data for all the fields
+            const labels = data.map(d => d.time_stmp);
+            const datasets = [
+                { label: 'DZ6049 A', data: data.map(d => d.id201_a), borderColor: 'red', yAxisID: 'y' },
+                { label: 'DZ6049 FR', data: data.map(d => d.id201_fr), borderColor: 'blue', yAxisID: 'y1' },
+                { label: 'IM6050 A', data: data.map(d => d.id202_a), borderColor: 'green', yAxisID: 'y' },
+                { label: 'IM6050 FR', data: data.map(d => d.id202_fr), borderColor: 'orange', yAxisID: 'y1' },
+                { label: 'IM6051 A', data: data.map(d => d.id203_a), borderColor: 'purple', yAxisID: 'y' },
+                { label: 'IM6051 FR', data: data.map(d => d.id203_fr), borderColor: 'cyan', yAxisID: 'y1' },
+                { label: 'CF6052 A', data: data.map(d => d.id204_a), borderColor: 'magenta', yAxisID: 'y' },
+                { label: 'CF6052 FR', data: data.map(d => d.id204_fr), borderColor: 'yellow', yAxisID: 'y1' },
+                { label: 'CF6053 A', data: data.map(d => d.id205_a), borderColor: 'black', yAxisID: 'y' },
+                { label: 'CF6053 FR', data: data.map(d => d.id205_fr), borderColor: 'brown', yAxisID: 'y1' },
+                { label: 'CF6054 A', data: data.map(d => d.id206_a), borderColor: 'lime', yAxisID: 'y' },
+                { label: 'CF6054 FR', data: data.map(d => d.id206_fr), borderColor: 'teal', yAxisID: 'y1' },
+                { label: 'FN6060 A', data: data.map(d => d.id211_a), borderColor: 'navy', yAxisID: 'y' },
+                { label: 'FN6060 FR', data: data.map(d => d.id211_fr), borderColor: 'pink', yAxisID: 'y1' },
+                { label: 'IM6051 Pressure', data: data.map(d => d.id203_presure), borderColor: 'silver', yAxisID: 'y2' },
+                { label: 'CF6054 Pressure', data: data.map(d => d.id206_presure), borderColor: 'gold', yAxisID: 'y2' },
+                { label: 'CISE1 Pressure', data: data.map(d => d.id219_presure), borderColor: 'coral', yAxisID: 'y2' },
+                { label: 'FLTR2 Pressure', data: data.map(d => d.id214_presure), borderColor: 'lavender', yAxisID: 'y2' },
+                { label: 'FN6060 Pressure', data: data.map(d => d.id211_presure), borderColor: 'beige', yAxisID: 'y2' },
+                { label: 'CV6034 Weight', data: data.map(d => d.id215_weight), borderColor: 'khaki', yAxisID: 'y4' },
+                {
+                    label: 'CV6034 Weight H',
+                    data: movingAverage(data.map(d => d.id215_weight_h), 5), // Piemēro movingAverage
+                    borderColor: 'peru',
+                    yAxisID: 'y3'
+                },
+                { label: 'CV6057 Weight', data: data.map(d => d.id216_weight), borderColor: 'crimson', yAxisID: 'y4' },
+                {
+                    label: 'CV6057 Weight H',
+                    data: movingAverage(data.map(d => d.id216_weight_h), 5), // Piemēro movingAverage
+                    borderColor: 'olive',
+                    yAxisID: 'y3'
+                }
+            ];
+
+            const getYAxesConfig = (chart) => ({
+                y: {
+                    type: 'linear',
+                    display: displayYAxis(chart, 'ID201 A'),
+                    position: 'left',
+                    min: 0,
+                    max: 300,
+                    title: {
+                        display: true,
+                        text: 'A'
+                    }
+                },
+                y1: {
+                    type: 'linear',
+                    display: displayYAxis(chart, 'ID201 FR'),
+                    position: 'left',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    min: 0,
+                    max: 70,
+                    title: {
+                        display: true,
+                        text: 'Hz'
+                    }
+                },
+                y2: {
+                    type: 'linear',
+                    display: displayYAxis(chart, 'CISE1 Pressure'),
+                    position: 'left',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    min: 0,
+                    max: 15,
+                    title: {
+                        display: true,
+                        text: 'kPa'
+                    }
+                },
+                y3: {
+                    type: 'linear',
+                    display: displayYAxis(chart, 'CV6034 Weight H'),
+                    position: 'left',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    min: 0,
+                    max: 1000,
+                    title: {
+                        display: true,
+                        text: 'KG/h'
+                    }
+                },
+                y4: {
+                    type: 'linear',
+                    display: displayYAxis(chart, 'CV6034 Weight'),
+                    position: 'left',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    min: 0,
+                    max: 1000,
+                    title: {
+                        display: true,
+                        text: 'KG'
+                    }
+                }
+
+            });
+
+            // Create the chart
+            const ctx = document.getElementById('multiAxisChart').getContext('2d');
+            multiAxisChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    stacked: false,
+                    scales: getYAxesConfig({ data: { datasets: [] } }),
+                    plugins: {
+                        legend: {
+                            onClick: (event, legendItem) => {
+                                const index = legendItem.datasetIndex;
+                                const chart = legendItem.chart;
+                                chart.setDatasetVisibility(index, !chart.isDatasetVisible(index));
+                                chart.options.scales = getYAxesConfig(chart);
+                                chart.update();
+                            }
+                        }
+                    }
+                }
+            });
+
+            multiAxisChart.config.options.plugins.legend.onClick = function (event, legendItem) {
+                const index = legendItem.datasetIndex;
+                const chart = this.chart;
+                chart.setDatasetVisibility(index, !chart.isDatasetVisible(index));
+                // chart.options.scales = getYAxesConfig(chart);//  funkcija atslēdzot grafika līkni pazūd arī Y ass apzīmējums
+                chart.update();
+            };
+        }
+        function displayYAxis(chart, dataField) {
+            const datasetIndex = chart.data.datasets.findIndex(dataset => dataset.label === dataField);
+            if (datasetIndex === -1) return true;
+            return chart.isDatasetVisible(datasetIndex);
+        }
+
+
+        async function CyclicLoading() {
+            console.log('Ir cikls?');
+            if (stopInterval === true) return;
+
+            var dataFromTime = timeNow(timeOffset);
+            //console.log(dataFromTime);
+            try {
+                const scaleData = await getScaleData(dataFromTime);
+                console.log('Cikls');
+
+                if (multiAxisChart) {
+
+                    updateChart(scaleData);
+                } else {
+                    createChart(scaleData);
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Netiek saņemti dati no datubāzes vai nav aktīvas ražošanas!"
+                });
+                stopInterval = true;
+                console.error("Error fetching scale data:", error);
+
+            } finally {
+                intervalID = setTimeout(() => {
+                    CyclicLoading();
+                }, reloadInterval);
+                // setTimeout(CyclicLoading, reloadInterval);
+            }
+        }
+        CyclicLoading();
+
+        /// Eventlisteners piekš ievades datu pārbaudes
+
+
+        var hourOffset = document.getElementById('lastTime_hours');
+        var reloadIntervalSet = document.getElementById('updateGraph_minutes');
+
+        hourOffset.addEventListener('input', function () {
+            // Iegūstam teksta lauka saturu
+            var inputValue = hourOffset.value;
+
+            // Pārbaudām, vai ievadītā vērtība ir skaitlis
+            if (isNaN(inputValue)) {
+                // Ja tā nav skaitlis, attēlojam kļūdas ziņojumu
+                alert("Nederīga ievades vērtība. Lūdzu, ievadiet skaitli.");
+                return;
+            }
+
+            // Pārveidojam ievades vērtību par veselu skaitli
+            var parsedValue = parseInt(inputValue);
+
+            // Pārbaudām, vai ievadītā vērtība ir mazāka par 1
+            if (parsedValue < 1) {
+                // Ja tā ir mazāka par 1, iestatām vērtību uz 1
+                inputValue = 1;
+            } else if (parsedValue > 12) {
+                // Ja tā ir mazāka par 1, iestatām vērtību uz 1
+                inputValue = 12;
+            }
+
+            // Atjauninām teksta lauka vērtību
+            hourOffset.value = inputValue;
+        });
+        reloadIntervalSet.addEventListener('input', function () {
+            // Iegūstam teksta lauka saturu
+            var inputValue = reloadIntervalSet.value;
+
+            // Pārbaudām, vai ievadītā vērtība ir skaitlis
+            if (isNaN(inputValue)) {
+                // Ja tā nav skaitlis, attēlojam kļūdas ziņojumu
+                alert("Nederīga ievades vērtība. Lūdzu, ievadiet skaitli.");
+                return;
+            }
+
+            // Pārveidojam ievades vērtību par veselu skaitli
+            var parsedValue = parseInt(inputValue);
+
+            // Pārbaudām, vai ievadītā vērtība ir mazāka par 1
+            if (parsedValue < 1) {
+                // Ja tā ir mazāka par 1, iestatām vērtību uz 1
+                inputValue = 1;
+            } else if (parsedValue > 60) {
+                // Ja tā ir mazāka par 1, iestatām vērtību uz 1
+                inputValue = 60;
+            }
+
+            // Atjauninām teksta lauka vērtību
+            reloadIntervalSet.value = inputValue;
+        });
+
+    </script>
+</body>
+<!-- <script type="text/javascript" src="/scripts/outerScripts/order_report_control.js"></script> -->
+
+</html>
