@@ -27,11 +27,15 @@ var Weight_ID215 = getTag('Weight_ID215');
 var WeightMinute_ID215 = getTag('WeightMinute_ID215');
 var Weight_ID216 = getTag('Weight_ID216');
 var WeightMinute_ID216 = getTag('WeightMinute_ID216');
+var Weight_ID45 = getTag('Weight_ID45');
+var WeightMinute_ID45 = getTag('WeightMinute_ID45');
+
+var def_standart = getTag('vDef_standart');
 
 
 var sqlText = "INSERT INTO wf_data_elements"+
-"(time_stmp, id201_a, id201_fr, id202_a, id202_fr, id203_a, id203_fr, id204_a, id204_fr, id205_a, id205_fr, id206_a, id206_fr, id211_a, id211_fr, id203_presure, id206_presure, id219_presure, id214_presure, id211_presure, id215_weight, id215_weight_h, id216_weight, id216_weight_h)"+
-"VALUES(now(), "+state_ID201_A+", "+state_ID201_FR+", "+state_ID202_A+", "+state_ID202_FR+", "+state_ID203_A+", "+state_ID203_FR+", "+state_ID204_A+", "+state_ID204_FR+", "+state_ID205_A+", "+state_ID205_FR+", "+state_ID206_A+", "+state_ID206_FR+", "+state_ID211_A+", "+state_ID211_FR+", "+PS6138_P+", "+PS6139_P+", "+PS6140_P+", "+DP6171_P+", "+PS6141_P+", "+Weight_ID215+", "+WeightMinute_ID215+", "+Weight_ID216+", "+WeightMinute_ID216+");"
+"(time_stmp, id201_a, id201_fr, id202_a, id202_fr, id203_a, id203_fr, id204_a, id204_fr, id205_a, id205_fr, id206_a, id206_fr, id211_a, id211_fr, id203_presure, id206_presure, id219_presure, id214_presure, id211_presure, id215_weight, id215_weight_h, id216_weight, id216_weight_h, id45_weight, id45_weight_h, def_standart)"+
+"VALUES(now(), "+state_ID201_A+", "+state_ID201_FR+", "+state_ID202_A+", "+state_ID202_FR+", "+state_ID203_A+", "+state_ID203_FR+", "+state_ID204_A+", "+state_ID204_FR+", "+state_ID205_A+", "+state_ID205_FR+", "+state_ID206_A+", "+state_ID206_FR+", "+state_ID211_A+", "+state_ID211_FR+", "+PS6138_P+", "+PS6139_P+", "+PS6140_P+", "+DP6171_P+", "+PS6141_P+", "+Weight_ID215+", "+WeightMinute_ID215+", "+Weight_ID216+", "+WeightMinute_ID216+", "+Weight_ID45+", "+WeightMinute_ID45+", "+def_standart+");"
 
 var ssq = setSql(sqlText, pg);
 if (!ssq) return debugString("Failed SQL: " + sqlText);

@@ -25,22 +25,24 @@
             justify-content: center;
             align-items: flex-start;
             margin: auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .item {
-
             display: grid;
-            grid-template-columns: 5fr 5fr 5fr 5fr 5fr;
-            gap: 15px;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
             align-items: center;
             width: 100%;
             margin-top: 20px;
             margin-bottom: 20px;
-            justify-content: center;
         }
 
         .item2 {
-            width: 80%;
+            width: 100%;
             margin-top: 20px;
         }
 
@@ -48,37 +50,35 @@
 
             .item,
             .item2 {
-                width: 40%;
-                margin-bottom: 0;
+                grid-template-columns: 1fr;
+                width: 100%;
             }
         }
-
 
         table {
             width: 100%;
             margin: 20px auto;
             border-collapse: collapse;
-            background-color: #f5f5f5;
+            background-color: #ffffff;
             font-family: Arial, sans-serif;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         th,
         td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px;
             text-align: center;
             font-size: 16px;
-            font-weight: bold;
         }
 
         th {
-            background-color: #727272;
+            background-color: #007bff;
             color: white;
-            font-weight: bold;
         }
 
         tr:nth-child(even) {
-            background-color: #e9e9e9;
+            background-color: #f2f2f2;
         }
 
         tr:hover {
@@ -95,33 +95,22 @@
         }
 
         button {
-            background-color: #cdcdcd;
+            background-color: #007bff;
             color: white;
             padding: 10px 20px;
             border: none;
-            text-align: center;
-            display: block;
             border-radius: 5px;
             font-size: 18px;
-            font-weight: bold;
             cursor: pointer;
-            height: 58px;
-            border: 1px solid gray;
+            transition: background-color 0.3s ease;
         }
 
-
         button:hover {
-            background-color: #ddd;
-        }
-
-
-        button:hover {
-            background-color: #ddd;
+            background-color: #0056b3;
         }
 
         .container {
             display: flex;
-
             align-items: center;
             margin: 20px;
         }
@@ -129,12 +118,12 @@
         .input-group {
             display: flex;
             align-items: center;
-            margin: 10px;
+            margin: 10px 0;
             padding: 10px;
-            border: 1px solid gray;
+            /* border: 1px solid #ccc; */
             border-radius: 5px;
-            background-color: #cdcdcd;
-            height: 58px;
+            background-color: #f8f9fa;
+            width: 100%;
         }
 
         label {
@@ -143,20 +132,21 @@
             font-weight: bold;
         }
 
-        input[type="text"] {
+        input[type="number"] {
             padding: 5px;
-            width: 150px;
+            width: 60px;
             margin-left: 10px;
-            border: 1px solid gray;
+            border: 1px solid #ccc;
             border-radius: 5px;
             font-size: larger;
         }
 
+
         select {
             padding: 5px;
-            width: 100%;
+            width: auto;
             margin-left: 10px;
-            border: 1px solid gray;
+            border: 1px solid #ccc;
             border-radius: 5px;
             font-size: larger;
         }
@@ -165,13 +155,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border: #727272 1px solid;
+            border: 1px solid #727272;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .my_class2 {
             margin: auto;
-            width: 1200px;
-            height: 600px;
+            max-width: 80%;
+            padding: 20px;
         }
 
         #message-module {
@@ -191,6 +185,7 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         #message-text {
@@ -200,21 +195,31 @@
 
         #close-button {
             padding: 10px 20px;
-            border: 1px solid gray;
+            border: none;
             border-radius: 5px;
             background-color: lightgray;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #close-button:hover {
+            background-color: gray;
         }
 
         .captions {
-            align-items: center;
             text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .captions h2 {
+            font-size: 24px;
+            color: #333;
         }
 
         .printBtn {
-         padding: 0 0 20px 30px; 
+            padding: 0 0 20px 30px;
 
-            
+
         }
 
         #print_chart {
@@ -259,6 +264,10 @@
 
                     </select>
                 </div>
+                <div class="input-group">
+                    <label for="updateGraph_minutes">"Moving Average" [mērījumi]</label>
+                    <input type="number" id="movingAverageInput" autocomplete="off">
+                </div>
                 <div style="display: flex; justify-content: right; width: 100%; ">
                     <button id="run_request">Pieprasīt datus</button>
                 </div>
@@ -274,12 +283,16 @@
     </div>
     <script>
         // page global variables/////////////////////////////////
+        let chart;
         const db_setting = { outfmt: 'json', dbgroup: '_postgres' };
         const run_request = document.getElementById('run_request');
         const print_chart = document.getElementById('print_chart');
         let multiAxisChart;
         var order_from;
         var order_to;
+        let movingAverageSize = 10;
+        const movingAverageInput = document.getElementById('movingAverageInput');
+        movingAverageInput.value = movingAverageSize;
 
         const ordersListHolder = document.getElementById('ordersList'); // partiju selectors
 
@@ -321,140 +334,51 @@
         };
 
         ////////////////////////////////////////////////////////////////
+        function generateRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
         ////////////////////// Veido grafiku funkcija /////////////////
         function movingAverage(data, windowSize) {
-            let result = [];
+            const result = [];
             for (let i = 0; i < data.length; i++) {
                 if (i < windowSize - 1) {
                     result.push(data[i]);
                 } else {
-                    let sum = 0;
-                    for (let j = 0; j < windowSize; j++) {
-                        sum += data[i - j];
-                    }
-                    result.push(sum / windowSize);
+                    const windowData = data.slice(i - windowSize + 1, i + 1);
+                    const average = windowData.reduce((sum, val) => sum + val, 0) / windowSize;
+                    result.push(average);
                 }
             }
             return result;
         }
 
-        function createChart(data) {
-            if (multiAxisChart) {
-                multiAxisChart.destroy();
-            }
-            //console.log(data)
-            // Extract data for all the fields
+        function createChart(chartId, data, datasetsConfig, yAxesConfig) {
             const labels = data.map(d => d.time_stmp);
-            const datasets = [
-                { label: 'DZ6049 A', data: data.map(d => d.id201_a), borderColor: 'red', yAxisID: 'y' },
-                { label: 'DZ6049 FR', data: data.map(d => d.id201_fr), borderColor: 'blue', yAxisID: 'y1' },
-                { label: 'IM6050 A', data: data.map(d => d.id202_a), borderColor: 'green', yAxisID: 'y' },
-                { label: 'IM6050 FR', data: data.map(d => d.id202_fr), borderColor: 'orange', yAxisID: 'y1' },
-                { label: 'IM6051 A', data: data.map(d => d.id203_a), borderColor: 'purple', yAxisID: 'y' },
-                { label: 'IM6051 FR', data: data.map(d => d.id203_fr), borderColor: 'cyan', yAxisID: 'y1' },
-                { label: 'CF6052 A', data: data.map(d => d.id204_a), borderColor: 'magenta', yAxisID: 'y' },
-                { label: 'CF6052 FR', data: data.map(d => d.id204_fr), borderColor: 'yellow', yAxisID: 'y1' },
-                { label: 'CF6053 A', data: data.map(d => d.id205_a), borderColor: 'black', yAxisID: 'y' },
-                { label: 'CF6053 FR', data: data.map(d => d.id205_fr), borderColor: 'brown', yAxisID: 'y1' },
-                { label: 'CF6054 A', data: data.map(d => d.id206_a), borderColor: 'lime', yAxisID: 'y' },
-                { label: 'CF6054 FR', data: data.map(d => d.id206_fr), borderColor: 'teal', yAxisID: 'y1' },
-                { label: 'FN6060 A', data: data.map(d => d.id211_a), borderColor: 'navy', yAxisID: 'y' },
-                { label: 'FN6060 FR', data: data.map(d => d.id211_fr), borderColor: 'pink', yAxisID: 'y1' },
-                { label: 'IM6051 Pressure', data: data.map(d => d.id203_presure), borderColor: 'silver', yAxisID: 'y2' },
-                { label: 'CF6054 Pressure', data: data.map(d => d.id206_presure), borderColor: 'gold', yAxisID: 'y2' },
-                { label: 'CISE1 Pressure', data: data.map(d => d.id219_presure), borderColor: 'coral', yAxisID: 'y2' },
-                { label: 'FLTR2 Pressure', data: data.map(d => d.id214_presure), borderColor: 'lavender', yAxisID: 'y2' },
-                { label: 'FN6060 Pressure', data: data.map(d => d.id211_presure), borderColor: 'beige', yAxisID: 'y2' },
-                { label: 'CV6034 Weight', data: data.map(d => d.id215_weight), borderColor: 'khaki', yAxisID: 'y4' },
-                {
-                    label: 'CV6034 Weight H',
-                    data: movingAverage(data.map(d => d.id215_weight_h), 5), // Piemēro movingAverage
-                    borderColor: 'peru',
-                    yAxisID: 'y3'
-                },
-                { label: 'CV6057 Weight', data: data.map(d => d.id216_weight), borderColor: 'crimson', yAxisID: 'y4' },
-                {
-                    label: 'CV6057 Weight H',
-                    data: movingAverage(data.map(d => d.id216_weight_h), 5), // Piemēro movingAverage
-                    borderColor: 'olive',
-                    yAxisID: 'y3'
-                }
-            ];
 
-            const getYAxesConfig = (chart) => ({
-                y: {
-                    type: 'linear',
-                    display: displayYAxis(chart, 'ID201 A'),
-                    position: 'left',
-                    min: 0,
-                    max: 300,
-                    title: {
-                        display: true,
-                        text: 'A'
-                    }
-                },
-                y1: {
-                    type: 'linear',
-                    display: displayYAxis(chart, 'ID201 FR'),
-                    position: 'left',
-                    grid: {
-                        drawOnChartArea: false,
-                    },
-                    min: 0,
-                    max: 70,
-                    title: {
-                        display: true,
-                        text: 'Hz'
-                    }
-                },
-                y2: {
-                    type: 'linear',
-                    display: displayYAxis(chart, 'CISE1 Pressure'),
-                    position: 'left',
-                    grid: {
-                        drawOnChartArea: false,
-                    },
-                    min: 0,
-                    max: 15,
-                    title: {
-                        display: true,
-                        text: 'kPa'
-                    }
-                },
-                y3: {
-                    type: 'linear',
-                    display: displayYAxis(chart, 'CV6034 Weight H'),
-                    position: 'left',
-                    grid: {
-                        drawOnChartArea: false,
-                    },
-                    min: 0,
-                    max: 1000,
-                    title: {
-                        display: true,
-                        text: 'KG/h'
-                    }
-                },
-                y4: {
-                    type: 'linear',
-                    display: displayYAxis(chart, 'CV6034 Weight'),
-                    position: 'left',
-                    grid: {
-                        drawOnChartArea: false,
-                    },
-                    min: 0,
-                    max: 1000,
-                    title: {
-                        display: true,
-                        text: 'KG'
-                    }
-                }
+            // Aprēķināt PCA un pielietot movingAverage
+            const pcaValues = data.map(d => d.id216_weight_h / (d.id215_weight_h + d.id45_weight_h));
+            const pcaMovingAverage = movingAverage(pcaValues, movingAverageSize);
 
-            });
+            const datasets = datasetsConfig.map(config => ({
+                label: config.label,
+                data: (config.field === 'pca')
+                    ? pcaMovingAverage
+                    : (config.isMovingAverage)
+                        ? movingAverage(data.map(d => d[config.field]), movingAverageSize)
+                        : data.map(d => d[config.field]),
+                borderColor: config.borderColor,
+                yAxisID: config.yAxisID
+            }));
+            console.log(datasets);
 
-            // Create the chart
-            const ctx = document.getElementById('multiAxisChart').getContext('2d');
-            multiAxisChart = new Chart(ctx, {
+            const ctx = document.getElementById(chartId).getContext('2d');
+
+            chart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: labels,
@@ -467,30 +391,113 @@
                         intersect: false,
                     },
                     stacked: false,
-                    scales: getYAxesConfig({ data: { datasets: [] } }),
+                    scales: yAxesConfig,
                     plugins: {
                         legend: {
                             onClick: (event, legendItem) => {
                                 const index = legendItem.datasetIndex;
-                                const chart = legendItem.chart;
-                                chart.setDatasetVisibility(index, !chart.isDatasetVisible(index));
-                                chart.options.scales = getYAxesConfig(chart);
-                                chart.update();
+                                const chartInstance = legendItem.chart;
+                                chartInstance.setDatasetVisibility(index, !chartInstance.isDatasetVisible(index));
+                                chartInstance.options.scales = yAxesConfig;
+                                chartInstance.update();
                             }
                         }
                     }
                 }
             });
-
-            multiAxisChart.config.options.plugins.legend.onClick = function (event, legendItem) {
+            chart.config.options.plugins.legend.onClick = function (event, legendItem) {
                 const index = legendItem.datasetIndex;
-                const chart = this.chart;
-                chart.setDatasetVisibility(index, !chart.isDatasetVisible(index));
-                // chart.options.scales = getYAxesConfig(chart);//  funkcija atslēdzot grafika līkni pazūd arī Y ass apzīmējums
-                chart.update();
+                const chartInstance = this.chart;
+                chartInstance.setDatasetVisibility(index, !chartInstance.isDatasetVisible(index));
+                chartInstance.update();
             };
             print_chart.style.display = 'inline';
+            return chart;
         }
+
+        // Piemēri kā izsaukt optimizētās funkcijas
+
+        const multiAxisChartConfig = [
+            { label: 'DZ6049 A', field: 'id201_a', yAxisID: 'y', borderColor: generateRandomColor() },
+            { label: 'DZ6049 FR', field: 'id201_fr', yAxisID: 'y1', borderColor: generateRandomColor() },
+            { label: 'IM6050 A', field: 'id202_a', yAxisID: 'y', borderColor: generateRandomColor() },
+            { label: 'IM6050 FR', field: 'id202_fr', yAxisID: 'y1', borderColor: generateRandomColor() },
+            { label: 'IM6051 A', field: 'id203_a', yAxisID: 'y', borderColor: generateRandomColor() },
+            { label: 'IM6051 FR', field: 'id203_fr', yAxisID: 'y1', borderColor: generateRandomColor() },
+            { label: 'CF6052 A', field: 'id204_a', yAxisID: 'y', borderColor: generateRandomColor() },
+            { label: 'CF6052 FR', field: 'id204_fr', yAxisID: 'y1', borderColor: generateRandomColor() },
+            { label: 'CF6053 A', field: 'id205_a', yAxisID: 'y', borderColor: generateRandomColor() },
+            { label: 'CF6053 FR', field: 'id205_fr', yAxisID: 'y1', borderColor: generateRandomColor() },
+            { label: 'CF6054 A', field: 'id206_a', yAxisID: 'y', borderColor: generateRandomColor() },
+            { label: 'CF6054 FR', field: 'id206_fr', yAxisID: 'y1', borderColor: generateRandomColor() },
+            { label: 'FN6060 A', field: 'id211_a', yAxisID: 'y', borderColor: generateRandomColor() },
+            { label: 'FN6060 FR', field: 'id211_fr', yAxisID: 'y1', borderColor: generateRandomColor() },
+            { label: 'IM6051 Pressure', field: 'id203_presure', yAxisID: 'y2', borderColor: generateRandomColor() },
+            { label: 'CF6054 Pressure', field: 'id206_presure', yAxisID: 'y2', borderColor: generateRandomColor() },
+            { label: 'CISE1 Pressure', field: 'id219_presure', yAxisID: 'y2', borderColor: generateRandomColor() },
+            { label: 'FLTR2 Pressure', field: 'id214_presure', yAxisID: 'y2', borderColor: generateRandomColor() },
+            { label: 'FN6060 Pressure', field: 'id211_presure', yAxisID: 'y2', borderColor: generateRandomColor() },
+            { label: 'CV6034 Weight', field: 'id215_weight', yAxisID: 'y4', borderColor: generateRandomColor() },
+            { label: 'CV6034 Weight H', field: 'id215_weight_h', yAxisID: 'y3', isMovingAverage: true, borderColor: generateRandomColor() },
+            { label: 'CV6057 Weight', field: 'id216_weight', yAxisID: 'y4', borderColor: generateRandomColor() },
+            { label: 'CV6057 Weight H', field: 'id216_weight_h', yAxisID: 'y3', isMovingAverage: true, borderColor: generateRandomColor() },
+            { label: 'CV6035 Weight', field: 'id45_weight', yAxisID: 'y4', borderColor: generateRandomColor() },
+            { label: 'CV6035 Weight H', field: 'id45_weight_h', yAxisID: 'y3', isMovingAverage: true, borderColor: generateRandomColor() },
+            { label: 'Proteīna cietes attiecība', field: 'pca', yAxisID: 'y5', isMovingAverage: true, borderColor: generateRandomColor() },
+            { label: 'Definētais mērķa standarts', field: 'def_standart', yAxisID: 'y5', borderColor: generateRandomColor() }
+        ];
+
+        const yAxesConfig = {
+            y: {
+                type: 'linear',
+                position: 'left',
+                min: 0,
+                max: 300,
+                title: { display: true, text: 'A' }
+            },
+            y1: {
+                type: 'linear',
+                position: 'left',
+                grid: { drawOnChartArea: false },
+                min: 0,
+                max: 70,
+                title: { display: true, text: 'Hz' }
+            },
+            y2: {
+                type: 'linear',
+                position: 'left',
+                grid: { drawOnChartArea: false },
+                min: 0,
+                max: 15,
+                title: { display: true, text: 'kPa' }
+            },
+            y3: {
+                type: 'linear',
+                position: 'left',
+                grid: { drawOnChartArea: false },
+                min: 0,
+                max: 3000,
+                title: { display: true, text: 'KG/h' }
+            },
+            y4: {
+                type: 'linear',
+                position: 'left',
+                grid: { drawOnChartArea: false },
+                min: 0,
+                max: 1000,
+                title: { display: true, text: 'KG' }
+            },
+            y5: {
+                type: 'linear',
+                position: 'right',
+                grid: { drawOnChartArea: false },
+                min: 0,
+                max: 100,
+                title: { display: true, text: 'RATIO %' }
+            }
+        };
+
+
         function displayYAxis(chart, dataField) {
             const datasetIndex = chart.data.datasets.findIndex(dataset => dataset.label === dataField);
             if (datasetIndex === -1) return true;
@@ -530,6 +537,7 @@
                 addOrdersToSelect(ordersBetweenDate);
             }
         }
+
         //////////////////////////////////////////
         async function addOrdersToSelect(orders) {
             ordersListHolder.innerHTML = ''; // Clear existing content (if any)
@@ -537,9 +545,9 @@
                 if (!orders) {
                     orders = await getAllOrders();
                 }
-                if (!orders || !orders.length) {                    
+                if (!orders || !orders.length) {
                     console.warn('No orders found to add to the select.');
-                    return; 
+                    return;
                 }
                 const selectElement = document.createElement('select'); // Create a select element                
                 var defaultOption = document.createElement('option');
@@ -552,9 +560,9 @@
                     optionElement.setAttribute('start_tmst', order.start_tmst);
                     optionElement.setAttribute('end_tmst', order.end_tmst);
                     ordersListHolder.appendChild(optionElement);
-                });              
+                });
             } catch (error) {
-                console.error('Error fetching orders:', error);                
+                console.error('Error fetching orders:', error);
             }
         }
         addOrdersToSelect();
@@ -584,7 +592,7 @@
         })
 
 
-        datepicker_from.addEventListener('blur', function () {           
+        datepicker_from.addEventListener('blur', function () {
             if (this.value == '') return;
             order_from = convertDateFormat(this.value);
             console.log(datepicker_to.value)
@@ -610,6 +618,8 @@
         })
 
         run_request.addEventListener('click', async function () {
+            if (chart) chart.destroy();
+            movingAverageSize = movingAverageInput.value;
             let wf_data_from = ordersListHolder.options[ordersListHolder.selectedIndex].getAttribute('start_tmst');
             let wf_data_to = ordersListHolder.options[ordersListHolder.selectedIndex].getAttribute('end_tmst');
             let wf_data = await getScaleData(wf_data_from, wf_data_to);
@@ -621,23 +631,24 @@
                     title: "Netieka saņemti dati izvēlētajai partijai!"
                 });
             }
-            createChart(wf_data);
+            //createChart(wf_data);
+            createChart('multiAxisChart', wf_data, multiAxisChartConfig, yAxesConfig)
         })
 
         print_chart.addEventListener('click', function () {
 
-            if (!multiAxisChart) return;   
+            if (!chart) return;
             const order_name = ordersListHolder.options[ordersListHolder.selectedIndex].text;
-            const canvas = document.getElementById('multiAxisChart');            
-            const image = canvas.toDataURL('image/png');            
+            const canvas = document.getElementById('multiAxisChart');
+            const image = canvas.toDataURL('image/png');
             const newWindow = window.open('', '_blank');
             newWindow.document.write('<html><head><title>Print Chart</title></head><body>');
             newWindow.document.write(`<h2>Partija: ${order_name} </h2>`);
             newWindow.document.write(`<img src="${image}" style="width:100%;"/>`);
             newWindow.document.write('</body></html>');
             newWindow.document.close();
-            
-            newWindow.print();           
+
+            newWindow.print();
             newWindow.addEventListener('afterprint', function () {
                 newWindow.close();
             });

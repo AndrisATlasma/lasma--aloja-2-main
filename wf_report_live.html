@@ -26,22 +26,24 @@
             justify-content: center;
             align-items: flex-start;
             margin: auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .item {
-
             display: grid;
-            grid-template-columns: 2fr 2fr 2fr;
-            gap: 15px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
             align-items: center;
             width: 100%;
             margin-top: 20px;
             margin-bottom: 20px;
-            justify-content: center;
         }
 
         .item2 {
-            width: 80%;
+            width: 100%;
             margin-top: 20px;
         }
 
@@ -49,37 +51,35 @@
 
             .item,
             .item2 {
-                width: 40%;
-                margin-bottom: 0;
+                grid-template-columns: 1fr;
+                width: 100%;
             }
         }
-
 
         table {
             width: 100%;
             margin: 20px auto;
             border-collapse: collapse;
-            background-color: #f5f5f5;
+            background-color: #ffffff;
             font-family: Arial, sans-serif;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         th,
         td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px;
             text-align: center;
             font-size: 16px;
-            font-weight: bold;
         }
 
         th {
-            background-color: #727272;
+            background-color: #007bff;
             color: white;
-            font-weight: bold;
         }
 
         tr:nth-child(even) {
-            background-color: #e9e9e9;
+            background-color: #f2f2f2;
         }
 
         tr:hover {
@@ -96,33 +96,22 @@
         }
 
         button {
-            background-color: #cdcdcd;
+            background-color: #007bff;
             color: white;
             padding: 10px 20px;
             border: none;
-            text-align: center;
-            display: block;
             border-radius: 5px;
             font-size: 18px;
-            font-weight: bold;
             cursor: pointer;
-            height: 58px;
-            border: 1px solid gray;
+            transition: background-color 0.3s ease;
         }
 
-
         button:hover {
-            background-color: #ddd;
-        }
-
-
-        button:hover {
-            background-color: #ddd;
+            background-color: #0056b3;
         }
 
         .container {
             display: flex;
-
             align-items: center;
             margin: 20px;
         }
@@ -130,12 +119,12 @@
         .input-group {
             display: flex;
             align-items: center;
-            margin: 10px;
+            margin: 10px 0;
             padding: 10px;
-            border: 1px solid gray;
+            /* border: 1px solid #ccc; */
             border-radius: 5px;
-            background-color: #cdcdcd;
-            height: 58px;
+            background-color: #f8f9fa;
+            width: 100%;
         }
 
         label {
@@ -146,9 +135,9 @@
 
         input[type="number"] {
             padding: 5px;
-            width: 50px;
+            width: 100px;
             margin-left: 10px;
-            border: 1px solid gray;
+            border: 1px solid #ccc;
             border-radius: 5px;
             font-size: larger;
         }
@@ -157,7 +146,7 @@
             padding: 5px;
             width: auto;
             margin-left: 10px;
-            border: 1px solid gray;
+            border: 1px solid #ccc;
             border-radius: 5px;
             font-size: larger;
         }
@@ -166,13 +155,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border: #727272 1px solid;
+            border: 1px solid #727272;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .my_class2 {
             margin: auto;
-            width: 1200px;
-            height: 600px;
+            max-width: 80%;
+            padding: 20px;
         }
 
         #message-module {
@@ -192,6 +185,7 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         #message-text {
@@ -201,17 +195,28 @@
 
         #close-button {
             padding: 10px 20px;
-            border: 1px solid gray;
+            border: none;
             border-radius: 5px;
             background-color: lightgray;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #close-button:hover {
+            background-color: gray;
         }
 
         .captions {
-            align-items: center;
             text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .captions h2 {
+            font-size: 24px;
+            color: #333;
         }
     </style>
+
     <script>
     </script>
 </head>
@@ -223,7 +228,6 @@
                 <h2>Reāllaika ražošanas grafiks</h2>
             </div>
             <div class="item">
-
                 <div class="input-group">
                     <label for="lastTime_hours">Dati par pēdējāo laiku [Stundas]</label>
                     <input type="number" id="lastTime_hours" autocomplete="off">
@@ -232,7 +236,11 @@
                     <label for="updateGraph_minutes">Atjaunot grafiku ik [Minūtes]</label>
                     <input type="number" id="updateGraph_minutes" autocomplete="off">
                 </div>
-                <div style="display: flex; justify-content: right; width: 100%; ">
+                <div class="input-group">
+                    <label for="updateGraph_minutes">"Moving Average" [mērījumi]</label>
+                    <input type="number" id="movingAverageInput" autocomplete="off">
+                </div>
+                <div style="display: flex; justify-content: left; width: 100%; ">
                     <button id="use_request">Pielietot</button>
                 </div>
             </div>
@@ -241,93 +249,71 @@
     <div class="my_class2">
         <canvas id="multiAxisChart"></canvas>
     </div>
+    <div class="main_container">
+        <div class="captions">
+            <h2>Proteīna cietes attiecība</h2>
+        </div>
+        <div class="item">
+            <div></div>
+            <div class="input-group" style="width: 70%">
+                <label for="def_standart">Definētais standarts</label>
+                <input type="number" id="def_standart" value="0" autocomplete="off">
+            </div>
+            <div style="display: flex; justify-content: left; width: 100%; ">
+                <button id="use_standart">Pielietot</button>
+            </div>
+        </div>
+    </div>
+    <div class="my_class2">
+        <canvas id="multiAxisChart_2"></canvas>
     </div>
     <script>
-        // script global variables
-        var stopInterval = false;
+        // script global letiables
+        const db_setting = { outfmt: 'json', dbgroup: '_postgres' };
+        let stopInterval = false;
+        let intervalID;
+        let reloadInterval = 3000;
+        let timeOffset = 2;
+        let movingAverageSize = 10;
+        const movingAverageInput = document.getElementById('movingAverageInput');
+        movingAverageInput.value = movingAverageSize;
 
+        let multiAxisChart, multiAxisChart_2;
 
-
-        function timeNow(offset) {
-            // Pārbauda nobīdes vērtību un iestatī noklusējuma vērtību 0, ja tā nav norādīta
-            offset = offset || 0;
-            // Iegūst pašreizējo datumu un laiku
-            const tagad = new Date();
-            // Izveido datuma komponentus
-            const gads = tagad.getFullYear();
-            const menesis = tagad.getMonth() + 1; // Mēneši sākas no 0, tāpēc pievieno 1
-            var diena = tagad.getDate();
-            // Izveido laika komponentus
-            let stundas = tagad.getHours();
-            let minutes = tagad.getMinutes();
-            let sekundes = tagad.getSeconds();
-            // Pievieno nobīdi stundām
-            stundas -= offset; // timeoffset tiek atņemts no stundas, lai iegūtu pagātnes laiku
-            // Pielāgo dienu un mēnesi, ja nobīde ietekmē diennakts stundas
-            while (stundas < 0) {
-                stundas += 24;
-                diena--;
-                if (diena < 1) {
-                    diena = 31; // Pāriet uz iepriekšējo mēnesi
-                    menesis--;
-                    if (menesis < 1) {
-                        menesis = 12; // Pāriet uz iepriekšējo gadu
-                        gads--;
-                    }
-                }
-            }
-            while (stundas >= 24) {
-                stundas -= 24;
-                diena++;
-                if (diena > 31) {
-                    diena = 1; // Pāriet uz nākamo mēnesi
-                    menesis++;
-                    if (menesis > 12) {
-                        menesis = 1; // Pāriet uz nākamo gadu
-                        gads++;
-                    }
-                }
-            }
-            // Formatē datumu un laiku
-            const formatetsDatums = `${gads}-${menesis < 10 ? `0${menesis}` : menesis}-${diena < 10 ? `0${diena}` : diena}`;
-            const formatetsLaiks = `${stundas < 10 ? `0${stundas}` : stundas}:${minutes < 10 ? `0${minutes}` : minutes}:${sekundes < 10 ? `0${sekundes}` : sekundes}`;
-            return formatetsDatums + " " + formatetsLaiks;
+        function timeNow(offset = 0) {
+            const now = new Date();
+            now.setHours(now.getHours() - offset);
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0'); // months are zero-based
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         }
-        var intervalID;
-        var reloadInterval = 3000;
-        var timeOffset = 2;
 
-        document.getElementById('lastTime_hours').value = timeOffset;
-        document.getElementById('updateGraph_minutes').value = 1;
 
-        var useBtn = document.getElementById('use_request');
+        const useBtn = document.getElementById('use_request');
         useBtn.addEventListener('click', function () {
             stopInterval = false;
             clearTimeout(intervalID);
-
-            console.log('Klikots')
+            console.log('Klikots');
             timeOffset = parseInt(document.getElementById('lastTime_hours').value) || 0;
-            var intervarInMunutes = document.getElementById('updateGraph_minutes').value || 1;
-            reloadInterval = parseInt(intervarInMunutes * 60000);
-            console.log(timeOffset)
+            const intervalInMinutes = document.getElementById('updateGraph_minutes').value || 1;
+            reloadInterval = parseInt(intervalInMinutes * 60000);
+            movingAverageSize = parseInt(movingAverageInput.value);
+            console.log(timeOffset);
             CyclicLoading();
+        });
+        const standartBtn = document.getElementById('use_standart');
+        standartBtn.addEventListener('click', function () {
+            const newStandart = document.getElementById('def_standart').value;
+            setTag('vDef_standart', newStandart);
         })
 
-
-
-        //console.log(dataFromTime);
-
-        /////////////////////////
-        const db_setting = { outfmt: 'json', dbgroup: '_postgres' };
-
-        let multiAxisChart;
+        /////////////////////////    
         function getScaleData(dataFromTime) {
-            var graphTimeNow = timeNow();
-
-            //dataFromTime = '2024-07-04 16:30:01';
-            // console.log(dataFromTime);
-            // console.log(graphTimeNow);
-
+            const graphTimeNow = timeNow();
             return new Promise(resolve => {
                 runSql('getScaleData', { dataFromTime, graphTimeNow }, db_setting, function (results) {
                     if (results.statusCode !== 200) {
@@ -340,162 +326,48 @@
         };
 
         function movingAverage(data, windowSize) {
-            let result = [];
+            const result = [];
             for (let i = 0; i < data.length; i++) {
                 if (i < windowSize - 1) {
                     result.push(data[i]);
                 } else {
-                    let sum = 0;
-                    for (let j = 0; j < windowSize; j++) {
-                        sum += data[i - j];
-                    }
-                    result.push(sum / windowSize);
+                    const windowData = data.slice(i - windowSize + 1, i + 1);
+                    const average = windowData.reduce((sum, val) => sum + val, 0) / windowSize;
+                    result.push(average);
                 }
             }
             return result;
         }
 
 
-        function updateChart(data) {
-            if (!multiAxisChart) return;
+        function updateChart(chart, data, dataFields) {
+            if (!chart) return;
 
-            // Extract data for all the fields
             const labels = data.map(d => d.time_stmp);
-            multiAxisChart.data.labels = labels;
-
-            const dataFields = [
-                'id201_a', 'id201_fr', 'id202_a', 'id202_fr', 'id203_a', 'id203_fr', 'id204_a', 'id204_fr',
-                'id205_a', 'id205_fr', 'id206_a', 'id206_fr', 'id211_a', 'id211_fr', 'id203_presure',
-                'id206_presure', 'id219_presure', 'id214_presure', 'id211_presure', 'id215_weight',
-                'id215_weight_h', 'id216_weight', 'id216_weight_h'
-            ];
+            chart.data.labels = labels;
 
             dataFields.forEach((field, index) => {
-                if (field === 'id215_weight_h' || field === 'id216_weight_h') {
-                    multiAxisChart.data.datasets[index].data = movingAverage(data.map(d => d[field]), 5);
-                } else {
-                    multiAxisChart.data.datasets[index].data = data.map(d => d[field]);
-                }
+                const fieldData = data.map(d => d[field]);
+                chart.data.datasets[index].data = (field === 'id215_weight_h' || field === 'id216_weight_h' || field === 'id45_weight_h'|| field ==='pca')
+                    ? movingAverage(fieldData, movingAverageSize)
+                    : fieldData;
             });
-
-            multiAxisChart.update();
+            chart.update();
         }
 
-
-        function createChart(data) {
-            console.log(data)
-            // Extract data for all the fields
+        function createChart(chartId, data, datasetsConfig, yAxesConfig) {
             const labels = data.map(d => d.time_stmp);
-            const datasets = [
-                { label: 'DZ6049 A', data: data.map(d => d.id201_a), borderColor: 'red', yAxisID: 'y' },
-                { label: 'DZ6049 FR', data: data.map(d => d.id201_fr), borderColor: 'blue', yAxisID: 'y1' },
-                { label: 'IM6050 A', data: data.map(d => d.id202_a), borderColor: 'green', yAxisID: 'y' },
-                { label: 'IM6050 FR', data: data.map(d => d.id202_fr), borderColor: 'orange', yAxisID: 'y1' },
-                { label: 'IM6051 A', data: data.map(d => d.id203_a), borderColor: 'purple', yAxisID: 'y' },
-                { label: 'IM6051 FR', data: data.map(d => d.id203_fr), borderColor: 'cyan', yAxisID: 'y1' },
-                { label: 'CF6052 A', data: data.map(d => d.id204_a), borderColor: 'magenta', yAxisID: 'y' },
-                { label: 'CF6052 FR', data: data.map(d => d.id204_fr), borderColor: 'yellow', yAxisID: 'y1' },
-                { label: 'CF6053 A', data: data.map(d => d.id205_a), borderColor: 'black', yAxisID: 'y' },
-                { label: 'CF6053 FR', data: data.map(d => d.id205_fr), borderColor: 'brown', yAxisID: 'y1' },
-                { label: 'CF6054 A', data: data.map(d => d.id206_a), borderColor: 'lime', yAxisID: 'y' },
-                { label: 'CF6054 FR', data: data.map(d => d.id206_fr), borderColor: 'teal', yAxisID: 'y1' },
-                { label: 'FN6060 A', data: data.map(d => d.id211_a), borderColor: 'navy', yAxisID: 'y' },
-                { label: 'FN6060 FR', data: data.map(d => d.id211_fr), borderColor: 'pink', yAxisID: 'y1' },
-                { label: 'IM6051 Pressure', data: data.map(d => d.id203_presure), borderColor: 'silver', yAxisID: 'y2' },
-                { label: 'CF6054 Pressure', data: data.map(d => d.id206_presure), borderColor: 'gold', yAxisID: 'y2' },
-                { label: 'CISE1 Pressure', data: data.map(d => d.id219_presure), borderColor: 'coral', yAxisID: 'y2' },
-                { label: 'FLTR2 Pressure', data: data.map(d => d.id214_presure), borderColor: 'lavender', yAxisID: 'y2' },
-                { label: 'FN6060 Pressure', data: data.map(d => d.id211_presure), borderColor: 'beige', yAxisID: 'y2' },
-                { label: 'CV6034 Weight', data: data.map(d => d.id215_weight), borderColor: 'khaki', yAxisID: 'y4' },
-                {
-                    label: 'CV6034 Weight H',
-                    data: movingAverage(data.map(d => d.id215_weight_h), 5), // Piemēro movingAverage
-                    borderColor: 'peru',
-                    yAxisID: 'y3'
-                },
-                { label: 'CV6057 Weight', data: data.map(d => d.id216_weight), borderColor: 'crimson', yAxisID: 'y4' },
-                {
-                    label: 'CV6057 Weight H',
-                    data: movingAverage(data.map(d => d.id216_weight_h), 5), // Piemēro movingAverage
-                    borderColor: 'olive',
-                    yAxisID: 'y3'
-                }
-            ];
+            const datasets = datasetsConfig.map(config => ({
+                label: config.label,
+                data: (config.isMovingAverage)
+                    ? movingAverage(data.map(d => d[config.field]), movingAverageSize)
+                    : data.map(d => d[config.field]),
+                borderColor: config.borderColor,
+                yAxisID: config.yAxisID
+            }));
 
-            const getYAxesConfig = (chart) => ({
-                y: {
-                    type: 'linear',
-                    display: displayYAxis(chart, 'ID201 A'),
-                    position: 'left',
-                    min: 0,
-                    max: 300,
-                    title: {
-                        display: true,
-                        text: 'A'
-                    }
-                },
-                y1: {
-                    type: 'linear',
-                    display: displayYAxis(chart, 'ID201 FR'),
-                    position: 'left',
-                    grid: {
-                        drawOnChartArea: false,
-                    },
-                    min: 0,
-                    max: 70,
-                    title: {
-                        display: true,
-                        text: 'Hz'
-                    }
-                },
-                y2: {
-                    type: 'linear',
-                    display: displayYAxis(chart, 'CISE1 Pressure'),
-                    position: 'left',
-                    grid: {
-                        drawOnChartArea: false,
-                    },
-                    min: 0,
-                    max: 15,
-                    title: {
-                        display: true,
-                        text: 'kPa'
-                    }
-                },
-                y3: {
-                    type: 'linear',
-                    display: displayYAxis(chart, 'CV6034 Weight H'),
-                    position: 'left',
-                    grid: {
-                        drawOnChartArea: false,
-                    },
-                    min: 0,
-                    max: 1000,
-                    title: {
-                        display: true,
-                        text: 'KG/h'
-                    }
-                },
-                y4: {
-                    type: 'linear',
-                    display: displayYAxis(chart, 'CV6034 Weight'),
-                    position: 'left',
-                    grid: {
-                        drawOnChartArea: false,
-                    },
-                    min: 0,
-                    max: 1000,
-                    title: {
-                        display: true,
-                        text: 'KG'
-                    }
-                }
-
-            });
-
-            // Create the chart
-            const ctx = document.getElementById('multiAxisChart').getContext('2d');
-            multiAxisChart = new Chart(ctx, {
+            const ctx = document.getElementById(chartId).getContext('2d');
+            const chart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: labels,
@@ -508,51 +380,143 @@
                         intersect: false,
                     },
                     stacked: false,
-                    scales: getYAxesConfig({ data: { datasets: [] } }),
+                    scales: yAxesConfig,
                     plugins: {
                         legend: {
                             onClick: (event, legendItem) => {
                                 const index = legendItem.datasetIndex;
-                                const chart = legendItem.chart;
-                                chart.setDatasetVisibility(index, !chart.isDatasetVisible(index));
-                                chart.options.scales = getYAxesConfig(chart);
-                                chart.update();
+                                const chartInstance = legendItem.chart;
+                                chartInstance.setDatasetVisibility(index, !chartInstance.isDatasetVisible(index));
+                                chartInstance.options.scales = yAxesConfig;
+                                chartInstance.update();
                             }
                         }
                     }
                 }
             });
-
-            multiAxisChart.config.options.plugins.legend.onClick = function (event, legendItem) {
+            chart.config.options.plugins.legend.onClick = function (event, legendItem) {
                 const index = legendItem.datasetIndex;
-                const chart = this.chart;
-                chart.setDatasetVisibility(index, !chart.isDatasetVisible(index));
-                // chart.options.scales = getYAxesConfig(chart);//  funkcija atslēdzot grafika līkni pazūd arī Y ass apzīmējums
-                chart.update();
+                const chartInstance = this.chart;
+                chartInstance.setDatasetVisibility(index, !chartInstance.isDatasetVisible(index));
+                chartInstance.update();
             };
+            return chart;
         }
+
+        // Piemēri kā izsaukt optimizētās funkcijas
+
+        const multiAxisChartConfig = [
+            { label: 'DZ6049 A', field: 'id201_a', borderColor: 'red', yAxisID: 'y' },
+            { label: 'DZ6049 FR', field: 'id201_fr', borderColor: 'blue', yAxisID: 'y1' },
+            { label: 'IM6050 A', field: 'id202_a', borderColor: 'green', yAxisID: 'y' },
+            { label: 'IM6050 FR', field: 'id202_fr', borderColor: 'orange', yAxisID: 'y1' },
+            { label: 'IM6051 A', field: 'id203_a', borderColor: 'purple', yAxisID: 'y' },
+            { label: 'IM6051 FR', field: 'id203_fr', borderColor: 'cyan', yAxisID: 'y1' },
+            { label: 'CF6052 A', field: 'id204_a', borderColor: 'magenta', yAxisID: 'y' },
+            { label: 'CF6052 FR', field: 'id204_fr', borderColor: 'yellow', yAxisID: 'y1' },
+            { label: 'CF6053 A', field: 'id205_a', borderColor: 'black', yAxisID: 'y' },
+            { label: 'CF6053 FR', field: 'id205_fr', borderColor: 'brown', yAxisID: 'y1' },
+            { label: 'CF6054 A', field: 'id206_a', borderColor: 'lime', yAxisID: 'y' },
+            { label: 'CF6054 FR', field: 'id206_fr', borderColor: 'teal', yAxisID: 'y1' },
+            { label: 'FN6060 A', field: 'id211_a', borderColor: 'navy', yAxisID: 'y' },
+            { label: 'FN6060 FR', field: 'id211_fr', borderColor: 'pink', yAxisID: 'y1' },
+            { label: 'IM6051 Pressure', field: 'id203_presure', borderColor: 'silver', yAxisID: 'y2' },
+            { label: 'CF6054 Pressure', field: 'id206_presure', borderColor: 'gold', yAxisID: 'y2' },
+            { label: 'CISE1 Pressure', field: 'id219_presure', borderColor: 'coral', yAxisID: 'y2' },
+            { label: 'FLTR2 Pressure', field: 'id214_presure', borderColor: 'lavender', yAxisID: 'y2' },
+            { label: 'FN6060 Pressure', field: 'id211_presure', borderColor: 'beige', yAxisID: 'y2' },
+            { label: 'CV6034 Weight', field: 'id215_weight', borderColor: 'khaki', yAxisID: 'y4' },
+            { label: 'CV6034 Weight H', field: 'id215_weight_h', borderColor: 'peru', yAxisID: 'y3', isMovingAverage: true },
+            { label: 'CV6057 Weight', field: 'id216_weight', borderColor: 'crimson', yAxisID: 'y4' },
+            { label: 'CV6057 Weight H', field: 'id216_weight_h', borderColor: 'olive', yAxisID: 'y3', isMovingAverage: true },
+            { label: 'CV6035 Weight', field: 'id45_weight', borderColor: 'indigo', yAxisID: 'y4' },
+            { label: 'CV6035 Weight H', field: 'id45_weight_h', borderColor: 'maroon', yAxisID: 'y3', isMovingAverage: true }
+        ];
+
+        const yAxesConfig = {
+            y: {
+                type: 'linear',
+                position: 'left',
+                min: 0,
+                max: 300,
+                title: { display: true, text: 'A' }
+            },
+            y1: {
+                type: 'linear',
+                position: 'left',
+                grid: { drawOnChartArea: false },
+                min: 0,
+                max: 70,
+                title: { display: true, text: 'Hz' }
+            },
+            y2: {
+                type: 'linear',
+                position: 'left',
+                grid: { drawOnChartArea: false },
+                min: 0,
+                max: 15,
+                title: { display: true, text: 'kPa' }
+            },
+            y3: {
+                type: 'linear',
+                position: 'left',
+                grid: { drawOnChartArea: false },
+                min: 0,
+                max: 1000,
+                title: { display: true, text: 'KG/h' }
+            },
+            y4: {
+                type: 'linear',
+                position: 'left',
+                grid: { drawOnChartArea: false },
+                min: 0,
+                max: 1000,
+                title: { display: true, text: 'KG' }
+            }
+        };
+        const multiAxisChart2Config = [
+            { label: 'Proteīna cietes attiecība', field: 'pca', borderColor: 'blue', yAxisID: 'y', isMovingAverage: true  },
+            { label: 'Definētais mērķa standarts', field: 'def_standart', borderColor: 'red', yAxisID: 'y' }
+        ];
+
+        const yAxesConfig2 = {
+            y: {
+                type: 'linear',
+                position: 'left',
+                min: 0,
+                max: 100,
+                title: { display: true, text: 'RATIO %' }
+            }
+        };
+
         function displayYAxis(chart, dataField) {
             const datasetIndex = chart.data.datasets.findIndex(dataset => dataset.label === dataField);
             if (datasetIndex === -1) return true;
             return chart.isDatasetVisible(datasetIndex);
         }
 
-
         async function CyclicLoading() {
             console.log('Ir cikls?');
             if (stopInterval === true) return;
+            let dataFromTime = timeNow(timeOffset);
 
-            var dataFromTime = timeNow(timeOffset);
-            //console.log(dataFromTime);
             try {
                 const scaleData = await getScaleData(dataFromTime);
+                const dateChar2 = scaleData.map(d => ({
+                    time_stmp: d.time_stmp,
+                    pca: d.id216_weight_h / (d.id215_weight_h + d.id45_weight_h),
+                    def_standart: d.def_standart
+                }));
                 console.log('Cikls');
-
                 if (multiAxisChart) {
-
-                    updateChart(scaleData);
+                    updateChart(multiAxisChart, scaleData, multiAxisChartConfig.map(config => config.field));
                 } else {
-                    createChart(scaleData);
+                    multiAxisChart = createChart('multiAxisChart', scaleData, multiAxisChartConfig, yAxesConfig);
+                }
+                if (multiAxisChart_2) {
+                    updateChart(multiAxisChart_2, dateChar2, multiAxisChart2Config.map(config => config.field));
+                } else {
+                    multiAxisChart_2 = createChart('multiAxisChart_2', dateChar2, multiAxisChart2Config, yAxesConfig2);
                 }
             } catch (error) {
                 Swal.fire({
@@ -566,70 +530,35 @@
                 intervalID = setTimeout(() => {
                     CyclicLoading();
                 }, reloadInterval);
-                // setTimeout(CyclicLoading, reloadInterval);
             }
         }
         CyclicLoading();
 
         /// Eventlisteners piekš ievades datu pārbaudes
+        function validateInput(inputElement, minValue, maxValue) {
+            inputElement.addEventListener('input', function () {
+                let inputValue = parseInt(inputElement.value);
+                if (isNaN(inputValue)) {
+                    alert("Nederīga ievades vērtība. Lūdzu, ievadiet skaitli.");
+                    inputElement.value = minValue;
+                } else if (inputValue < minValue) {
+                    inputElement.value = minValue;
+                } else if (inputValue > maxValue) {
+                    inputElement.value = maxValue;
+                }
+            });
+        }
 
-
-        var hourOffset = document.getElementById('lastTime_hours');
-        var reloadIntervalSet = document.getElementById('updateGraph_minutes');
-
-        hourOffset.addEventListener('input', function () {
-            // Iegūstam teksta lauka saturu
-            var inputValue = hourOffset.value;
-
-            // Pārbaudām, vai ievadītā vērtība ir skaitlis
-            if (isNaN(inputValue)) {
-                // Ja tā nav skaitlis, attēlojam kļūdas ziņojumu
-                alert("Nederīga ievades vērtība. Lūdzu, ievadiet skaitli.");
-                return;
-            }
-
-            // Pārveidojam ievades vērtību par veselu skaitli
-            var parsedValue = parseInt(inputValue);
-
-            // Pārbaudām, vai ievadītā vērtība ir mazāka par 1
-            if (parsedValue < 1) {
-                // Ja tā ir mazāka par 1, iestatām vērtību uz 1
-                inputValue = 1;
-            } else if (parsedValue > 12) {
-                // Ja tā ir mazāka par 1, iestatām vērtību uz 1
-                inputValue = 12;
-            }
-
-            // Atjauninām teksta lauka vērtību
-            hourOffset.value = inputValue;
-        });
-        reloadIntervalSet.addEventListener('input', function () {
-            // Iegūstam teksta lauka saturu
-            var inputValue = reloadIntervalSet.value;
-
-            // Pārbaudām, vai ievadītā vērtība ir skaitlis
-            if (isNaN(inputValue)) {
-                // Ja tā nav skaitlis, attēlojam kļūdas ziņojumu
-                alert("Nederīga ievades vērtība. Lūdzu, ievadiet skaitli.");
-                return;
-            }
-
-            // Pārveidojam ievades vērtību par veselu skaitli
-            var parsedValue = parseInt(inputValue);
-
-            // Pārbaudām, vai ievadītā vērtība ir mazāka par 1
-            if (parsedValue < 1) {
-                // Ja tā ir mazāka par 1, iestatām vērtību uz 1
-                inputValue = 1;
-            } else if (parsedValue > 60) {
-                // Ja tā ir mazāka par 1, iestatām vērtību uz 1
-                inputValue = 60;
-            }
-
-            // Atjauninām teksta lauka vērtību
-            reloadIntervalSet.value = inputValue;
-        });
-
+        let hourOffset = document.getElementById('lastTime_hours');
+        hourOffset.value = timeOffset;
+        let reloadIntervalSet = document.getElementById('updateGraph_minutes');
+        reloadIntervalSet.value = 1;
+        let def_standart = document.getElementById('def_standart');
+        def_standart.value = getTag('vDef_standart');
+        validateInput(hourOffset, 1, 12);
+        validateInput(reloadIntervalSet, 1, 60);
+        validateInput(def_standart, 0, 100);
+        validateInput(movingAverageInput, 1, 120);
     </script>
 </body>
 <!-- <script type="text/javascript" src="/scripts/outerScripts/order_report_control.js"></script> -->
