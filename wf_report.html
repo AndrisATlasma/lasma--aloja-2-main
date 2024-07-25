@@ -225,6 +225,10 @@
         #print_chart {
             display: none;
         }
+
+        #print_excel {
+            display: none;
+        }
     </style>
     <script>
         $(function () {
@@ -278,15 +282,19 @@
         <canvas id="multiAxisChart"></canvas>
     </div>
     <div class="printBtn">
-        <button id="print_chart">Printēt</button>
+        <button id="print_chart">Printēt Grafiku</button>
+        <button id="print_excel">Printēt Excel</button>
     </div>
+
     </div>
     <script>
         // page global variables/////////////////////////////////
         let chart;
+        let wf_data;
         const db_setting = { outfmt: 'json', dbgroup: '_postgres' };
         const run_request = document.getElementById('run_request');
         const print_chart = document.getElementById('print_chart');
+        const print_excel = document.getElementById('print_excel');
         let multiAxisChart;
         var order_from;
         var order_to;
@@ -412,6 +420,7 @@
                 chartInstance.update();
             };
             print_chart.style.display = 'inline';
+            print_excel.style.display = 'inline';
             return chart;
         }
 
@@ -476,7 +485,7 @@
                 position: 'left',
                 grid: { drawOnChartArea: false },
                 min: 0,
-                max: 3000,
+                max: 1000,
                 title: { display: true, text: 'KG/h' }
             },
             y4: {
@@ -622,7 +631,7 @@
             movingAverageSize = movingAverageInput.value;
             let wf_data_from = ordersListHolder.options[ordersListHolder.selectedIndex].getAttribute('start_tmst');
             let wf_data_to = ordersListHolder.options[ordersListHolder.selectedIndex].getAttribute('end_tmst');
-            let wf_data = await getScaleData(wf_data_from, wf_data_to);
+            wf_data = await getScaleData(wf_data_from, wf_data_to);
             //console.log(wf_data);
             if (!wf_data) {
                 print_chart.style.display = 'none';
@@ -657,6 +666,86 @@
                 newWindow.close();
             }, 1000);
         })
+
+
+        print_excel.addEventListener('click', function () {            
+            const order_name = ordersListHolder.options[ordersListHolder.selectedIndex].text;
+            // Funkcija Excel faila izveidei un lejupielādei
+            function saveExcel() {
+                var date = new Date();
+                var dateString = date.toISOString().substring(0, 10);
+                var mainHeader_array = [`Weifang ražošanas partija: ${order_name}`]
+
+                // Pārvērst multiAxisChartConfig par kolonnu nosaukumiem
+                var columnHeaders = ["Reģistrētais laiks", ...multiAxisChartConfig.map(item => item.label)];
+                columnHeaders = columnHeaders.slice(0,-2);
+                var fieldMapping = multiAxisChartConfig.reduce((map, item) => {
+                    map[item.label] = item.field;
+                    return map;
+                }, {});
+
+                // Izveidot ws_data masīvu ar kolonnu nosaukumiem
+                var ws_data = [];
+                ws_data.push(mainHeader_array);
+                ws_data.push(columnHeaders);
+
+                // Pievienot vērtības no wf_data
+                wf_data.forEach(dataItem => {
+                    var row = [dataItem["time_stmp"], ...columnHeaders.slice(1).map(header => dataItem[fieldMapping[header]])];                    
+                    ws_data.push(row);
+                });
+
+                var wb = XLSX.utils.book_new();
+                wb.SheetNames.push("Sheet 1");
+                var ws = XLSX.utils.aoa_to_sheet(ws_data);
+                ws['!merges'] = [{ s: { c: 0, r: 0 }, e: { c: 5, r: 0 } }];
+                // Iterē caur visām kolonnām un pielāgo šūnu platumu
+                Object.keys(ws).forEach(function (key) {
+                    if (key.startsWith('!')) return; // Ignorē īpašās rindu/šūnu atslēgas
+
+                    var columnIndex = XLSX.utils.decode_col(key);
+
+                    var cellText = ws[key].w || '';
+                    var textLength = cellText.length;
+                    var currentColumnWidth = ws['!cols'] && ws['!cols'][columnIndex] && ws['!cols'][columnIndex].w || 0;
+
+                    if (textLength > currentColumnWidth) {
+                        if (!ws['!cols']) ws['!cols'] = [];
+                        ws['!cols'][columnIndex] = { wch: textLength }; // Iestata kolonnas platumu
+                    }
+                });
+
+                wb.Sheets["Sheet 1"] = ws;
+
+                var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+                function s2ab(s) {
+                    var buf = new ArrayBuffer(s.length);
+                    var view = new Uint8Array(buf);
+                    for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                    return buf;
+                }
+                customSaveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), `Weifang_partija_${order_name}_${dateString}.xlsx`);
+            }
+            // Izsauc Excel eksporta funkciju ar datiem
+            saveExcel();
+        });
+
+
+        function validateInput(inputElement, minValue, maxValue) {
+            inputElement.addEventListener('input', function () {
+                let inputValue = parseInt(inputElement.value);
+                if (isNaN(inputValue)) {
+                    alert("Nederīga ievades vērtība. Lūdzu, ievadiet skaitli.");
+                    inputElement.value = minValue;
+                } else if (inputValue < minValue) {
+                    inputElement.value = minValue;
+                } else if (inputValue > maxValue) {
+                    inputElement.value = maxValue;
+                }
+            });
+        }
+        validateInput(movingAverageInput, 1, 120);
+
 
         //////////////////////////////////////////////////////////////////////////////
 
