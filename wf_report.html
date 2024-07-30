@@ -369,7 +369,7 @@
             const labels = data.map(d => d.time_stmp);
 
             // Aprēķināt PCA un pielietot movingAverage
-            const pcaValues = data.map(d => d.id216_weight_h / (d.id215_weight_h + d.id45_weight_h));
+            const pcaValues = data.map(d => (d.id216_weight_h / (d.id215_weight_h + d.id216_weight_h)*100));
             const pcaMovingAverage = movingAverage(pcaValues, movingAverageSize);
 
             const datasets = datasetsConfig.map(config => ({

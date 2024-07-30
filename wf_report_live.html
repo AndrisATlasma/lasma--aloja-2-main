@@ -504,7 +504,7 @@
                 const scaleData = await getScaleData(dataFromTime);
                 const dateChar2 = scaleData.map(d => ({
                     time_stmp: d.time_stmp,
-                    pca: d.id216_weight_h / (d.id215_weight_h + d.id45_weight_h),
+                    pca: (d.id216_weight_h / (d.id215_weight_h + d.id216_weight_h)*100),
                     def_standart: d.def_standart
                 }));
                 console.log('Cikls');
