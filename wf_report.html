@@ -25,7 +25,7 @@
             justify-content: center;
             align-items: flex-start;
             margin: auto;
-            padding: 20px;
+            padding: 1px;
             background-color: #f8f9fa;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -37,13 +37,13 @@
             gap: 20px;
             align-items: center;
             width: 100%;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: 1px;
+            margin-bottom: 1px;
         }
 
         .item2 {
             width: 100%;
-            margin-top: 20px;
+            margin-top: 1px;
         }
 
         @media (max-width: 768px) {
@@ -87,7 +87,7 @@
         }
 
         caption {
-            padding: 10px;
+            padding: 1px;
             caption-side: bottom;
             text-align: center;
             font-weight: bold;
@@ -112,14 +112,14 @@
         .container {
             display: flex;
             align-items: center;
-            margin: 20px;
+            margin: 1px;
         }
 
         .input-group {
             display: flex;
             align-items: center;
-            margin: 10px 0;
-            padding: 10px;
+            /* margin: 10px 0; */
+            /* padding: 10px; */
             /* border: 1px solid #ccc; */
             border-radius: 5px;
             background-color: #f8f9fa;
@@ -134,13 +134,12 @@
 
         input[type="number"] {
             padding: 5px;
-            width: 60px;
+            width: 100px;
             margin-left: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: larger;
         }
-
 
         select {
             padding: 5px;
@@ -164,7 +163,7 @@
 
         .my_class2 {
             margin: auto;
-            max-width: 80%;
+            max-width: 98%;
             padding: 20px;
         }
 
@@ -215,6 +214,7 @@
             font-size: 24px;
             color: #333;
         }
+
 
         .printBtn {
             padding: 0 0 20px 30px;
@@ -279,7 +279,7 @@
         </div>
     </div>
     <div class="my_class2">
-        <canvas id="multiAxisChart"></canvas>
+        <canvas height="120px" id="multiAxisChart"></canvas>
     </div>
     <div class="printBtn">
         <button id="print_chart">Printēt Grafiku</button>
@@ -354,13 +354,10 @@
         function movingAverage(data, windowSize) {
             const result = [];
             for (let i = 0; i < data.length; i++) {
-                if (i < windowSize - 1) {
-                    result.push(data[i]);
-                } else {
-                    const windowData = data.slice(i - windowSize + 1, i + 1);
-                    const average = windowData.reduce((sum, val) => sum + val, 0) / windowSize;
-                    result.push(average);
-                }
+                const start = Math.max(0, i - windowSize + 1);
+                const windowData = data.slice(start, i + 1);
+                const average = windowData.reduce((sum, val) => sum + val, 0) / windowData.length;
+                result.push(average);
             }
             return result;
         }
@@ -369,19 +366,34 @@
             const labels = data.map(d => d.time_stmp);
 
             // Aprēķināt PCA un pielietot movingAverage
-            const pcaValues = data.map(d => (d.id216_weight_h / (d.id215_weight_h + d.id216_weight_h)*100));
+            const pcaValues = data.map(d => (d.id216_weight_h / (d.id215_weight_h + d.id216_weight_h) * 100));
             const pcaMovingAverage = movingAverage(pcaValues, movingAverageSize);
 
-            const datasets = datasetsConfig.map(config => ({
-                label: config.label,
-                data: (config.field === 'pca')
-                    ? pcaMovingAverage
-                    : (config.isMovingAverage)
-                        ? movingAverage(data.map(d => d[config.field]), movingAverageSize)
-                        : data.map(d => d[config.field]),
-                borderColor: config.borderColor,
-                yAxisID: config.yAxisID
-            }));
+            // Aprēķināt cv_over_all vērtības un pielietot movingAverage
+            const cv_combine_value = data.map(d => d.id215_weight_h + d.id216_weight_h);
+            const cv_combineMovingAverage = movingAverage(cv_combine_value, movingAverageSize);
+
+            const datasets = datasetsConfig.map(config => {
+                let datasetData;
+
+                if (config.field === 'cv_over_all') {
+                    datasetData = cv_combineMovingAverage;
+                } else if (config.field === 'pca') {
+                    datasetData = pcaMovingAverage;
+                } else if (config.isMovingAverage) {
+                    datasetData = movingAverage(data.map(d => d[config.field]), movingAverageSize);
+                } else {
+                    datasetData = data.map(d => d[config.field]);
+                }
+
+                return {
+                    label: config.label,
+                    data: datasetData,
+                    borderColor: config.borderColor,
+                    yAxisID: config.yAxisID
+                };
+            });
+
             console.log(datasets);
 
             const ctx = document.getElementById(chartId).getContext('2d');
@@ -450,10 +462,11 @@
             { label: 'CV6034 Weight H', field: 'id215_weight_h', yAxisID: 'y3', isMovingAverage: true, borderColor: generateRandomColor() },
             { label: 'CV6057 Weight', field: 'id216_weight', yAxisID: 'y4', borderColor: generateRandomColor() },
             { label: 'CV6057 Weight H', field: 'id216_weight_h', yAxisID: 'y3', isMovingAverage: true, borderColor: generateRandomColor() },
-            { label: 'CV6035 Weight', field: 'id45_weight', yAxisID: 'y4', borderColor: generateRandomColor() },
-            { label: 'CV6035 Weight H', field: 'id45_weight_h', yAxisID: 'y3', isMovingAverage: true, borderColor: generateRandomColor() },
+            // { label: 'CV6035 Weight', field: 'id45_weight', yAxisID: 'y4', borderColor: generateRandomColor() },
+            // { label: 'CV6035 Weight H', field: 'id45_weight_h', yAxisID: 'y3', isMovingAverage: true, borderColor: generateRandomColor() },
             { label: 'Proteīna cietes attiecība', field: 'pca', yAxisID: 'y5', isMovingAverage: true, borderColor: generateRandomColor() },
-            { label: 'Definētais mērķa standarts', field: 'def_standart', yAxisID: 'y5', borderColor: generateRandomColor() }
+            { label: 'Definētais mērķa standarts', field: 'def_standart', yAxisID: 'y5', borderColor: generateRandomColor() },
+            { label: 'CV6034 + CV6057 Weight H', field: 'cv_over_all', borderColor: generateRandomColor(), yAxisID: 'y3', isMovingAverage: true }
         ];
 
         const yAxesConfig = {
@@ -613,7 +626,7 @@
         })
 
         datepicker_to.addEventListener('blur', function () {
-            console.log('Pikers strādā');
+            //console.log('Pikers strādā');
             console.log(this.value)
             if (this.value == '') return;
             order_to = convertDateFormat(this.value);
@@ -668,7 +681,7 @@
         })
 
 
-        print_excel.addEventListener('click', function () {            
+        print_excel.addEventListener('click', function () {
             const order_name = ordersListHolder.options[ordersListHolder.selectedIndex].text;
             // Funkcija Excel faila izveidei un lejupielādei
             function saveExcel() {
@@ -678,7 +691,7 @@
 
                 // Pārvērst multiAxisChartConfig par kolonnu nosaukumiem
                 var columnHeaders = ["Reģistrētais laiks", ...multiAxisChartConfig.map(item => item.label)];
-                columnHeaders = columnHeaders.slice(0,-2);
+                columnHeaders = columnHeaders.slice(0, -2);
                 var fieldMapping = multiAxisChartConfig.reduce((map, item) => {
                     map[item.label] = item.field;
                     return map;
@@ -691,7 +704,7 @@
 
                 // Pievienot vērtības no wf_data
                 wf_data.forEach(dataItem => {
-                    var row = [dataItem["time_stmp"], ...columnHeaders.slice(1).map(header => dataItem[fieldMapping[header]])];                    
+                    var row = [dataItem["time_stmp"], ...columnHeaders.slice(1).map(header => dataItem[fieldMapping[header]])];
                     ws_data.push(row);
                 });
 

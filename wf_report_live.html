@@ -26,7 +26,7 @@
             justify-content: center;
             align-items: flex-start;
             margin: auto;
-            padding: 20px;
+            padding: 1px;
             background-color: #f8f9fa;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -38,13 +38,13 @@
             gap: 20px;
             align-items: center;
             width: 100%;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: 1px;
+            margin-bottom: 1px;
         }
 
         .item2 {
             width: 100%;
-            margin-top: 20px;
+            margin-top: 1px;
         }
 
         @media (max-width: 768px) {
@@ -88,7 +88,7 @@
         }
 
         caption {
-            padding: 10px;
+            padding: 1px;
             caption-side: bottom;
             text-align: center;
             font-weight: bold;
@@ -113,14 +113,14 @@
         .container {
             display: flex;
             align-items: center;
-            margin: 20px;
+            margin: 1px;
         }
 
         .input-group {
             display: flex;
             align-items: center;
-            margin: 10px 0;
-            padding: 10px;
+            /* margin: 10px 0; */
+            /* padding: 10px; */
             /* border: 1px solid #ccc; */
             border-radius: 5px;
             background-color: #f8f9fa;
@@ -164,7 +164,7 @@
 
         .my_class2 {
             margin: auto;
-            max-width: 80%;
+            max-width: 98%;
             padding: 20px;
         }
 
@@ -240,14 +240,16 @@
                     <label for="updateGraph_minutes">"Moving Average" [mērījumi]</label>
                     <input type="number" id="movingAverageInput" autocomplete="off">
                 </div>
-                <div style="display: flex; justify-content: left; width: 100%; ">
+                <div style="display: flex; justify-content: left; width: 100%;">
                     <button id="use_request">Pielietot</button>
+                    <!-- <button id="removeGraphLine" style="margin-left: 10px;">Attīrīt grafiku</button> -->
                 </div>
+
             </div>
         </div>
     </div>
     <div class="my_class2">
-        <canvas id="multiAxisChart"></canvas>
+        <canvas height="120px" id="multiAxisChart"></canvas>
     </div>
     <div class="main_container">
         <div class="captions">
@@ -265,7 +267,7 @@
         </div>
     </div>
     <div class="my_class2">
-        <canvas id="multiAxisChart_2"></canvas>
+        <canvas height="120px" id="multiAxisChart_2"></canvas>
     </div>
     <script>
         // script global letiables
@@ -277,6 +279,11 @@
         let movingAverageSize = 10;
         const movingAverageInput = document.getElementById('movingAverageInput');
         movingAverageInput.value = movingAverageSize;
+
+        let chart;
+
+        const removeGraphLine = document.getElementById('removeGraphLine');
+        let graphLineVisible = true;
 
         let multiAxisChart, multiAxisChart_2;
 
@@ -291,6 +298,9 @@
             const seconds = String(now.getSeconds()).padStart(2, '0');
             return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         }
+
+
+
 
 
         const useBtn = document.getElementById('use_request');
@@ -328,13 +338,10 @@
         function movingAverage(data, windowSize) {
             const result = [];
             for (let i = 0; i < data.length; i++) {
-                if (i < windowSize - 1) {
-                    result.push(data[i]);
-                } else {
-                    const windowData = data.slice(i - windowSize + 1, i + 1);
-                    const average = windowData.reduce((sum, val) => sum + val, 0) / windowSize;
-                    result.push(average);
-                }
+                const start = Math.max(0, i - windowSize + 1);
+                const windowData = data.slice(start, i + 1);
+                const average = windowData.reduce((sum, val) => sum + val, 0) / windowData.length;
+                result.push(average);
             }
             return result;
         }
@@ -344,34 +351,70 @@
             if (!chart) return;
 
             const labels = data.map(d => d.time_stmp);
+            const cv_data = data.map(d => d.id215_weight_h + d.id216_weight_h);
             chart.data.labels = labels;
 
             dataFields.forEach((field, index) => {
                 const fieldData = data.map(d => d[field]);
-                chart.data.datasets[index].data = (field === 'id215_weight_h' || field === 'id216_weight_h' || field === 'id45_weight_h'|| field ==='pca')
-                    ? movingAverage(fieldData, movingAverageSize)
-                    : fieldData;
+
+                if (field === 'id215_weight_h' || field === 'id216_weight_h' || field === 'id45_weight_h' || field === 'pca') {
+                    // Ja laukam nepieciešams aprēķināt kustīgo vidējo
+                    chart.data.datasets[index].data = movingAverage(fieldData, movingAverageSize);
+                } else if (field === 'cv_over_all') {
+                    // Ja lauks ir 'cv_over_all'
+                    chart.data.datasets[index].data = movingAverage(cv_data, movingAverageSize);
+                } else {
+                    // Ja nav jāaprēķina kustīgais vidējais, izmanto sākotnējos datus
+                    chart.data.datasets[index].data = fieldData;
+                }
             });
             chart.update();
         }
 
         function createChart(chartId, data, datasetsConfig, yAxesConfig) {
             const labels = data.map(d => d.time_stmp);
-            const datasets = datasetsConfig.map(config => ({
-                label: config.label,
-                data: (config.isMovingAverage)
-                    ? movingAverage(data.map(d => d[config.field]), movingAverageSize)
-                    : data.map(d => d[config.field]),
-                borderColor: config.borderColor,
-                yAxisID: config.yAxisID
-            }));
+            const dataForCV_h = data.map(d => d.id215_weight_h + d.id216_weight_h);
+            // Izveido datasetu konfigurāciju, pamatojoties uz inputa parametriem 
+
+            const datasets2 = datasetsConfig.map(config => {
+                let datasetData;
+
+                if (config.field === 'cv_over_all') {
+                    // Aprēķina sumu laukiem id215_weight_h un id216_weight_h                    
+                    datasetData = movingAverage(dataForCV_h, movingAverageSize);
+                    //datasetData = dataForCV_h;
+                    //console.log(datasetData); // izvadās normāli aprēķinātas vērtības 
+
+                } else if (config.isMovingAverage) {
+                    console.log('Config field:', config.field);
+                    // Aprēķina kustināmo vidējo vērtību
+                    const values = data.map(d => d[config.field]);
+                    datasetData = movingAverage(values, movingAverageSize);
+                } else {
+                    //console.log(config.field);
+                    datasetData = data.map(d => d[config.field]);
+                }
+
+
+
+
+                return {
+                    label: config.label,
+                    data: datasetData,
+                    borderColor: config.borderColor,
+                    yAxisID: config.yAxisID,
+                    hidden: config.hidden || false
+                };
+            });
+
+
 
             const ctx = document.getElementById(chartId).getContext('2d');
-            const chart = new Chart(ctx, {
+            chart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: labels,
-                    datasets: datasets
+                    datasets: datasets2
                 },
                 options: {
                     responsive: true,
@@ -400,37 +443,41 @@
                 chartInstance.setDatasetVisibility(index, !chartInstance.isDatasetVisible(index));
                 chartInstance.update();
             };
+            // document.getElementById(chartId).width = 1200;
+            // document.getElementById(chartId).height = 1200;
+
             return chart;
         }
 
         // Piemēri kā izsaukt optimizētās funkcijas
 
         const multiAxisChartConfig = [
-            { label: 'DZ6049 A', field: 'id201_a', borderColor: 'red', yAxisID: 'y' },
-            { label: 'DZ6049 FR', field: 'id201_fr', borderColor: 'blue', yAxisID: 'y1' },
-            { label: 'IM6050 A', field: 'id202_a', borderColor: 'green', yAxisID: 'y' },
-            { label: 'IM6050 FR', field: 'id202_fr', borderColor: 'orange', yAxisID: 'y1' },
-            { label: 'IM6051 A', field: 'id203_a', borderColor: 'purple', yAxisID: 'y' },
-            { label: 'IM6051 FR', field: 'id203_fr', borderColor: 'cyan', yAxisID: 'y1' },
-            { label: 'CF6052 A', field: 'id204_a', borderColor: 'magenta', yAxisID: 'y' },
-            { label: 'CF6052 FR', field: 'id204_fr', borderColor: 'yellow', yAxisID: 'y1' },
-            { label: 'CF6053 A', field: 'id205_a', borderColor: 'black', yAxisID: 'y' },
-            { label: 'CF6053 FR', field: 'id205_fr', borderColor: 'brown', yAxisID: 'y1' },
-            { label: 'CF6054 A', field: 'id206_a', borderColor: 'lime', yAxisID: 'y' },
-            { label: 'CF6054 FR', field: 'id206_fr', borderColor: 'teal', yAxisID: 'y1' },
-            { label: 'FN6060 A', field: 'id211_a', borderColor: 'navy', yAxisID: 'y' },
-            { label: 'FN6060 FR', field: 'id211_fr', borderColor: 'pink', yAxisID: 'y1' },
-            { label: 'IM6051 Pressure', field: 'id203_presure', borderColor: 'silver', yAxisID: 'y2' },
-            { label: 'CF6054 Pressure', field: 'id206_presure', borderColor: 'gold', yAxisID: 'y2' },
-            { label: 'CISE1 Pressure', field: 'id219_presure', borderColor: 'coral', yAxisID: 'y2' },
-            { label: 'FLTR2 Pressure', field: 'id214_presure', borderColor: 'lavender', yAxisID: 'y2' },
-            { label: 'FN6060 Pressure', field: 'id211_presure', borderColor: 'beige', yAxisID: 'y2' },
-            { label: 'CV6034 Weight', field: 'id215_weight', borderColor: 'khaki', yAxisID: 'y4' },
-            { label: 'CV6034 Weight H', field: 'id215_weight_h', borderColor: 'peru', yAxisID: 'y3', isMovingAverage: true },
-            { label: 'CV6057 Weight', field: 'id216_weight', borderColor: 'crimson', yAxisID: 'y4' },
-            { label: 'CV6057 Weight H', field: 'id216_weight_h', borderColor: 'olive', yAxisID: 'y3', isMovingAverage: true },
-            { label: 'CV6035 Weight', field: 'id45_weight', borderColor: 'indigo', yAxisID: 'y4' },
-            { label: 'CV6035 Weight H', field: 'id45_weight_h', borderColor: 'maroon', yAxisID: 'y3', isMovingAverage: true }
+            { label: 'DZ6049 A', field: 'id201_a', borderColor: 'red', yAxisID: 'y', hidden: graphLineVisible },
+            { label: 'DZ6049 FR', field: 'id201_fr', borderColor: 'blue', yAxisID: 'y1', hidden: graphLineVisible },
+            { label: 'IM6050 A', field: 'id202_a', borderColor: 'green', yAxisID: 'y', hidden: graphLineVisible },
+            { label: 'IM6050 FR', field: 'id202_fr', borderColor: 'orange', yAxisID: 'y1', hidden: graphLineVisible },
+            { label: 'IM6051 A', field: 'id203_a', borderColor: 'purple', yAxisID: 'y', hidden: graphLineVisible },
+            { label: 'IM6051 FR', field: 'id203_fr', borderColor: 'cyan', yAxisID: 'y1', hidden: graphLineVisible },
+            { label: 'CF6052 A', field: 'id204_a', borderColor: 'magenta', yAxisID: 'y', hidden: graphLineVisible },
+            { label: 'CF6052 FR', field: 'id204_fr', borderColor: 'yellow', yAxisID: 'y1', hidden: graphLineVisible },
+            { label: 'CF6053 A', field: 'id205_a', borderColor: 'black', yAxisID: 'y', hidden: graphLineVisible },
+            { label: 'CF6053 FR', field: 'id205_fr', borderColor: 'brown', yAxisID: 'y1', hidden: graphLineVisible },
+            { label: 'CF6054 A', field: 'id206_a', borderColor: 'lime', yAxisID: 'y', hidden: graphLineVisible },
+            { label: 'CF6054 FR', field: 'id206_fr', borderColor: 'teal', yAxisID: 'y1', hidden: graphLineVisible },
+            { label: 'FN6060 A', field: 'id211_a', borderColor: 'navy', yAxisID: 'y', hidden: graphLineVisible },
+            { label: 'FN6060 FR', field: 'id211_fr', borderColor: 'pink', yAxisID: 'y1', hidden: graphLineVisible },
+            { label: 'IM6051 Pressure', field: 'id203_presure', borderColor: 'silver', yAxisID: 'y2', hidden: graphLineVisible },
+            { label: 'CF6054 Pressure', field: 'id206_presure', borderColor: 'gold', yAxisID: 'y2', hidden: graphLineVisible },
+            { label: 'CISE1 Pressure', field: 'id219_presure', borderColor: 'coral', yAxisID: 'y2', hidden: graphLineVisible },
+            { label: 'FLTR2 Pressure', field: 'id214_presure', borderColor: 'lavender', yAxisID: 'y2', hidden: graphLineVisible },
+            { label: 'FN6060 Pressure', field: 'id211_presure', borderColor: 'beige', yAxisID: 'y2', hidden: graphLineVisible },
+            { label: 'CV6034 Weight', field: 'id215_weight', borderColor: 'khaki', yAxisID: 'y4', hidden: graphLineVisible },
+            { label: 'CV6034 Weight H', field: 'id215_weight_h', borderColor: 'peru', yAxisID: 'y3', isMovingAverage: true, hidden: graphLineVisible },
+            { label: 'CV6057 Weight', field: 'id216_weight', borderColor: 'crimson', yAxisID: 'y4', hidden: true },
+            { label: 'CV6057 Weight H', field: 'id216_weight_h', borderColor: 'olive', yAxisID: 'y3', isMovingAverage: true, hidden: graphLineVisible },
+            // { label: 'CV6035 Weight', field: 'id45_weight', borderColor: 'indigo', yAxisID: 'y4', hidden: true },
+            // { label: 'CV6035 Weight H', field: 'id45_weight_h', borderColor: 'maroon', yAxisID: 'y3', isMovingAverage: true, hidden: true }, - Neattiecas un WF
+            { label: 'CV6034 + CV6057 Weight H', field: 'cv_over_all', borderColor: 'maroon', yAxisID: 'y3', isMovingAverage: true, hidden: graphLineVisible }
         ];
 
         const yAxesConfig = {
@@ -475,8 +522,8 @@
             }
         };
         const multiAxisChart2Config = [
-            { label: 'Proteīna cietes attiecība', field: 'pca', borderColor: 'blue', yAxisID: 'y', isMovingAverage: true  },
-            { label: 'Definētais mērķa standarts', field: 'def_standart', borderColor: 'red', yAxisID: 'y' }
+            { label: 'Proteīna cietes attiecība', field: 'pca', borderColor: 'blue', yAxisID: 'y', isMovingAverage: true, hidden: false },
+            { label: 'Definētais mērķa standarts', field: 'def_standart', borderColor: 'red', yAxisID: 'y', hidden: false }
         ];
 
         const yAxesConfig2 = {
@@ -484,7 +531,7 @@
                 type: 'linear',
                 position: 'left',
                 min: 0,
-                max: 100,
+                max: 50,
                 title: { display: true, text: 'RATIO %' }
             }
         };
@@ -504,7 +551,7 @@
                 const scaleData = await getScaleData(dataFromTime);
                 const dateChar2 = scaleData.map(d => ({
                     time_stmp: d.time_stmp,
-                    pca: (d.id216_weight_h / (d.id215_weight_h + d.id216_weight_h)*100),
+                    pca: (d.id216_weight_h / (d.id215_weight_h + d.id216_weight_h) * 100),
                     def_standart: d.def_standart
                 }));
                 console.log('Cikls');
@@ -533,6 +580,9 @@
             }
         }
         CyclicLoading();
+
+
+
 
         /// Eventlisteners piekš ievades datu pārbaudes
         function validateInput(inputElement, minValue, maxValue) {
