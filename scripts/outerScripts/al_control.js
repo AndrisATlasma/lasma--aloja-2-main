@@ -371,6 +371,7 @@ async function scaleWork() {
     //****************************************************** */
     //console.time("BBB");
     orders_to_bunkers = await getOrders();
+    //console.log(orders_to_bunkers);
     //console.timeEnd("BBB");
 
     var bunkurs_1 = document.getElementById("T1_partija");
@@ -464,6 +465,7 @@ async function scaleWork() {
         lobisana.forEach(function (element) {
             element.classList.remove("btn-disabled");
         });
+
         if (bu_1.length > 0) {
             T_no_BU1.forEach(function (element) {
                 element.classList.remove("btn-disabled");
@@ -474,7 +476,7 @@ async function scaleWork() {
             bu1_product.textContent = bu_1[0].label;
 
             bu_1_btn.setAttribute("data-order_id", bu_1[0].u_id);
-
+            console.log(bu_1);
             if (bu_1[0].order_state == 2) {
 
                 bu_1_btn.textContent = "Notiek darbs";
@@ -556,8 +558,12 @@ async function scaleWork() {
                 bu_2_btn.style.backgroundColor = "yellow";
                 bu_1_btn.disabled = false;
                 bu_2_btn.classList.remove('active');
+
+                if(bu_1[0].order_state != 2){ // Lai neatslēdz izslēgšanas funkciju ja ir divi uzdevumu
                 document.getElementById("startPriekstirisana").removeAttribute('data-routetostart');
                 document.getElementById("stopPriekstirisana").removeAttribute('data-routetostart');
+                }
+
                 if (bu_1.lenght > 0) {
                     if (bu_1[0].order_state == 2) {
                         order_state_text.textContent = ORDER_TEXT[bu_1[0].order_state];
